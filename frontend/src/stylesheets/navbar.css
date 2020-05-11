@@ -1,0 +1,70 @@
+.navbar-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color: rgb(243, 243, 243);
+}
+
+.navbar-container h1{
+    margin: 0px;
+    padding: 10px;
+}
+
+.navlinks{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navlinks a, 
+.logout{
+    margin: 0px 20px;
+    padding: 10px 20px;
+    background-color: rgb(132, 169, 236);
+    border-radius: 5px;
+    color: white;
+    font-weight: 800;
+}
+
+a{
+    text-decoration: none;
+}
+
+a:hover{
+    cursor: pointer;
+    background-color: rgb(64, 88, 224);
+}
+
+a:visited{
+    color: white;
+}
+
+.logout{
+    background-color: lightblue;
+    border: none;
+    font-weight: 800;
+    font-size: inherit;
+}
+
+.logout:hover{
+    cursor: pointer;
+    background-color: darkblue;
+}
+
+.logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.birb{
+    color: rgb(132, 169, 236);
+    font-size: 30px;
+    padding: 10px;
+    width: 30px;
+    height: 30px;
+}

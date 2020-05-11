@@ -1,12 +1,14 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import '../../stylesheets/session.css'
 
 class SignupForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             email: '',
-            handle: '',
+            firstname: '',
+            lastname: '',
             password: '',
             password2: '',
             errors: {}
@@ -34,7 +36,8 @@ class SignupForm extends React.Component {
         e.preventDefault();
         let user = {
             email: this.state.email,
-            handle: this.state.handle,
+            firstname: this.state.firstname,
+            lastname: this.state.lastname,
             password: this.state.password,
             password2: this.state.password2
         };
@@ -44,7 +47,7 @@ class SignupForm extends React.Component {
 
     renderErrors() {
         return (
-            <ul>
+            <ul className="errors">
                 {Object.keys(this.state.errors).map((error, i) => (
                     <li key={`error-${i}`}>
                         {this.state.errors[error]}
@@ -56,20 +59,26 @@ class SignupForm extends React.Component {
 
     render() {
         return (
-            <div className="signup-form-container">
+            <div className="form-container">
                 <form onSubmit={this.handleSubmit}>
-                    <div className="signup-form">
+                    <div className="form">
+                        <br />
+                        <input type="text"
+                            value={this.state.firstname}
+                            onChange={this.update('firstname')}
+                            placeholder="First name"
+                        />
+                        <br />
+                        <input type="text"
+                            value={this.state.lastname}
+                            onChange={this.update('lastname')}
+                            placeholder="Last name"
+                        />
                         <br />
                         <input type="text"
                             value={this.state.email}
                             onChange={this.update('email')}
                             placeholder="Email"
-                        />
-                        <br />
-                        <input type="text"
-                            value={this.state.handle}
-                            onChange={this.update('handle')}
-                            placeholder="Handle"
                         />
                         <br />
                         <input type="password"
