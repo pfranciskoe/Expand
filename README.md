@@ -27,19 +27,25 @@ Bonus
 
 
 ## Tech Overview
-
+* MongoDB
+* Mongoose
+* Express
+* React-Redux
+* NodeJS
+* Backend Server S3
+* Deploy through Heroku or AWS
 
 
 ## Work Breakdown
 
 
-### Day 1
+### Day 1 (Zoe Front, Peter Back)
 * User Auth Day (front and back end)
 * Backend Course Framework
 Frontend
     Login/Signup Splash
     Teacher Home Page / User Home Page
-### Day 2
+### Day 2 (Zoe Back, Peter Front)
 * Finish Up User Auth Day (front and back end)
 * Backend AWS Video Hosting
 * Frontend Video interface
