@@ -7,6 +7,8 @@ import MainPage from './main/main_page';
 import LoginFormContainer from './session/login_form_container';
 import SignupFormContainer from './session/signup_form_container';
 
+import CourseIndexContainer from './courses/course_index_container';
+
 const App = () => (
     <div>
         <NavBarContainer />
@@ -14,6 +16,8 @@ const App = () => (
             <AuthRoute exact path="/" component={MainPage} />
             <AuthRoute exact path="/login" component={LoginFormContainer} />
             <AuthRoute exact path="/signup" component={SignupFormContainer} />
+
+            <ProtectedRoute path="/courese" component={CourseIndexContainer} />
         </Switch>
     </div>
 );

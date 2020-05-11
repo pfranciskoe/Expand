@@ -1,6 +1,6 @@
 import {connect} from "react-redux";
 import {getCourses} from "../"
-import CourseIndex from "./course"
+import CourseIndex from "./course_index";
 
 const mSTP = state => ({
     courses: state.entities.courses
