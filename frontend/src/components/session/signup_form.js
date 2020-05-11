@@ -7,8 +7,8 @@ class SignupForm extends React.Component {
         super(props);
         this.state = {
             email: '',
-            firstname: '',
-            lastname: '',
+            firstName: '',
+            lastName: '',
             password: '',
             password2: '',
             errors: {}
@@ -36,8 +36,8 @@ class SignupForm extends React.Component {
         e.preventDefault();
         let user = {
             email: this.state.email,
-            firstname: this.state.firstname,
-            lastname: this.state.lastname,
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
             password: this.state.password,
             password2: this.state.password2
         };
@@ -64,14 +64,14 @@ class SignupForm extends React.Component {
                     <div className="form">
                         <br />
                         <input type="text"
-                            value={this.state.firstname}
-                            onChange={this.update('firstname')}
+                            value={this.state.firstName}
+                            onChange={this.update('firstName')}
                             placeholder="First name"
                         />
                         <br />
                         <input type="text"
-                            value={this.state.lastname}
-                            onChange={this.update('lastname')}
+                            value={this.state.lastName}
+                            onChange={this.update('lastName')}
                             placeholder="Last name"
                         />
                         <br />
