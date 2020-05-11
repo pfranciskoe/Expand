@@ -1,0 +1,21 @@
+.main-list{
+    display: flex;
+    flex-direction: column;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    padding: 40px;
+    justify-content: flex-start;
+}
+
+.main-list h2{
+    background-color: rgb(240, 240, 240);
+    padding: 30px;
+    border-radius: 10px;
+    width: fit-content;
+}
+
+.tweet-box h3{
+    background-color: rgb(205, 236, 247);
+    width: fit-content;
+    padding: 20px;
+    border-radius: 10px;
+}
