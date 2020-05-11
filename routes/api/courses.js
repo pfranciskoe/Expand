@@ -60,7 +60,7 @@ router.patch('/:id',
 
 //delete course
 router.delete('/:id',
-    // passport.authenticate('jwt', { session: false }),
+    passport.authenticate('jwt', { session: false }),
     (req, res) => {
 
         Course.findOneAndDelete({ _id: req.params.id },
