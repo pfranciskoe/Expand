@@ -1,17 +1,27 @@
 const Validator = require('validator');
 const validText = require('./valid-text');
 
-module.exports = function validateTweetInput(data) {
+module.exports = function validateCourseInput(data) {
     let errors = {};
 
-    data.text = validText(data.text) ? data.text : '';
+    data.title = validText(data.title) ? data.title : '';
 
-    if (!Validator.isLength(data.text, { min: 5, max: 140 })) {
-        errors.text = 'Tweet must be between 5 and 140 characters';
+    if (!Validator.isLength(data.title, { min:2, max: 80 })) {
+        errors.title = 'Title must be between 2 and 80 characters';
     }
 
-    if (Validator.isEmpty(data.text)) {
-        errors.text = 'Text field is required';
+    if (Validator.isEmpty(data.title)) {
+        errors.title = 'title field is required';
+    }
+
+    data.description = validText(data.description) ? data.description : '';
+
+    if (!Validator.isLength(data.description, { min: 2, max: 80 })) {
+        errors.description = 'description must be between 2 and 80 characters';
+    }
+
+    if (Validator.isEmpty(data.description)) {
+        errors.description = 'description field is required';
     }
 
     return {
