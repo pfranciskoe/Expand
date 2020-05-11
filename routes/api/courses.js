@@ -15,11 +15,11 @@ router.get("/", (req, res) => {
 });
 
 //show course
-router.get("/:id", (req, res => {
+router.get("/:id", (req, res) => {
     Course.findById( req.params.id )
         .then(course => res.json(course))
         .catch(err => res.status(404).json({ nocoursefound: 'No course found' }));    
-}))
+})
 
 //post course
 router.post('/',
@@ -42,7 +42,7 @@ router.post('/',
 );
 
 //update course
-router.post('/:id',
+router.patch('/:id',
     passport.authenticate('jwt', { session: false }),
     (req, res) => {
         const { errors, isValid } = validateCourseInput(req.body);
@@ -50,19 +50,23 @@ router.post('/:id',
         if (!isValid) {
             return res.status(400).json(errors);
         }
-        
-    // 
-        Course.updateOne(req.params.body)
-        const newCourse = Course.findById(req.params.id)
-        .then(() => res.json(newCourse))
-        
-    }
+
+        Course.findOneAndUpdate({ _id: req.params.id }, req.body, 
+            { new: true }, function (err, course) {
+                res.json(course);
+        });
+    }   
 );
 
-// await CharacterModel.updateOne({ name: 'Jon Snow' }, {
-//     title: 'King in the North'
-// });
+//delete course
+router.delete('/:id',
+    // passport.authenticate('jwt', { session: false }),
+    (req, res) => {
 
-// // Load the document to see the updated value
-// const doc = await CharacterModel.findOne();
-// doc.title; // "King in the North"
+        Course.findOneAndDelete({ _id: req.params.id },
+            function (err, course) {
+                res.json(course);
+            });
+    }
+);
+module.exports = router; 
