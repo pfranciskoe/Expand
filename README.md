@@ -1,8 +1,9 @@
 # Expand
+## Background
 A Learning tool for teachers to followup with students when they have questions.
 
 
-# MVPS / Base Features
+## MVPS / Base Features
 - [ ] User Auth
 * Users can sign up as students or teachers.
 * Users can log in
@@ -23,3 +24,42 @@ Bonus
 * students and teachers should be able to comment with time stamped links to other videos.
 - [ ] Chat
 * students and teachers should be able to directly message one another.
+
+
+## Tech Overview
+
+
+
+## Work Breakdown
+
+
+### Day 1
+* User Auth Day (front and back end)
+* Backend Course Framework
+Frontend
+    Login/Signup Splash
+    Teacher Home Page / User Home Page
+### Day 2
+* Finish Up User Auth Day (front and back end)
+* Backend AWS Video Hosting
+* Frontend Video interface
+Frontend
+    Teacher Home Page(Their Courses) / User Home Page(Their Courses)
+    Course Index Page
+    Course Show Page
+### Day 3
+* Backend AWS Video Hosting + Commenting Framework
+* Frontend Video interface + Commenting
+Frontend
+    Course Show Page
+    Video Page
+### Day 4
+* Backend Recieve and Accept timestamps refs
+* Comment interface and User interaction improvements.
+Frontend
+    Video Page + comments
+### Day 5
+* Cleanup and final pushes to deployment app.
+* Css cleanup/ js responsive animations.
+Frontend
+    Video Page + comments
