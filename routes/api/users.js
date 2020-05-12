@@ -27,7 +27,8 @@ router.post("/register", (req, res) => {
                 lastName: req.body.lastName,
                 email: req.body.email,
                 password: req.body.password,
-                instructor: req.body.instructor
+                instructor: req.body.instructor,
+                courses: req.body.courses
             });
 
             bcrypt.genSalt(10, (err, salt) => {
@@ -90,12 +91,17 @@ router.post("/login", (req, res) => {
 });
 
 //CURRENT USER
-router.get('/current', passport.authenticate('jwt', { session: false }), (req, res) => {
+router.get('/current', 
+passport.authenticate('jwt', { session: false }), 
+(req, res) => {
     res.json({
         id: req.user.id,
         firstName: req.user.firstName,
         lastName: req.user.lastName,
-        email: req.user.email
-    });
+        email: req.user.email,
+        instructor: req.user.instructor,
+        courses: req.user.courses
+    }.populate('courses'));
 })
+
 module.exports = router;
