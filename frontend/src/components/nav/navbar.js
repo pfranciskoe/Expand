@@ -10,9 +10,10 @@ class NavBar extends React.Component {
     }
 
     componentDidMount(){
-        const { fetchUser, getUserCourses, userId } = this.props;
+        const { clearErrors, fetchUser, getUserCourses, userId } = this.props;
         fetchUser(userId);
         getUserCourses(userId);
+        clearErrors();
     }
 
     logoutUser(e) {
