@@ -4,18 +4,13 @@ import { fetchUser } from '../../actions/users_actions';
 import NavBar from './navbar';
 import { getUserCourses } from '../../actions/courses_actions';
 
-const mapStateToProps = ({entities: {users, courses}, session}) => {
+const mapStateToProps = ({entities: {courses}, session}) => {
     let userId = undefined;
-    let currentUser = undefined;
-    if (session.user){
-        userId = session.user.id;
-        currentUser = users[userId];
-    }
-    debugger
+    if (session.user) 
     return {
         loggedIn: session.isAuthenticated,
         userId,
-        currentUser,
+        currentUser: session.user,
         courses
     }
 };
