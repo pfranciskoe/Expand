@@ -32,55 +32,74 @@ mongoose.connect(mongoURL.mongoURI, {useNewUrlParser: true});
 //     {
 //         'model': 'User',
 //         'documents': [
-User.deleteMany({},console.log('deleted users'))
-Course.deleteMany({},console.log('deleted courses'))
-let user1 = 1;
-User.create(
-    {
-        'firstName': 'Instructor',
-        'lastName': 'Koe',
-        'instructor': true,
-        'email': 'peter@koe.com',
-        'password': 'password',
-        'courses': []
-    }, (err, user) => {
-        Course.create(
-            {
-                'instructor': `${user._id}`,
-                'students': [`${user._id}`, `${user._id}`],
-                'title': 'Potato Farming',
-                'description': 'Self explanatory',
-                'lessons': []
-            },
-        )
-    }
-)
+User.deleteMany({},(err)=>console.log(err))
+Course.deleteMany({},(err)=>console.log(err))
 
 
-const user2 = User.create(
-    {
-        'firstName': 'Student',
-        'lastName': 'Koe2',
-        'instructor': false,
-        'email': 'peter1@koe.com',
-        'password': 'password',
-        'courses': []
-    },
-    (err, user) => { return user }
-)
-            
-const user3 = User.create(
-    {
+const users_arr = [{
+            'firstName': 'Instructor',
+            'lastName': 'Koe',
+            'instructor': true,
+            'email': 'peter@koe.com',
+            'password': 'password',
+            'courses': []
+        }, 
+        {
+                'firstName': 'Student',
+                'lastName': 'Koe2',
+                'instructor': false,
+                'email': 'peter1@koe.com',
+                'password': 'password',
+                'courses': []
+        },
+        {
+                'firstName': 'Peter',
+                'lastName': 'Koe3',
+                'instructor': false,
+                'email': 'peter2@koe.com',
+                'password': 'password',
+                'courses': []
+        }];
+
+User.create(users_arr, function (err, users) {
+        if (err) 
+                {console.log(err)}
+        else {
+                let user1 = users[0]._id;
+                let user2 = users[1]._id;
+                let user3 = users[2]._id;
+                const courses_arr = [
+                    {
+                            'instructor': `${user1}`,
+                            'students': [`${user2}`, `${user3}`],
+                            'title': 'Potato Farming',
+                            'description': 'Self explanatory',
+                            'lessons': []
+                    }, {
+                            'instructor': `${user1}`,
+                            'students': [`${user2}`, `${user3}`],
+                            'title': 'Box Crushing',
+                            'description': 'Less violent than it sounds',
+                            'lessons': [],
+                    }
+            ];
+                Course.create(courses_arr, function (err, courses) {
+                    if (err) { console.log(err) }
+                    else {
+                            
+                            let course0 = courses[0]._id;
+                            let course1 = courses[1]._id;
+                            user2.courses = [course0, course1]
+                    }
+                
+                })
         
-        'firstName': 'Peter',
-        'lastName': 'Koe3',
-        'instructor': false,
-        'email': 'peter2@koe.com',
-        'password': 'password',
-        'courses': []
-    },
-    (err, user) => { return user }
+        }
+        }
+
 )
+
+
 
 
 // const course1 = Course.create(
