@@ -71,10 +71,18 @@ a:visited{
 
 .navlinks .my-courses{
     margin-right: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
 }
 
-.navlinks .courses-arrow{
+.navlinks .user-courses .courses-arrow {
     margin-left: 0px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    background-color: rgb(132, 169, 236);
+    border-left: 1px solid lightgrey;
+    font-size: 15px;
+    padding: 10px;
 }
 
 .dropdown{
