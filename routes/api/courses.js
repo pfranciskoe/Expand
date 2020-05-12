@@ -16,7 +16,7 @@ router.get("/", (req, res) => {
 
 //show course
 router.get("/:id", (req, res) => {
-    Course.findById( req.params.id )
+    Course.findById( req.params.id ).populate('instructor').populate('students')
         .then(course => res.json(course))
         .catch(err => res.status(404).json({ nocoursefound: 'No course found' }));    
 })
@@ -43,7 +43,7 @@ router.post('/',
 
 //update course
 router.patch('/:id',
-    passport.authenticate('jwt', { session: false }),
+    // passport.authenticate('jwt', { session: false }),
     (req, res) => {
         const { errors, isValid } = validateCourseInput(req.body);
 
@@ -69,4 +69,5 @@ router.delete('/:id',
             });
     }
 );
+
 module.exports = router; 

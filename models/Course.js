@@ -4,10 +4,13 @@ const Schema = mongoose.Schema;
 const CourseSchema = new Schema({
     instructor: {
         type: Schema.Types.ObjectId,
-        ref: 'users',
+        ref: 'User',
         required: true
     },
-    students: [],
+    students: [{
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    }],
     title: {
         type: String,
         required: true
@@ -23,4 +26,4 @@ const CourseSchema = new Schema({
     }
 });
 
-module.exports = Course = mongoose.model('course', CourseSchema);
+module.exports = Course = mongoose.model('Course', CourseSchema);

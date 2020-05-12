@@ -22,7 +22,9 @@ const UserSchema = new Schema({
         type: Boolean,
         default: false
     },
-    courses:[],
+    courses: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Course'}],
     date: {
     type: Date,
     default: Date.now
