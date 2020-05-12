@@ -4,7 +4,7 @@ import CourseIndex from "./course_index";
 
 const mSTP = state => ({
     courses: state.entities.courses,
-    currentUser: state.entities.users[state.session.user.id]
+    currentUser: state.session.user
 })
 
 const mDTP = dispatch => ({
