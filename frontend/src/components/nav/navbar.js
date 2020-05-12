@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import '../../stylesheets/navbar.css';
 
 class NavBar extends React.Component {
@@ -9,18 +9,64 @@ class NavBar extends React.Component {
         this.getLinks = this.getLinks.bind(this);
     }
 
+    componentDidMount(){
+        const { fetchUser, getUserCourses, userId } = this.props;
+        fetchUser(userId);
+        getUserCourses(userId);
+    }
+
     logoutUser(e) {
         e.preventDefault();
         this.props.logout();
+    }
+
+    addOptionToCreate(){
+        const {currentUser} = this.props;
+        if (currentUser && currentUser.instructor){
+            return <Link to={"/courses/new"}>Create a course</Link>;
+        }
+    }
+
+    courseList(){
+        const {currentUser, courses} = this.props;
+        if (currentUser){
+            let test = ["Biology", "Chemistry", "Physics", "Potato"];
+            return (
+                <ul className="dropdown-list" id="course-dropdown">
+                    {test.map((course, idx) => {
+                        return (
+                            <li className="dropdown-item" key={idx}>{course}</li>
+                        )
+                    })}
+                    {/* {Object.values(courses).map((course) => {
+                        return (
+                            <li className="dropdown-item" key={course.id}>{course.title}</li>
+                        )
+                    })} */}
+                </ul>
+            )
+        }
+    }
+
+    showList(){
+        return e => {
+            e.preventDefault();
+            document.getElementById("course-dropdown").classList.toggle("show-list");
+        }
     }
 
     getLinks() {
         if (this.props.loggedIn) {
             return (
                 <div className="navlinks">
-                    <Link to={"/courses"}>All Courses</Link>
+                    <div className="user-courses">
+                        <NavLink className="my-courses" to={"/courses"}>My Courses</NavLink>
+                        <button className="button courses-arrow dropdown" onClick={this.showList}>
+                            <i className="fas fa-caret-down"></i>
+                        </button>
+                    </div>
                     <Link to={"/profile"}>Profile</Link>
-                    <Link to={"/new_course"}>Create a course</Link>
+                    {this.addOptionToCreate()}
                     <button className="logout" onClick={this.logoutUser}>Logout</button>
                 </div>
             );

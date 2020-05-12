@@ -1,4 +1,4 @@
-import * as coursesAPIUtil from "../util/coursesAPIUtil";
+import * as coursesAPIUtil from "../util/courses_api_util";
 
 export const RECEIVE_COURSES = "RECEIVE_COURSES";
 export const RECEIVE_COURSE = "RECEIVE_COURSE";
@@ -21,9 +21,10 @@ const removeCourse = courseId => ({
 })
 
 const receiveCourseErrors = errors => ({
-    type: REMOVE_COURSE,
+    type: RECEIVE_COURSE_ERRORS,
     errors
 })
+
 
 export const createCourse = course => dispatch => coursesAPIUtil.createCourse(course)
     .then(course => dispatch(receiveCourse(course)),
@@ -32,10 +33,13 @@ export const createCourse = course => dispatch => coursesAPIUtil.createCourse(co
 export const getCourses = () => dispatch => coursesAPIUtil.getCourses()
     .then(courses => dispatch(receiveCourses(courses)))
 
+export const getCourse = (courseId) => dispatch => coursesAPIUtil.getCourse(courseId)
+    .then(course => dispatch(receiveCourse(course)))
+
 export const getUserCourses = (userId) => dispatch => coursesAPIUtil.getUserCourses(userId)
     .then(courses => dispatch(receiveCourses(courses)))
 
-export const updateCourse = (course) => dispatch => coursesAPIUtil.updateCourses(course)
+export const updateCourse = (course) => dispatch => coursesAPIUtil.updateCourse(course)
     .then(course => dispatch(receiveCourse(course)),
         err => dispatch(receiveCourseErrors(err)))
 

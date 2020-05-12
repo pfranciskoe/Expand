@@ -1,13 +1,16 @@
 import {connect} from "react-redux";
-import {getCourses} from "../../actions/courses_actions";
+import {getCourses, getCourse, deleteCourse} from "../../actions/courses_actions";
 import CourseIndex from "./course_index";
 
 const mSTP = state => ({
-    courses: state.entities.courses
+    courses: state.entities.courses,
+    currentUser: state.entities.users[state.session.user.id]
 })
 
 const mDTP = dispatch => ({
-    getCourses: () => dispatch(getCourses())
+    getCourses: () => dispatch(getCourses()),
+    getCourse: (courseId) => dispatch(getCourse(courseId)),
+    deleteCourse: (courseId) => dispatch(deleteCourse(courseId))
 })
 
 export default connect(mSTP, mDTP)(CourseIndex);

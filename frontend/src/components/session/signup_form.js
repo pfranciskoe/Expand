@@ -11,6 +11,7 @@ class SignupForm extends React.Component {
             lastName: '',
             password: '',
             password2: '',
+            instructor: false,
             errors: {}
         };
 
@@ -34,14 +35,15 @@ class SignupForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
+        const {email, firstName, lastName, password, password2} = this.state;
         let user = {
-            email: this.state.email,
-            firstName: this.state.firstName,
-            lastName: this.state.lastName,
-            password: this.state.password,
-            password2: this.state.password2
+            email,
+            firstName,
+            lastName,
+            password,
+            password2,
+            instructor: this.state.instructor
         };
-
         this.props.signup(user, this.props.history);
     }
 
@@ -75,7 +77,7 @@ class SignupForm extends React.Component {
                             placeholder="Last name"
                         />
                         <br />
-                        <input type="text"
+                        <input type="email"
                             value={this.state.email}
                             onChange={this.update('email')}
                             placeholder="Email"
@@ -93,7 +95,24 @@ class SignupForm extends React.Component {
                             placeholder="Confirm Password"
                         />
                         <br />
-                        <input type="submit" value="Submit" />
+                        <div className="status">
+                            <h3>Select one:</h3>
+                            <div>
+                                <label><input type="radio"
+                                    name="status"
+                                    value={false}
+                                    onChange={this.update('instructor')}
+                                    checked
+                                />Student</label>
+                                <label><input type="radio"
+                                    name="status"
+                                    value={true}
+                                    onChange={this.update('instructor')}
+                                />Instructor</label>
+                            </div>
+                        </div>
+                        <br />
+                        <input className="button" type="submit" value="Submit" />
                         {this.renderErrors()}
                     </div>
                 </form>

@@ -8,6 +8,10 @@ export const getUserCourses = (id) => {
     return axios.get(`/api/courses/user/${id}`);
 };
 
+export const getCourse = (id) => {
+    return axios.get(`/api/courses/${id}`);
+};
+
 export const createCourse= (course) => {
     return axios.post("/api/courses/", course);
 };
