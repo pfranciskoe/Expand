@@ -25,14 +25,19 @@
     border-radius: 5px;
 }
 
-.form .button{
+.form .button,
+.navlinks .button{
     background-color: rgb(118, 172, 243);
     color: white;
     border: none;
     padding: 10px 20px;
+    font-weight: 700;
+    border-radius: 5px;
+    font-size: inherit;
 }
 
-.form .button:hover{
+.form .button:hover,
+.navlinks .button:hover{
     background-color: rgb(56, 102, 230);
     cursor: pointer;
 }
@@ -47,4 +52,29 @@
 .errors li{
     list-style: none;
     padding: 10px;
+}
+
+.status{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    padding: 20px 20px;
+    border: 2px solid rgb(224, 224, 224);
+    border-radius: 10px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.status h3{
+    margin: 0px;
+    padding: 0px 10px;
+    font-weight: 500;
+}
+
+.status > div{
+    display: flex;
+}
+
+.status > div > label{
+    padding: 7px;
 }

@@ -1,21 +1,26 @@
-// import axios from "axios";
+import axios from "axios";
 
-// export const getCourses = () => {
-//     return axios.get("/api/courses");
-// };
+export const getCourses = () => {
+    return axios.get("/api/courses");
+};
 
-// export const getUserCourses = (id) => {
-//     return axios.get(`/api/courses/user/${id}`);
-// };
+export const getUserCourses = (id) => {
+    return axios.get(`/api/courses/user/${id}`);
+};
 
-// export const createCourse= (course) => {
-//     return axios.post("/api/courses/", course);
-// };
+export const getCourse = (id) => {
+    return axios.get(`/api/courses/${id}`);
+};
 
-// export const updateCourse = (course) => {
-//     return axios.patch(`/api/courses/${course.id}`, course);
-// };
+export const createCourse= (course) => {
+    return axios.post("/api/courses", course);
+};
 
-// export const removeCourse = (id) => {
-//     return axios.delete(`/api/courses/${id}`);
-// };
+export const updateCourse = (course) => {
+    debugger
+    return axios.patch(`/api/courses/${course._id}`, course);
+};
+
+export const removeCourse = (id) => {
+    return axios.delete(`/api/courses/${id}`);
+};

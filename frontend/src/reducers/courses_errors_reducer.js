@@ -2,7 +2,7 @@ import { RECEIVE_COURSE_ERRORS } from '../actions/courses_actions';
 
 const _nullErrors = [];
 
-const coursesErrorsReducer = (state = _nullErrors, action) => {
+const CoursesErrorsReducer = (state = _nullErrors, action) => {
     Object.freeze(state);
     switch (action.type) {
         case RECEIVE_COURSE_ERRORS:
@@ -12,4 +12,4 @@ const coursesErrorsReducer = (state = _nullErrors, action) => {
     }
 };
 
-export default coursesErrorsReducer;
+export default CoursesErrorsReducer;
