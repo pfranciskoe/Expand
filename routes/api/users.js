@@ -104,4 +104,11 @@ passport.authenticate('jwt', { session: false }),
     }.populate('courses'));
 })
 
+//show user
+router.get("/:id", (req, res) => {
+    User.findById(req.params.id).populate('courses')
+        .then(user => res.json(user))
+        .catch(err => res.status(404).json({ nocoursefound: 'No user found' }));
+})
+
 module.exports = router;

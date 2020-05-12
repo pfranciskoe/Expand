@@ -6,7 +6,7 @@ const mSTP = (state, ownProps) => ({
     course: {
         title: "",
         description: "",
-        user_id: state.session.user.id
+        instructor: state.session.user.id
     },
     formType: "Create Course"
 })

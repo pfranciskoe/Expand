@@ -4,13 +4,13 @@ import { fetchUser } from '../../actions/users_actions';
 import NavBar from './navbar';
 import { getUserCourses } from '../../actions/courses_actions';
 
-const mapStateToProps = ({entities: {courses}, session}) => {
+const mapStateToProps = ({entities: {users, courses}, session}) => {
     let userId = undefined;
     if (session.user) userId = session.user.id;
     return {
         loggedIn: session.isAuthenticated,
         userId,
-        currentUser: session.user,
+        currentUser: users[userId],
         courses
     }
 };

@@ -28,7 +28,7 @@ class CourseIndexItem extends React.Component{
     }
 
     componentDidMount(){
-        this.props.getCourse(this.props.match.params.id);
+        // this.props.getCourse(this.props.match.params.id);
     }
 
     handleDelete(e){

@@ -11,8 +11,8 @@ class NavBar extends React.Component {
 
     componentDidMount(){
         const { clearErrors, fetchUser, getUserCourses, userId } = this.props;
-        fetchUser(userId);
-        getUserCourses(userId);
+        // fetchUser(userId);
+        // getUserCourses(userId);
         clearErrors();
     }
 
@@ -66,6 +66,7 @@ class NavBar extends React.Component {
                         <button className="button courses-arrow dropdown" onClick={this.showList}>
                             <i className="fas fa-caret-down"></i>
                         </button>
+                        {this.courseList()}
                     </div>
                     <Link to={"/profile"}>Profile</Link>
                     {this.addOptionToCreate()}
