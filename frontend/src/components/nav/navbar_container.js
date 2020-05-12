@@ -11,6 +11,7 @@ const mapStateToProps = ({entities: {users, courses}, session}) => {
         userId = session.user.id;
         currentUser = users[userId];
     }
+    debugger
     return {
         loggedIn: session.isAuthenticated,
         userId,

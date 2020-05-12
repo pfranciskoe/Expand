@@ -25,9 +25,9 @@ export const logoutUser = () => ({
     type: RECEIVE_USER_LOGOUT
 });
 
-export const  = () => ({
-    type: RECEIVE_USER_LOGOUT
-});
+export const clearErrors = () => ({
+         type: CLEAR_ERRORS,
+       });
 
 export const signup = user => dispatch => (
     APIUtil.signup(user).then(() => (
