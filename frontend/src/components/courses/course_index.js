@@ -16,7 +16,7 @@ class CourseIndex extends React.Component {
             <div>
                 {Object.values(courses).map((course, i) => (
                     <CourseIndexItem
-                        key={i} course={course} getCourse={getCourse} 
+                        key={i} course={course}
                         updateCourse={updateCourse} 
                         deleteCourse={deleteCourse} 
                         currentUser={currentUser}
