@@ -13,11 +13,11 @@ export const getCourse = (id) => {
 };
 
 export const createCourse= (course) => {
-    return axios.post("/api/courses/", course);
+    return axios.post("/api/courses", course);
 };
 
 export const updateCourse = (course) => {
-    return axios.patch(`/api/courses/${course.id}`, course);
+    return axios.patch(`/api/courses/${course._id}`, course);
 };
 
 export const removeCourse = (id) => {

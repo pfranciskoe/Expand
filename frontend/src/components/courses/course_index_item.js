@@ -46,7 +46,7 @@ class CourseIndexItem extends React.Component{
                 <p>{course.description}</p>
                 {currentUser.id === course.instructor 
                 ? (<div>
-                    <Link to={`/courses/${course.id}/edit`}>Edit Course</Link>
+                    <Link to={`/courses/${course._id}/edit`}>Edit Course</Link>
                     <button onClick={this.handleDelete}>Delete Course</button>
                     </div>)
                 : (null)
