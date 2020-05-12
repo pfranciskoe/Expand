@@ -25,6 +25,7 @@ import {withRouter, Link} from "react-router-dom";
 class CourseIndexItem extends React.Component{
     constructor(props){
         super(props);
+        this.handleDelete = this.handleDelete.bind(this);
     }
 
     componentDidMount(){
@@ -33,7 +34,7 @@ class CourseIndexItem extends React.Component{
 
     handleDelete(e){
         e.preventDefault();
-        this.props.deleteCourse(this.props.course.id)
+        this.props.deleteCourse(this.props.course._id)
             .then(this.props.history.push("/courses"));
     }
 

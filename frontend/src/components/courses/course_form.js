@@ -18,6 +18,10 @@ class CourseForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
+        if (this.props.formType === "Update Course") {
+            const course = { ...this.state, _id: this.props.course._id }
+            this.props.action(course)
+        }
         this.props.action(this.state);
     }
 
