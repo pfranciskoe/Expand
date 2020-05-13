@@ -11,6 +11,9 @@ const AWS_ACCESS_KEY_ID = require('../../config/keys').AWS_ACCESS_KEY_ID;
 const AWS_BUCKET_NAME = require('../../config/keys').AWS_BUCKET_NAME;
 
 const multer = require("multer");
+const multerS3 = require('multer-s3');
+const path = require('path');
+const url = require('url');
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
@@ -32,54 +35,54 @@ router.get("/:id", (req, res) => {
         .catch(err => res.status(404).json({ nolessonfound: 'No lesson found' }));
 })
 
+const s3 = new AWS.S3({
+    accessKeyId: AWS_ACCESS_KEY_ID,
+    secretAccessKey: AWS_SECRET_ACCESS_KEY,
+    Bucket: AWS_BUCKET_NAME
+});
+
+const lessonUpload = multer({
+    storage: multerS3({
+        s3: s3,
+        bucket: AWS_BUCKET_NAME,
+        acl: 'public-read',
+        key: function (req, file, cb) {
+            cb(null, path.basename(file.originalname, path.extname(file.originalname)) + '-' + Date.now() + path.extname(file.originalname))
+        }
+    }),
+    limits: { fileSize: 2000000000 }, // 2GB
+    fileFilter: function (req, file, cb) {
+        checkFileType(file, cb);
+    }
+}).single('file');
+
+function checkFileType(file, cb) {
+    const filetypes = /mp4|ogg|avi|wmv|mov|gif/;
+    const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+    const mimetype = filetypes.test(file.mimetype);
+    if (mimetype && extname) {
+        return cb(null, true);
+    } else {
+        cb('Error: Videos Only!');
+    }
+}
+
 //create lesson
-// router.post('/',
-//     // passport.authenticate('jwt', { session: false }),
-//     (req, res) => {
-
-//         const newLesson = new Lesson({
-//             title: req.body.title,
-//             description: req.body.description,
-//             fileLink: req.body.fileLink,
-//         });
-
-//         newLesson.save().then(lesson => res.json(lesson));
-//     }
-// );
-
-// router.post("/", upload.single("file"), (req, res) => {
-router.post("/", (req, res) => {
-    console.log(req.body);
-    debugger
-    const file = req.body.file;
-    const s3FileURL = AWS_Uploaded_File_URL_LINK;
-    console.log("in post...")
-    let s3bucket = new AWS.S3({
-        accessKeyId: AWS_ACCESS_KEY_ID,
-        secretAccessKey: AWS_SECRET_ACCESS_KEY,
-        region: AWS_REGION
-    });
-    if (!file) return res.status(418).json("Dammit");
-    let params = {
-        Bucket: AWS_BUCKET_NAME,
-        Key: file.originalname,
-        Body: file.buffer,
-        ContentType: file.mimetype,
-        ACL: "public-read"
-    };
-
-    s3bucket.upload(params, function (err, data) {
-        if (err) {
-            console.log("failed")
-            res.status(500).json({ error: true, Message: err });
-        } else {
-            const newLesson = new Lesson({
-                title: req.body.title,
-                description: req.body.description,
-                fileLink: s3FileURL + file.originalname
-            });
-            console.log("attempting save")
-            newLesson.save().then(lesson => res.json(lesson));
+router.post('/upload', (req, res) => {
+    lessonUpload(req, res, (error) => {
+        if (error) {
+            res.json({ error: error });
+        } else { //upload failed
+            if (req.file === undefined) {
+                res.json('Error: No File Selected');
+            } else { // save file
+                const newLesson = new Lesson({
+                    title: req.body.title,
+                    description: req.body.description,
+                    fileLink: req.file.location
+                });
+                newLesson.save().then(lesson => res.json(lesson));
+            }
         }
     });
 });

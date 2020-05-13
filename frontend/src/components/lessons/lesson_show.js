@@ -13,6 +13,7 @@ class LessonShow extends React.Component{
     // }
 
     render(){
+      if (!this.props.lesson) return null;
         return (
           <div className='lesson-show-page'>
             <video className='video-tag' controls>
