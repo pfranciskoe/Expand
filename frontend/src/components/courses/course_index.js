@@ -13,7 +13,7 @@ class CourseIndex extends React.Component {
     render() {
         const { courses, getCourse, updateCourse, deleteCourse, currentUser } = this.props
         return (
-            <div>
+            <div className="course-list">
                 {Object.values(courses).map((course, i) => (
                     <CourseIndexItem
                         key={i} course={course}
