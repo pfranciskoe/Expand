@@ -1,0 +1,32 @@
+.lesson-show-page{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+.video-tag{
+    padding-top: 5%;
+    max-width: 95%;
+    min-width: 90%;
+    outline: none;
+}
+
+.comment-box{
+    width: 90%;
+    border: 1px solid paleturquoise ;
+    height: fit-content;
+}
+.comment{   
+    border: 1px solid palevioletred;
+    border-radius: 4px;
+    height: fit-content;
+    padding: 10px;
+    margin: 10px;
+}
+.comment-heatmap{
+    border: 1px solid palevioletred;
+    height: 25px;
+    border-radius: 4px;
+    width: 87%;
+}

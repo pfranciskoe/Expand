@@ -1,20 +1,31 @@
 import React from "react";
-
+import "../../stylesheets/lesson.css"
+import Comment from './comments/comment'
+import CommentHeatmap from './comments/comment_heatmap'
 class LessonShow extends React.Component{
     constructor(props){
         super(props)
+        
     }
 
-    componentDidMount(){
-        this.props.getLesson(this.props.match.params.id)
-    }
+    // componentDidMount(){
+    //     this.props.getLesson(this.props.match.params.id)
+    // }
 
     render(){
         return (
-          <div>
-            <video width="320" height="240" controls>
-              <source src={this.props.lesson.fileLink} type="video/mp4" />
+          <div className='lesson-show-page'>
+            <video className='video-tag' controls>
+              <source src='https://expand-dev.s3-us-west-1.amazonaws.com/Rick+Astley+-+Never+Gonna+Give+You+Up+(Video).mp4'
+              type="video/mp4" />
             </video>
+            <CommentHeatmap/>
+            <div className='comment-box'>
+              <Comment/>
+              <Comment/>
+              <Comment/>
+              <Comment/>
+            </div>
           </div>
         );
     }
