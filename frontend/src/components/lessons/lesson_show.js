@@ -10,6 +10,7 @@ class LessonShow extends React.Component{
     }
 
     render(){
+      if (!this.props.lesson) return null;
         return (
           <div>
             <video width="320" height="240" controls>

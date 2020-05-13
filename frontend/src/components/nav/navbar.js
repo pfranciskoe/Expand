@@ -11,7 +11,7 @@ class NavBar extends React.Component {
 
     componentDidMount(){
         const { clearErrors, fetchUser, getUserCourses, userId } = this.props;
-        fetchUser(userId);
+        if (userId) fetchUser(userId);
         // getUserCourses(userId);
         clearErrors();
     }
