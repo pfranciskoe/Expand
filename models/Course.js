@@ -19,7 +19,10 @@ const CourseSchema = new Schema({
         type: String,
         required: true
     },
-    lessons: [],
+    lessons: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Lesson'
+    }],
     date: {
         type: Date,
         default: Date.now
