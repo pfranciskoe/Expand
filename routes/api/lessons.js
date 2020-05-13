@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const passport = require('passport');
-const mongoose = require('mongoose');
 
 const AWS = require("aws-sdk");
 const AWS_Uploaded_File_URL_LINK = require('../../config/keys').AWS_Uploaded_File_URL_LINK;
@@ -18,22 +17,48 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
 const Lesson = require('../../models/Lesson');
-//validations go here
+const validateLessonInput = require('../../validation/lesson');
 
-//all lessons
+router.get("/test", (req, res) => res.json({ msg: "This is the lessons route" }));
+
+//get index of lessons
 router.get("/", (req, res) => {
     Lesson.find()
-        .sort({ date: -1 })
-        .then(lessons => res.json(lessons))
-        .catch(err => res.status(404).json({ nolessonsfound: 'No lessons found' }));
-});
-
-//single lesson
-router.get("/:id", (req, res) => {
-    Lesson.findById(req.params.id)
-        .then(lesson => res.json(lesson))
-        .catch(err => res.status(404).json({ nolessonfound: 'No lesson found' }));
+    .sort({ order: 1 })
+    .then(lessons => res.json(lessons))
+    .catch(err => res.status(404).json({ nolessonsfound: 'No lessons found' }));
 })
+
+//show lesson
+router.get("/:id", (req, res) => {
+    Lesson.findById( req.params.id ).populate('instructor').populate('course')
+        .then(lesson => res.json(lesson))
+        .catch(err => res.status(404).json({ nolessonfound: 'No lesson found' }));    
+})
+
+// //post lesson
+// router.post('/',
+//     passport.authenticate('jwt', { session: false }),
+//     (req, res) => {
+//         const { errors, isValid } = validateLessonInput(req.body);
+
+//         if (!isValid) {
+//             return res.status(400).json(errors);
+//         }
+
+//         const newLesson = new Lesson({
+//             title: req.body.title,
+//             description: req.body.description,
+//             videoUrl: req.body.videoUrl,
+//             instructor: req.body.instructor,
+//             course: req.body.course,
+//             order: req.body.order,
+//             thumbnailUrl: req.body.thumbnailUrl
+//         });
+
+//         newLesson.save().then(lesson => res.json(lesson));
+//     }
+// );
 
 const s3 = new AWS.S3({
     accessKeyId: AWS_ACCESS_KEY_ID,
@@ -68,41 +93,56 @@ function checkFileType(file, cb) {
 }
 
 //create lesson
-router.post('/upload', (req, res) => {
-    lessonUpload(req, res, (error) => {
-        if (error) {
-            res.json({ error: error });
-        } else { //upload failed
-            if (req.file === undefined) {
-                res.json('Error: No File Selected');
-            } else { // save file
-                const newLesson = new Lesson({
-                    title: req.body.title,
-                    description: req.body.description,
-                    fileLink: req.file.location
-                });
-                newLesson.save().then(lesson => res.json(lesson));
-            }
+router.post('/upload', 
+    passport.authenticate('jwt', { session: false }),
+    (req, res) => {
+        const { errors, isValid } = validateLessonInput(req.body);
+        if (!isValid) {
+            return res.status(400).json(errors);
         }
-    });
+        lessonUpload(req, res, (error) => {
+            if (error) {
+                res.json({ error: error });
+            } else { //upload failed
+                if (req.file === undefined) {
+                    res.json('Error: No File Selected');
+                } else { // save file
+                    const newLesson = new Lesson({
+                        title: req.body.title,
+                        description: req.body.description,
+                        videoUrl: req.file.location,
+                        instructor: req.body.instructor,
+                        course: req.body.course,
+                        order: req.body.order,
+                        thumbnailUrl: req.body.thumbnailUrl
+                    });
+                    newLesson.save().then(lesson => res.json(lesson));
+                }
+            }
+        });
 });
 
 //update lesson
 router.patch('/:id',
+    passport.authenticate('jwt', { session: false }),
     (req, res) => {
+        const { errors, isValid } = validateLessonInput(req.body);
 
-        Lesson.findOneAndUpdate({ _id: req.params.id }, req.body,
+        if (!isValid) {
+            return res.status(400).json(errors);
+        }
+
+        Lesson.findOneAndUpdate({ _id: req.params.id }, req.body, 
             { new: true }, function (err, lesson) {
                 res.json(lesson);
-            });
+        });
     }
 );
 
 //delete lesson
 router.delete('/:id',
-    // passport.authenticate('jwt', { session: false }),
+    passport.authenticate('jwt', { session: false }),
     (req, res) => {
-
         Lesson.findOneAndDelete({ _id: req.params.id },
             function (err, lesson) {
                 res.json(lesson);
