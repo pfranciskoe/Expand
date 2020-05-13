@@ -38,7 +38,7 @@ router.post('/',
             instructor: req.body.instructor,
             course: req.body.course,
             order: req.body.order,
-            thumbnaillUrl: req.body.thumbnailUrl
+            thumbnailUrl: req.body.thumbnailUrl
         });
 
         newLesson.save().then(lesson => res.json(lesson));
@@ -47,7 +47,7 @@ router.post('/',
 
 //update lesson
 router.patch('/:id',
-    // passport.authenticate('jwt', { session: false }),
+    passport.authenticate('jwt', { session: false }),
     (req, res) => {
         const { errors, isValid } = validateLessonInput(req.body);
 

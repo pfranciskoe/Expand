@@ -21,7 +21,7 @@ const CommentSchema = new Schema({
         required: true,
     },
     videoUrl: {
-        type: Number,
+        type: String,
     },
     date: {
         type: Date,

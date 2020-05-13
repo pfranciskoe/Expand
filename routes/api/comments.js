@@ -36,7 +36,7 @@ router.post('/',
 
 //update comment
 router.patch('/:id',
-    // passport.authenticate('jwt', { session: false }),
+    passport.authenticate('jwt', { session: false }),
     (req, res) => {
         const { errors, isValid } = validateCommentInput(req.body);
 
