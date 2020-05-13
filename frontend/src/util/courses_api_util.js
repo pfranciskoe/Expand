@@ -17,7 +17,6 @@ export const createCourse= (course) => {
 };
 
 export const updateCourse = (course) => {
-    debugger
     return axios.patch(`/api/courses/${course._id}`, course);
 };
 

@@ -9,6 +9,7 @@ export const getLesson = (id) => {
 };
 
 export const createLesson = (lesson) => {
+  debugger
   return axios.post("/api/lessons/upload", lesson);
 };
 
