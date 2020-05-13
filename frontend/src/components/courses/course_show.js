@@ -11,15 +11,24 @@ class CourseShow extends React.Component{
 
     render(){
         if(!this.props.course) return null;
-        const {students, lessons} = this.props.course;
+        const {students, lessons, instructor} = this.props.course;
         return(
 
-            <div>
-                <ul className="student-list">
-                    {students.map(student =>(
-                        <li key={student.id}>{`${student.firstName} ${student.lastName}`}</li>
-                    ))}
-                </ul>
+            <div className="course-">
+                <div>
+                    <h1>{this.props.course.title}</h1>
+                    <p>{`${instructor.firstName} ${instructor.lastName}`}</p>
+                    <p>{this.props.course.description}</p>
+
+                </div>
+                <div>
+                    <h2>students:</h2>
+                    <ul className="student-list">
+                        {students.map(student =>(
+                            <li key={student.id}>{`${student.firstName} ${student.lastName}`}</li>
+                        ))}
+                    </ul>
+                </div>
 
                 <div>
                     {lessons.map(lesson => (
