@@ -21,6 +21,7 @@
 
 import React from "react";
 import {withRouter, Link} from "react-router-dom";
+import "../../stylesheets/courses.css"
 
 class CourseIndexItem extends React.Component{
     constructor(props){
@@ -28,9 +29,6 @@ class CourseIndexItem extends React.Component{
         this.handleDelete = this.handleDelete.bind(this);
     }
 
-    componentDidMount(){
-        // this.props.getCourse(this.props.match.params.id);
-    }
 
     handleDelete(e){
         e.preventDefault();
@@ -38,12 +36,16 @@ class CourseIndexItem extends React.Component{
             .then(this.props.history.push("/courses"));
     }
 
+    // formatDate(date){
+    //     const newDate = new Date(date);
+    //     return newDate.toDateString();
+    // }
+
     render(){
         const {course, currentUser} = this.props;
         return(
-            <div>
+            <div className="course-list-item">
                 <h1>{course.title}</h1>
-                <p>{course.date}</p>
                 <p>{course.description}</p>
                 {currentUser.id === course.instructor 
                 ? (<div>

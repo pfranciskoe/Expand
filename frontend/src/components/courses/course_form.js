@@ -27,23 +27,40 @@ class CourseForm extends React.Component {
 
     render() {
         return (
-            <div>
-                <form onSubmit={this.handleSubmit}>
-                    <label>Title:
-                        <input type="text"
-                            onChange={this.updateForm("title")}
-                            value={this.state.title} />
-                    </label>
+          <div>
+            <form className="form" onSubmit={this.handleSubmit}>
+              {this.props.formType === "Create Course" 
+              ? <h1>Create a new course</h1> 
+              : <h1>update the course</h1>
+              }
+              <label>
+                Title:
+                <br />
+                <br />
 
-                    <label>Description:
-                        <textarea onChange={this.updateForm("description")}
-                            value={this.state.description} />
-                    </label>
+                <input
+                  type="text"
+                  onChange={this.updateForm("title")}
+                  value={this.state.title}
+                />
+              </label>
 
-                    <button type="submit">Submit</button>
-                </form>
-            </div>
-        )
+              <label>
+                Description:
+                <br />
+                <br />
+                <textarea
+                  onChange={this.updateForm("description")}
+                  value={this.state.description}
+                />
+              </label>
+
+              <button className="button" type="submit">
+                Submit
+              </button>
+            </form>
+          </div>
+        );
     }
 }
 
