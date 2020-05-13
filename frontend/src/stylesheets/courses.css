@@ -4,6 +4,8 @@
     font-size: 16px;
 }
 
+
+
 .course-list{
     display: flex;
     flex-wrap: wrap;
@@ -16,12 +18,13 @@
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     width: 300px;
     height: 300px;
-    background-color:#fafafaa1; 
-    border: 1px solid #fff; 
     margin: 20px 20px; 
     border-radius: 10px;
     text-align: center;
     box-shadow: 2px 2px 16px 0px rgba(141, 140, 140, 0.75);
+    background-size: cover;
+    position: relative;
+    z-index: 1;
     
 }
 
@@ -30,8 +33,22 @@
     color: #444
 }
 
+
+.course-list-item a {
+    color: rgb(64, 152, 224);
+    text-decoration: underline;
+}
+
+.course-list-item button {
+    color: rgb(64, 152, 224);
+    text-decoration: underline;
+    background-color: transparent;
+    border:none;
+    font-size: 16px;
+    cursor: pointer;
+}
 .course-list-item h1{
-    margin-top: 70%;
+    margin-top: 10%;
     font-size: 24px;
 }
 
