@@ -3,7 +3,7 @@ import * as lessonsAPIUtil from "../util/lessons_api_util";
 export const RECEIVE_LESSONS = "RECEIVE_LESSONS";
 export const RECEIVE_LESSON = "RECEIVE_LESSON";
 export const REMOVE_LESSON = "REMOVE_LESSON";
-export const REMOVE_LESSON_ERRORS = "REMOVE_LESSON_ERRORS";
+export const RECEIVE_LESSON_ERRORS = "RECEIVE_LESSON_ERRORS";
 
 const receiveLessons = (lessons) => ({
   type: RECEIVE_LESSONS,
