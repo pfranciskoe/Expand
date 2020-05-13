@@ -36,17 +36,16 @@ class CourseIndexItem extends React.Component{
             .then(this.props.history.push("/courses"));
     }
 
-    formatDate(date){
-        const newDate = new Date(date);
-        return newDate.toDateString();
-    }
+    // formatDate(date){
+    //     const newDate = new Date(date);
+    //     return newDate.toDateString();
+    // }
 
     render(){
         const {course, currentUser} = this.props;
         return(
             <div className="course-list-item">
                 <h1>{course.title}</h1>
-                <p>{this.formatDate(course.date)}</p>
                 <p>{course.description}</p>
                 {currentUser.id === course.instructor 
                 ? (<div>

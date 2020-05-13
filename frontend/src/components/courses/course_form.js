@@ -29,9 +29,15 @@ class CourseForm extends React.Component {
         return (
           <div>
             <form className="form" onSubmit={this.handleSubmit}>
+              {this.props.formType === "Create Course" 
+              ? <h1>Create a new course</h1> 
+              : <h1>update the course</h1>
+              }
               <label>
                 Title:
                 <br />
+                <br />
+
                 <input
                   type="text"
                   onChange={this.updateForm("title")}
@@ -41,6 +47,7 @@ class CourseForm extends React.Component {
 
               <label>
                 Description:
+                <br />
                 <br />
                 <textarea
                   onChange={this.updateForm("description")}

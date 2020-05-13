@@ -1,4 +1,5 @@
 import React from "react";
+import "../../stylesheets/lessons.css"
 
 class LessonForm extends React.Component{
     constructor(props){
@@ -62,18 +63,14 @@ class LessonForm extends React.Component{
     render(){
         const {selectedFile, title, description, fileLink} = this.state;
         return (
-          <div>
-            <form onSubmit={this.handleSubmit}>
-              <label>
-                <input
-                  type="file"
-                  onChange={this.handleSelectedFile}
-                  // value={selectedFile ? selectedFile.name : fileLink}
-                />
-              </label>
+          <div className="lesson-box">
+            <form className="form" onSubmit={this.handleSubmit}>
+                <h1>Create a new lesson</h1>
 
               <label>
                 Title
+                <br />
+                <br />
                 <input
                   type="text"
                   onChange={this.updateForm("title")}
@@ -83,17 +80,31 @@ class LessonForm extends React.Component{
 
               <label>
                 Description
+                <br />
+                <br />
                 <input
                   type="text"
                   onChange={this.updateForm("description")}
                   value={description}
                 />
               </label>
+              
+              <div className="upload-box">
+                <label>
+                  Upload video:
+                  <input
+                    id="file"
+                    type="file"
+                    onChange={this.handleSelectedFile}
+                    // value={selectedFile ? selectedFile.name : fileLink}
+                  />
+                </label>
+              </div>
 
-              <button type="submit">Submit</button>
+              <button className="button" type="submit">
+                Submit
+              </button>
             </form>
-
-            
           </div>
         );
     }
