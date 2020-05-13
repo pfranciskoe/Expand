@@ -9,11 +9,12 @@ export const getLesson = (id) => {
 };
 
 export const createLesson = (lesson) => {
+  console.log("Util: ", lesson)
   return axios.post("/api/lessons", lesson);
 };
 
 export const updateLesson = (lesson) => {
-  debugger;
+  debugger
   return axios.patch(`/api/lessons/${lesson._id}`, lesson);
 };
 
