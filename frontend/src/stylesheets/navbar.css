@@ -68,3 +68,41 @@ a:visited{
     width: 30px;
     height: 30px;
 }
+
+.navlinks .my-courses{
+    margin-right: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+.navlinks .user-courses .courses-arrow {
+    margin-left: 0px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    background-color: rgb(132, 169, 236);
+    border-left: 1px solid lightgrey;
+    font-size: 15px;
+    padding: 10px;
+}
+
+.dropdown{
+    position: relative;
+}
+
+.show-list{
+    display: block;
+}
+
+.dropdown-list{
+    display: none;
+    width: auto;
+    position: absolute;
+}
+
+.dropdown-list > li{
+    list-style: none;
+    padding: 5px 10px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 14px;
+    border-top: 2px solid lightskyblue;
+}
