@@ -5,7 +5,8 @@ import {
 import CourseShow from "./course_show";
 
 const mSTP = (state, ownProps) => ({
-  course: state.entities.courses[ownProps.match.params.id]
+  course: state.entities.courses[ownProps.match.params.id],
+  currentUser: state.session.user
 });
 
 const mDTP = (dispatch) => ({
