@@ -4,6 +4,8 @@
     font-size: 16px;
 }
 
+
+
 .course-list{
     display: flex;
     flex-wrap: wrap;
@@ -15,13 +17,15 @@
 .course-list-item{
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     width: 300px;
-    height: 300px;
-    background-color:#fafafaa1; 
-    border: 1px solid #fff; 
+    height: 270px;
     margin: 20px 20px; 
     border-radius: 10px;
     text-align: center;
     box-shadow: 2px 2px 16px 0px rgba(141, 140, 140, 0.75);
+    background-size: cover;
+    position: relative;
+    z-index: 1;
+    padding-top: 30px;
     
 }
 
@@ -30,9 +34,33 @@
     color: #444
 }
 
-.course-list-item h1{
-    margin-top: 70%;
+
+.course-list-item a {
+    color: rgb(64, 152, 224);
+    text-decoration: underline;
+}
+
+.course-list-item button {
+    color: rgb(64, 152, 224);
+    text-decoration: underline;
+    background-color: transparent;
+    border:none;
+    font-size: 16px;
+    cursor: pointer;
+}
+.course-list-item #title{
+    
     font-size: 24px;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.course-list-item #title:hover{
+    
+    background-color: transparent;
+    color: rgb(64, 152, 224);
 }
 
 .form label{
@@ -57,6 +85,61 @@
     box-shadow: 1px 1px 5px 0px #9695956e;
 
 
+}
+.show-box{
+    margin: 20px;
+    margin-left: 5%;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 16px;
+    background-color: #fafafa;
+    box-shadow: 2px 2px 5px 0px rgba(141, 140, 140, 0.75);
+    border-radius: 5px;
+    padding: 30px, 30px;
+    width: 90%;
+    height: 1000px;
+    display: flex;
+    flex-direction: column;
+}
+.course-content{
+    display: flex;
+
+}
+
+.lesson-list{
+    width:70%;
+}
+
+.info, .lesson-list{
+    margin-left: 30px;
+    
+}
+
+.lesson-list ol li{
+    height: 20px;
+    width: 300px;
+    background-color: rgba(230, 230, 230, 0.7);
+    padding: 10px;
+    vertical-align: middle;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.lesson-list ol li a{
+    height:100%;
+    width:100%;
+    color: #333;
+}
+.lesson-list ol li a:hover, .lesson-list a{
+   background-color:transparent;
+}
+
+.lesson-list ol li:hover{
+   background-color: rgb(118, 172, 243);
+   font-weight: bold;
+}
+
+.student-list ul li{
+    list-style: none;
 }
 
 
