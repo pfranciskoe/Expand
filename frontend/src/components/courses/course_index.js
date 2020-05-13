@@ -13,15 +13,18 @@ class CourseIndex extends React.Component {
     render() {
         const { courses, getCourse, updateCourse, deleteCourse, currentUser } = this.props
         return (
-            <div>
-                {Object.values(courses).map((course, i) => (
-                    <CourseIndexItem
-                        key={i} course={course} getCourse={getCourse} 
-                        updateCourse={updateCourse} 
-                        deleteCourse={deleteCourse} 
-                        currentUser={currentUser}
-                        />
-                ))}
+            <div className="courses-box">
+                <h1>Find what interests you</h1>
+                <div className="course-list">
+                    {Object.values(courses).map((course, i) => (
+                        <CourseIndexItem
+                            key={i} course={course}
+                            updateCourse={updateCourse} 
+                            deleteCourse={deleteCourse} 
+                            currentUser={currentUser}
+                            />
+                    ))}
+                </div>
             </div>
         )
     }

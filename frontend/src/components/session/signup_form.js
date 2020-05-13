@@ -64,6 +64,7 @@ class SignupForm extends React.Component {
             <div className="form-container">
                 <form onSubmit={this.handleSubmit}>
                     <div className="form">
+                        <h1>Welcome to Expand</h1>
                         <br />
                         <input type="text"
                             value={this.state.firstName}

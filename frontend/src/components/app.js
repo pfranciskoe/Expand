@@ -10,20 +10,27 @@ import SignupFormContainer from './session/signup_form_container';
 import CourseIndexContainer from './courses/course_index_container';
 import NewCourseFormContainer from './courses/new_course_form_container'
 import EditCourseFormContainer from './courses/edit_course_container'
+import NewLessonContainer from "./lessons/new_lesson_container";
+import LessonShowContainer from "./lessons/lesson_show_container";
 
 const App = () => (
-    <div>
-        <NavBarContainer />
-        <Switch>
-            <AuthRoute exact path="/login" component={LoginFormContainer} />
-            <AuthRoute exact path="/signup" component={SignupFormContainer} />
+  <div>
+    <NavBarContainer />
+    <Switch>
+      <AuthRoute exact path="/login" component={LoginFormContainer} />
+      <AuthRoute exact path="/signup" component={SignupFormContainer} />
 
-            <ProtectedRoute path="/courses/:id/edit" component={EditCourseFormContainer} />
-            <ProtectedRoute path="/courses/new" component={NewCourseFormContainer} />
-            <ProtectedRoute path="/courses" component={CourseIndexContainer} />
-        </Switch>
-        <Route exact path="/" component={MainPage} />
-    </div>
+      <ProtectedRoute
+        path="/courses/:id/edit"
+        component={EditCourseFormContainer}
+      />
+      <ProtectedRoute path="/courses/new" component={NewCourseFormContainer} />
+      <ProtectedRoute path="/courses" component={CourseIndexContainer} />
+      <ProtectedRoute path="/lessons/new" component={NewLessonContainer} />
+      <ProtectedRoute path="/lessons/:id" component={LessonShowContainer} />
+    </Switch>
+    <Route exact path="/" component={MainPage} />
+  </div>
 );
 
 export default App;

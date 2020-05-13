@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const LessonSchema = new Schema({
@@ -40,6 +40,6 @@ const LessonSchema = new Schema({
         type: Date,
         default: Date.now
     },
-})
+});
 
 module.exports = Lesson = mongoose.model('Lesson', LessonSchema);

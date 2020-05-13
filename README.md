@@ -47,13 +47,13 @@ Frontend
     Teacher Home Page / User Home Page
 ### Day 2 (Zoe Back, Peter Front)
 * Finish Up User Auth Day (front and back end)
-* Backend AWS Video Hosting
-* Frontend Video interface
 Frontend
     Teacher Home Page(Their Courses) / User Home Page(Their Courses)
     Course Index Page
     Course Show Page
 ### Day 3
+* Backend AWS Video Hosting
+* Frontend Video interface
 * Backend AWS Video Hosting + Commenting Framework
 * Frontend Video interface + Commenting
 Frontend
