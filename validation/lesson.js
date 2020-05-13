@@ -24,29 +24,29 @@ module.exports = function validateLessonInput(data) {
         errors.description = 'description field is required';
     }
 
-    if (Validator.isEmpty(data.videoUrl)) {
-        errors.videoUrl = 'videoUrl field is required';
-    }
+    // if (Validator.isEmpty(data.videoUrl)) {
+    //     errors.videoUrl = 'videoUrl field is required';
+    // }
     
-    if (Validator.isEmpty(data.instructor)) {
-        errors.instructor = 'instructor field is required';
-    }
+    // if (Validator.isEmpty(data.instructor)) {
+    //     errors.instructor = 'instructor field is required';
+    // }
 
-    if (Validator.isEmpty(data.course)) {
-        errors.course = 'course field is required';
-    }
+    // if (Validator.isEmpty(data.course)) {
+    //     errors.course = 'course field is required';
+    // }
 
-    if (Validator.isEmpty(data.order)) {
-        errors.order = 'order field is required';
-    }
+    // if (Validator.isEmpty(data.order)) {
+    //     errors.order = 'order field is required';
+    // }
     
-    if (Validator.isEmpty(data.order)) {
-        errors.order = 'order field is required';
-    }
+    // if (Validator.isEmpty(data.order)) {
+    //     errors.order = 'order field is required';
+    // }
 
-    if (Validator.isEmpty(data.thumbnailUrl)) {
-        errors.thumbnailUrl = 'thumbnailUrl field is required';
-    }
+    // if (Validator.isEmpty(data.thumbnailUrl)) {
+    //     errors.thumbnailUrl = 'thumbnailUrl field is required';
+    // }
 
     return {
         errors,

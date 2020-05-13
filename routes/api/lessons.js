@@ -98,28 +98,28 @@ router.post('/upload',
     (req, res) => {
         const { errors, isValid } = validateLessonInput(req.body);
         if (!isValid) {
-            return res.status(400).json(errors);
+            return res.status(400).json("dammit");
         }
-        lessonUpload(req, res, (error) => {
-            if (error) {
-                res.json({ error: error });
-            } else { //upload failed
-                if (req.file === undefined) {
-                    res.json('Error: No File Selected');
-                } else { // save file
-                    const newLesson = new Lesson({
-                        title: req.body.title,
-                        description: req.body.description,
-                        videoUrl: req.file.location,
-                        instructor: req.body.instructor,
-                        course: req.body.course,
-                        order: req.body.order,
-                        thumbnailUrl: req.body.thumbnailUrl
-                    });
-                    newLesson.save().then(lesson => res.json(lesson));
-                }
-            }
-        });
+        // lessonUpload(req, res, (error) => {
+        //     if (error) {
+        //         res.json({ error: error });
+        //     } else { //upload failed
+        //         if (req.file === undefined) {
+        //             res.json('Error: No File Selected');
+        //         } else { // save file
+        //             const newLesson = new Lesson({
+        //                 title: req.body.title,
+        //                 description: req.body.description,
+        //                 videoUrl: req.file.location,
+        //                 instructor: req.body.instructor,
+        //                 course: req.body.course,
+        //                 order: req.body.order,
+        //                 thumbnailUrl: req.body.thumbnailUrl
+        //             });
+        //             newLesson.save().then(lesson => res.json(lesson));
+        //         }
+        //     }
+        // });
 });
 
 //update lesson
