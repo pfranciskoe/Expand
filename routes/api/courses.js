@@ -16,7 +16,7 @@ router.get("/", (req, res) => {
 
 //show course
 router.get("/:id", (req, res) => {
-    Course.findById( req.params.id ).populate('instructor').populate('students')
+    Course.findById( req.params.id ).populate('instructor').populate('students').populate('lessons')
         .then(course => res.json(course))
         .catch(err => res.status(404).json({ nocoursefound: 'No course found' }));    
 })
