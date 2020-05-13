@@ -10,6 +10,7 @@ class CourseShow extends React.Component{
     }
 
     render(){
+        if(!this.props.course) return null;
         const {students, lessons} = this.props.course;
         return(
 

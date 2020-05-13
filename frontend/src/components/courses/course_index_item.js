@@ -48,7 +48,7 @@ class CourseIndexItem extends React.Component{
         }; 
         return(
             <div className="course-list-item" style={courseStyle}>
-                <h1>{course.title}</h1>
+                <Link id="title" to={`/courses/${course._id}`}>{course.title}</Link>
                 <p>{course.description}</p>
                 {currentUser.id === course.instructor 
                 ? (<div>

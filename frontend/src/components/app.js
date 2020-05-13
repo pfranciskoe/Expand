@@ -12,6 +12,7 @@ import NewCourseFormContainer from './courses/new_course_form_container'
 import EditCourseFormContainer from './courses/edit_course_container'
 import NewLessonContainer from "./lessons/new_lesson_container";
 import LessonShowContainer from "./lessons/lesson_show_container";
+import CourseShowContainer from "./courses/course_show_container";
 
 const App = () => (
   <div>
@@ -25,6 +26,7 @@ const App = () => (
         component={EditCourseFormContainer}
       />
       <ProtectedRoute path="/courses/new" component={NewCourseFormContainer} />
+      <ProtectedRoute path="/courses/:id" component={CourseShowContainer} />
       <ProtectedRoute path="/courses" component={CourseIndexContainer} />
       <ProtectedRoute path="/lessons/new" component={NewLessonContainer} />
       <ProtectedRoute path="/lessons/:id" component={LessonShowContainer} />
