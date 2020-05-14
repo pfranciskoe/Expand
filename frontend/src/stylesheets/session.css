@@ -47,6 +47,14 @@
     cursor: pointer;
 }
 
+.form #demo{
+    margin-top: 10px;
+    text-align: center;
+    width: 100px;
+    font-size: 14px;
+    padding: 10px 0px;
+}
+
 .errors{
     margin: 20px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
