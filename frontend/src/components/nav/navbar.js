@@ -8,12 +8,18 @@ class NavBar extends React.Component {
         this.logoutUser = this.logoutUser.bind(this);
         this.getLinks = this.getLinks.bind(this);
         this.showList = this.showList.bind(this);
+        this.toggleDropdown = this.toggleDropdown.bind(this);
     }
 
     componentDidMount(){
         const { clearErrors, fetchUser, userId } = this.props;
         if (userId) fetchUser(userId);
         clearErrors();
+        document.addEventListener("click", this.toggleDropdown)
+    }
+
+    componentWillUnmount(){
+        document.removeEventListener("click", this.toggleDropdown);
     }
 
     logoutUser(e) {
@@ -25,7 +31,14 @@ class NavBar extends React.Component {
     addOptionToCreate(){
         const {currentUser} = this.props;
         if (currentUser && currentUser.instructor){
-            return <Link to={"/courses/new"}>Create a course</Link>;
+            return (
+                <li>
+                    <NavLink className="create-option" to={"/courses/new"}>
+                        <i className="fas fa-plus-circle"></i>
+                        Add Course
+                    </NavLink>
+                </li>
+            );
         }
     }
 
@@ -35,11 +48,13 @@ class NavBar extends React.Component {
             return (
                 <div id="dropdown" className="course-dropdown">
                     <ul className="dropdown-list">
-                        {currentUser.courses.map((course, idx) => {
+                        {this.addOptionToCreate()}
+                        {Object.values(courses).map((course, idx) => {
                             return (
-                                <li key={idx} 
-                                    className="dropdown-item" >
+                                <li key={idx} >
+                                    <NavLink className="dropdown-item" to={`/courses/${course._id}`}>
                                         {course.title[0].toUpperCase() + course.title.slice(1)}
+                                    </NavLink>
                                 </li>
                             )
                         })}
@@ -54,19 +69,23 @@ class NavBar extends React.Component {
         document.getElementById("dropdown").classList.toggle("show-list");
     }
 
+    toggleDropdown(e){
+        e.stopPropagation();
+        
+    }
+
     getLinks() {
         if (this.props.loggedIn) {
             return (
                 <div className="navlinks">
                     <div className="user-courses">
-                        <NavLink className="my-courses" to={"/courses"}>My Courses</NavLink>
+                        <NavLink className="my-courses" to={"/courses"}>Courses</NavLink>
                         <button className="button courses-arrow dropdown" onClick={this.showList}>
                             <i className="fas fa-caret-down"></i>
                         </button>
                         {this.courseList()}
                     </div>
                     <Link to={"/profile"}>Profile</Link>
-                    {this.addOptionToCreate()}
                     <button className="logout" onClick={this.logoutUser}>Logout</button>
                 </div>
             );
