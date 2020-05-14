@@ -85,10 +85,11 @@
 
 .status{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     margin: 10px;
-    padding: 20px 20px;
+    padding: 10px;
     border: 2px solid rgb(224, 224, 224);
     border-radius: 10px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -96,15 +97,18 @@
 
 .status h3{
     margin: 0px;
-    padding: 0px 10px;
+    padding: 10px;
     font-weight: 500;
 }
 
-.status > div{
+.status-options{
     display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.status > div > label{
+.status .status-options label{
+    margin: 0px;
     padding: 7px;
 }
 
@@ -128,5 +132,10 @@
   .form{
       height: auto;
       border-radius: 5px;
+  }
+
+  .status-options{
+      flex-direction: column;
+      align-items: flex-start;
   }
 }

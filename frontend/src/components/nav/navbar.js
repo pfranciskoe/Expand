@@ -9,6 +9,7 @@ class NavBar extends React.Component {
         this.getLinks = this.getLinks.bind(this);
         this.showList = this.showList.bind(this);
         this.toggleDropdown = this.toggleDropdown.bind(this);
+        this.goHome = this.goHome.bind(this);
     }
 
     componentDidMount(){
@@ -20,6 +21,10 @@ class NavBar extends React.Component {
 
     componentWillUnmount(){
         document.removeEventListener("click", this.toggleDropdown);
+    }
+
+    goHome(){
+        this.props.history.push("/")
     }
 
     toggleDropdown(e){
@@ -82,6 +87,31 @@ class NavBar extends React.Component {
         document.getElementById("dropdown").classList.toggle("show-list");
     }
 
+    burgerMenu(){
+        if (this.props.loggedIn) {
+            return (
+                <div className="burger-menu">
+                    <div className="user-courses">
+                        <NavLink className="my-courses" to={"/courses"}>Courses</NavLink>
+                        <button id="dropdown-button" className="button courses-arrow dropdown">
+                            <i id="arrow" className="fas fa-caret-down"></i>
+                        </button>
+                        {this.courseList()}
+                    </div>
+                    <Link to={"/profile"}>Profile</Link>
+                    <button className="logout" onClick={this.logoutUser}>Logout</button>
+                </div>
+            );
+        } else {
+            return (
+                <div className="burger-menu">
+                    <Link to={"/signup"}>Signup</Link>
+                    <Link to={"/login"}>Login</Link>
+                </div>
+            );
+        }
+    }
+
     getLinks() {
         if (this.props.loggedIn) {
             return (
@@ -111,10 +141,15 @@ class NavBar extends React.Component {
         return (
             <div>
                 <div className="navbar-container">
-                    <div className="logo">
-                        <h1>Expand</h1>
+                    <div className="main-logo" onClick={this.goHome}>
+                        <img className="tri-logo" 
+                            src="https://expand-dev.s3-us-west-1.amazonaws.com/images/triangles.png" 
+                            alt="Expand"
+                        />
+                        <h1>expand</h1>
                     </div>
                     {this.getLinks()}
+                    {this.burgerMenu()}
                 </div>
                 <div className="navbar-placeholder"></div>
             </div>

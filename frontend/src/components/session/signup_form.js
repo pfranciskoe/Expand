@@ -62,6 +62,10 @@ class SignupForm extends React.Component {
     render() {
         return (
             <div className="form-container">
+                <div className="bg-session-image"></div>
+                <div className="promo-text">
+                    Expand your knowledge
+                </div>
                 <form onSubmit={this.handleSubmit}>
                     <div className="form">
                         <h1>Welcome to Expand</h1>
@@ -98,7 +102,7 @@ class SignupForm extends React.Component {
                         <br />
                         <div className="status">
                             <h3>Select one:</h3>
-                            <div>
+                            <div className="status-options">
                                 <label><input type="radio"
                                     name="status"
                                     value={false}
