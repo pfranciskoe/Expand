@@ -9,10 +9,11 @@ class CourseShow extends React.Component {
     this.state = { enrolled: this.checkEnrollment() };
   }
 
-  componentDidMount() {
-    this.props.getCourse(this.props.match.params.id);
-    this.props.fetchUser(this.props.currentUserId);
-  }
+    componentDidMount(){
+        this.props.getCourse(this.props.match.params.id);
+        this.props.fetchUser(this.props.currentUserId);
+        window.scrollTo(0, 0);
+    }
 
   handleEnroll() {
     const students = [];

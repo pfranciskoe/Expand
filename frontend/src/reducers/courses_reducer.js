@@ -19,7 +19,7 @@ export default (state = {}, action) => {
             return nextState;
         case REMOVE_COURSE:
             let copyState = Object.assign({}, state);
-            delete copyState[action.courseId];
+            delete copyState[action.courseId.data._id];
             return copyState;
         default:
             return state;
