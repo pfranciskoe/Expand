@@ -109,6 +109,16 @@
     width:70%;
 }
 
+.lesson-list a{
+    color: rgb(118, 172, 243);  
+    cursor: pointer;
+}
+
+.lesson-list a:hover{
+    color: rgb(64, 152, 224);  
+}
+
+
 .info, .lesson-list{
     margin-left: 30px;
     
