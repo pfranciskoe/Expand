@@ -29,8 +29,8 @@ const App = () => (
       <ProtectedRoute path="/courses/:courseId/lessons/new" component={NewLessonContainer} />
       <ProtectedRoute path="/courses/:id" component={CourseShowContainer} />
       <ProtectedRoute path="/courses" component={CourseIndexContainer} />
-      <ProtectedRoute path="/lessons/:id" component={LessonShowContainer} />
-    </Switch>
+      <ProtectedRoute path="/lessons/new" component={NewLessonContainer} />
+      <Route path="/lessons/:id" component={LessonShowContainer} />
     <Route exact path="/" component={MainPage} />
   </div>
 );
