@@ -37,6 +37,7 @@ router.get("/:id", (req, res) => {
         .populate({ 
             path: 'comments',
             populate: {
+                path:'author',
                 path: 'responses',
                 populate: {
                     path: 'author',

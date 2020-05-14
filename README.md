@@ -39,13 +39,13 @@ Bonus
 ## Work Breakdown
 
 
-### Day 1 (Zoe Front, Peter Back)
+### Day 1 
 * User Auth Day (front and back end)
 * Backend Course Framework
 Frontend
     Login/Signup Splash
     Teacher Home Page / User Home Page
-### Day 2 (Zoe Back, Peter Front)
+### Day 2 
 * Finish Up User Auth Day (front and back end)
 Frontend
     Teacher Home Page(Their Courses) / User Home Page(Their Courses)
@@ -66,6 +66,6 @@ Frontend
     Video Page + comments
 ### Day 5
 * Cleanup and final pushes to deployment app.
-* Css cleanup/ js responsive animations.
+* Css cleanup / js responsive animations.
 Frontend
     Video Page + comments

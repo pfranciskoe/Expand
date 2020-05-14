@@ -24,7 +24,7 @@ router.post('/',
         if (!isValid) {
             return res.status(400).json(errors);
         }
-
+        console.log(req)
         const newResponse = new Response({
             author: req.body.author,
             text: req.body.text,
