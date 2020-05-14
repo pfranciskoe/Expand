@@ -12,11 +12,11 @@ class Comment extends React.Component{
             <div className='comment-group'>
                 <div className='comment'>
                     <p>{Math.floor(this.props.comment.timestamp / 60)}:{Math.ceil(this.props.comment.timestamp % 60)}</p>
-                    <p>{this.props.comment.author}</p>
+                    <p>{this.props.comment.author.firstName} {this.props.comment.author.firstName}</p>
                     <p>{this.props.comment.text}</p>
                 </div>
                 {this.props.comment.response ? Object.values(this.props.comment.resonse).map(((response, idx) => (
-                    <Response />
+                    <Response key={`response-${idx}`} response={response}/>
                 ))) : null}
             </div>
         )

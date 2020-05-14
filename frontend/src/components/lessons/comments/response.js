@@ -7,7 +7,7 @@ class Response extends React.Component {
     render() {
         return (
             <div className='response'>
-                <p>{this.props.response.author}</p>
+                <p>{this.props.response.author.firstName} {this.props.response.author.lastName}</p>
                 <p>{this.props.response.text}</p>
             </div>
         )

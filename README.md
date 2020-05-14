@@ -66,6 +66,6 @@ Frontend
     Video Page + comments
 ### Day 5
 * Cleanup and final pushes to deployment app.
-* Css cleanup/ js responsive animations.
+* Css cleanup / js responsive animations.
 Frontend
     Video Page + comments

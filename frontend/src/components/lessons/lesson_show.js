@@ -33,6 +33,9 @@ class LessonShow extends React.Component{
             <CommentHeatmap lesson={this.props.lesson} vidLength={this.vidLength}/> : null }
             <div className='lesson-info'>
               <p className='lesson-info-title'>{this.props.lesson.title}</p>
+              <p className='lesson-info-instructor'>
+                {this.props.lesson.instructor.firstName} {this.props.lesson.instructor.lastName}
+                </p>
               <p className='lesson-info-desc'>{this.props.lesson.description}</p>
             </div>
             <div className='comment-box'>

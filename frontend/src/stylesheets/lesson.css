@@ -27,10 +27,19 @@
     padding: 0px 20px;
     margin: 10px 0px;
     font-size: 24px;
+    font-weight: 700;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.lesson-info-instructor{
+    padding: 0px 20px;
+    margin: 10px 0px;
+    font-size: 18px;
+    font-weight: 700;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 .lesson-info-desc{
     font-size: 18px;
+    font-weight: 300;
     margin: 10px 0px;
     padding: 0px 20px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
