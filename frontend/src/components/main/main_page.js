@@ -5,10 +5,13 @@ class MainPage extends React.Component {
 
     render() {
         const splashStyle = {
-          backgroundImage: `url(https://images.unsplash.com/photo-1488998427799-e3362cec87c3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80)`
+          backgroundImage: 'url(https://expand-dev.s3-us-west-1.amazonaws.com/images/expand-main-splash.jpg)'
         }; 
+        const bannerStyle = {
+          backgroundImage: 'url(https://expand-dev.s3-us-west-1.amazonaws.com/images/resize.png)'
+        };
         return (
-          <div>
+          <div className="main-box">
             <div className="splash-box" style={splashStyle}>
               <div className="overlay">
                 <div className="splash-content">
@@ -16,6 +19,7 @@ class MainPage extends React.Component {
                 </div>
               </div>
             </div>
+            <div className="banner-box" style={bannerStyle}></div>
             <footer></footer>
           </div>
         );

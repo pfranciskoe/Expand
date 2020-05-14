@@ -4,7 +4,6 @@ html, body{
     margin: 0;
 }
 
-
 .splash-box{
     height: 500px;
     width: 100%;
@@ -30,7 +29,6 @@ html, body{
 .splash-content{
    z-index: 3;
    display: flex;
-   /* width: 100%; */
    flex-direction: column;
   
 }
@@ -44,4 +42,13 @@ html, body{
     margin-left:6%;
     text-shadow: 2px 8px 6px rgba(0,0,0,0.2),
                  0px -5px 35px rgba(255,255,255,0.3);
+}
+
+.banner-box{
+    min-height: 300px;
+    width: 100%;
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 1;
 }
