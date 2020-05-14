@@ -3,6 +3,7 @@ import { getLesson } from "../../actions/lessons_actions";
 import { showModal } from '../../actions/modal_actions'
 import LessonShow from "./lesson_show";
 import {createResponse} from '../../actions/responses_actions';
+import {createComment} from '../../actions/comments_actions';
 const mSTP = (state, ownProps) => ({
   lesson: state.entities.lessons[ownProps.match.params.id],
   currentUserId: state.session.user.id
@@ -10,7 +11,8 @@ const mSTP = (state, ownProps) => ({
 
 const mDTP = (dispatch) => ({
   getLesson: (lessonId) => dispatch(getLesson(lessonId)),
-  createResponse: () => dispatch(createResponse())
+  createResponse: () => dispatch(createResponse()),
+  createComment: () => dispatch(createComment()),
 });
 
 export default connect(mSTP, mDTP)(LessonShow);
