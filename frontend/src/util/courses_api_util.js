@@ -13,7 +13,6 @@ export const getCourse = (id) => {
 };
 
 export const createCourse= (course) => {
-    debugger
     return axios.post("/api/courses", course);
 };
 
