@@ -11,8 +11,8 @@ const mSTP = (state, ownProps) => ({
 
 const mDTP = (dispatch) => ({
   getLesson: (lessonId) => dispatch(getLesson(lessonId)),
-  createResponse: () => dispatch(createResponse()),
-  createComment: () => dispatch(createComment()),
+  createResponse: (response) => dispatch(createResponse(response)),
+  createComment: (comment) => dispatch(createComment(comment)),
 });
 
 export default connect(mSTP, mDTP)(LessonShow);

@@ -19,17 +19,17 @@ router.get("/:id", (req, res) => {
 router.post('/',
     passport.authenticate('jwt', { session: false }),
     (req, res) => {
-        const { errors, isValid } = validateResponseInput(req.body);
+        // const { errors, isValid } = validateResponseInput(req.body);
 
-        if (!isValid) {
-            return res.status(400).json(errors);
-        }
-
+        // if (!isValid) {
+        //     return res.status(400).json(errors);
+        // }
+        console.log(req)
         const newResponse = new Response({
             author: req.body.author,
             text: req.body.text,
             parent: req.body.parent,
-            videoUrl: req.body.videoUrl,
+            // videoUrl: req.body.videoUrl,
         });
 
         newResponse.save().then(response => res.json(response));

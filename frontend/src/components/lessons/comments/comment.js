@@ -8,6 +8,7 @@ class Comment extends React.Component{
         this.state={form: false, text:''}
         this.handleSubmit=this.handleSubmit.bind(this)
         this.handleChange=this.handleChange.bind(this)
+        this.handleSelectedFile=this.handleSelectedFile.bind(this)
     }
     handleSubmit(event){
         event.preventDefault()
@@ -15,16 +16,30 @@ class Comment extends React.Component{
         const resp = {
             author: this.props.currentUserId,
             text: this.state.text,
-            parent: this.props.comment._id
+            parent: this.props.comment._id,
+            // videoUrl: this.state.selectedFile
         }
         console.log(resp)
         this.props.createResponse(resp)
-        .then(()=>this.setState({form:false}))} else {
+        .then(()=>this.setState({form:false}))
+        // .then(()=>this.props.fetchRE
+    } else {
         this.setState({ form: false }) }
     }
     handleChange(event){
         this.setState({text: event.target.value})
         console.log(this.state)
+    }
+    handleSelectedFile(e) {
+        e.preventDefault();
+        const file = e.currentTarget.files[0];
+        const fileReader = new FileReader(e.target);
+        fileReader.onloadend = () => {
+            this.setState({
+                selectedFile: file,
+            });
+        }
+        if (file) fileReader.readAsDataURL(file);
     }
     render(){
         return(
@@ -38,6 +53,14 @@ class Comment extends React.Component{
                         ? 
                         <form>
                                 <textarea className='comment-input' onChange={this.handleChange} value={this.state.text}/>
+                                <label>
+                                    Expand with a video:
+                                    <input
+                                        id="file"
+                                        type="file"
+                                        onChange={this.handleSelectedFile}
+                                    />
+                                </label>
                                 <button className='comment-button' onClick={this.handleSubmit}>Reply</button>
                         </form>
                         :
