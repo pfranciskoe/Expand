@@ -41,6 +41,12 @@ router.get("/:id", (req, res) => {
                 },
             },
         })
+        .populate({
+            path:'comments',
+            populate: {
+                path: 'author',
+            },
+        })
         .then(lesson => res.json(lesson))
         .catch(err => res.status(404).json({ nolessonfound: 'No lesson found' }));    
 })
