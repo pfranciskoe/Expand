@@ -9,6 +9,12 @@ router.get("/test", (req, res) => res.json({ msg: "This is the comments route" }
 //show comment
 router.get("/:id", (req, res) => {
     Comment.findById( req.params.id ).populate('author').populate('lesson')
+        .populate({ 
+            path: 'responses',
+            populate: {
+            path: 'author'
+            } 
+        })
         .then(comment => res.json(comment))
         .catch(err => res.status(404).json({ nocommentfound: 'No comment found' }));    
 })
