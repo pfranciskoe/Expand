@@ -29,12 +29,8 @@ const App = () => (
       <ProtectedRoute path="/courses/:id" component={CourseShowContainer} />
       <ProtectedRoute path="/courses" component={CourseIndexContainer} />
       <ProtectedRoute path="/lessons/new" component={NewLessonContainer} />
-<<<<<<< HEAD
-    
-=======
       <Route path="/lessons/:id" component={LessonShowContainer} />
       <Route exact path="/" component={MainPage} />
->>>>>>> master
   </div>
 );
 

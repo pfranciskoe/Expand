@@ -44,10 +44,14 @@ class CourseShow extends React.Component{
         
         const {students, lessons, instructor} = this.props.course;
         const buttonDiv = this.state.enrolled ? (
-          <button onClick={this.handleUnroll}>Unroll</button>
+          <button id="enroll" onClick={this.handleUnroll}>
+            Unroll
+          </button>
         ) : (
-          <button onClick={this.handleEnroll}>Enroll</button>
-        )
+          <button id="enroll" onClick={this.handleEnroll}>
+            Enroll
+          </button>
+        );
         return (
           <div className="show-box">
             <div className="info">
