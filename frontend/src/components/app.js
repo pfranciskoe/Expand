@@ -26,11 +26,11 @@ const App = () => (
         component={EditCourseFormContainer}
       />
       <ProtectedRoute path="/courses/new" component={NewCourseFormContainer} />
+      <ProtectedRoute path="/courses/:courseId/lessons/new" component={NewLessonContainer} />
       <ProtectedRoute path="/courses/:id" component={CourseShowContainer} />
       <ProtectedRoute path="/courses" component={CourseIndexContainer} />
       <ProtectedRoute path="/lessons/new" component={NewLessonContainer} />
-      <ProtectedRoute path="/lessons/:id" component={LessonShowContainer} />
-    </Switch>
+      <Route path="/lessons/:id" component={LessonShowContainer} />
     <Route exact path="/" component={MainPage} />
   </div>
 );

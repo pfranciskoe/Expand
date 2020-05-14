@@ -2,11 +2,15 @@ import { connect } from "react-redux";
 import { createLesson } from "../../actions/lessons_actions";
 import LessonForm from "./lesson_form";
 
-const mSTP = (state, ownProps) => ({
+const mSTP = ({lessons, session}, {match}) => ({
   lesson: {
-    fileLink: "",
+    title: "",
     description: "",
-    title: ""
+    videoUrl: "",
+    instructor: session.user ? session.user.id : undefined,
+    course: match.params.courseId,
+    order: lessons ? Object.values(lessons).length + 1 : 1,
+    thumbnailUrl: "test.com"
   },
   formType: "Create Lesson",
 });
