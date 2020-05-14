@@ -3,50 +3,47 @@ import "../../stylesheets/lessons.css"
 
 class LessonForm extends React.Component{
     constructor(props){
-        super(props)
+      super(props);
+      const { title, description, videoUrl, instructor, course, order, thumbnailUrl } = this.props.lesson;
         this.state = {
-          fileLink: this.props.lesson.fileLink,
-          title: this.props.lesson.title,
-          description: this.props.lesson.description,
+          title,
+          description,
+          videoUrl,
+          instructor,
+          course,
+          order,
+          thumbnailUrl,
           selectedFile: null
         };
-        this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this);
         this.handleSelectedFile = this.handleSelectedFile.bind(this);
     }
 
     updateForm(field){
-        return e => this.setState({[field]: e.target.value})
+        return e => this.setState({[field]: e.target.value});
     }
 
     handleSubmit(e){
         e.preventDefault();
-        console.log("Submitting...")
-        const {title, description, fileLink, selectedFile} = this.state;
+        const {title, description, videoUrl, instructor, course, order, thumbnailUrl, selectedFile} = this.state;
         let result;
         if (this.props.formType === "Create Lesson"){
           const data = new FormData();
           data.append('file', selectedFile);
-          data.append('description', description);
           data.append('title', title);
+          data.append('description', description);
+          data.append('videoUrl', videoUrl);
+          data.append('instructor', instructor);
+          data.append('course', course);
+          data.append('order', order);
+          data.append('thumbnailUrl', thumbnailUrl);
+          debugger
           result = data;
-          console.log("Data:", data)
         } else {
-          result = { title, description, fileLink };
+          result = { title, description, videoUrl, instructor, course, order, thumbnailUrl };
         }
         this.props.action(result);
     }
-
-    // handleSelectedFile = e => {
-    //   e.preventDefault();
-    //   const { description, title } = this.state;
-    //   const data = new FormData();
-    //   data.append('file', e.target.files[0]);
-    //   data.append('description', description);
-    //   data.append('title', title);
-    //   this.setState({
-    //     selectedFile: data
-    //   });
-    // };
 
     handleSelectedFile(e) {
       e.preventDefault();
@@ -61,7 +58,7 @@ class LessonForm extends React.Component{
     }
 
     render(){
-        const {selectedFile, title, description, fileLink} = this.state;
+        const {selectedFile, title, description, videoUrl} = this.state;
         return (
           <div className="lesson-box">
             <form className="form" onSubmit={this.handleSubmit}>
@@ -96,7 +93,6 @@ class LessonForm extends React.Component{
                     id="file"
                     type="file"
                     onChange={this.handleSelectedFile}
-                    // value={selectedFile ? selectedFile.name : fileLink}
                   />
                 </label>
               </div>

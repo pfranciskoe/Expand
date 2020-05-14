@@ -3,7 +3,6 @@ const validText = require('./valid-text');
 
 module.exports = function validateLessonInput(data) {
     let errors = {};
-
     data.title = validText(data.title) ? data.title : '';
 
     if (!Validator.isLength(data.title, { min:2, max: 80 })) {
@@ -24,9 +23,9 @@ module.exports = function validateLessonInput(data) {
         errors.description = 'description field is required';
     }
 
-    if (Validator.isEmpty(data.videoUrl)) {
-        errors.videoUrl = 'videoUrl field is required';
-    }
+    // if (Validator.isEmpty(data.videoUrl)) {
+    //     errors.videoUrl = 'videoUrl field is required';
+    // }
     
     if (Validator.isEmpty(data.instructor)) {
         errors.instructor = 'instructor field is required';
@@ -36,10 +35,6 @@ module.exports = function validateLessonInput(data) {
         errors.course = 'course field is required';
     }
 
-    if (Validator.isEmpty(data.order)) {
-        errors.order = 'order field is required';
-    }
-    
     if (Validator.isEmpty(data.order)) {
         errors.order = 'order field is required';
     }

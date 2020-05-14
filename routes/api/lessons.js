@@ -17,7 +17,6 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
 const Lesson = require('../../models/Lesson');
-const validateLessonInput = require('../../validation/lesson');
 
 router.get("/test", (req, res) => res.json({ msg: "This is the lessons route" }));
 
@@ -35,30 +34,6 @@ router.get("/:id", (req, res) => {
         .then(lesson => res.json(lesson))
         .catch(err => res.status(404).json({ nolessonfound: 'No lesson found' }));    
 })
-
-// //post lesson
-// router.post('/',
-//     passport.authenticate('jwt', { session: false }),
-//     (req, res) => {
-//         const { errors, isValid } = validateLessonInput(req.body);
-
-//         if (!isValid) {
-//             return res.status(400).json(errors);
-//         }
-
-//         const newLesson = new Lesson({
-//             title: req.body.title,
-//             description: req.body.description,
-//             videoUrl: req.body.videoUrl,
-//             instructor: req.body.instructor,
-//             course: req.body.course,
-//             order: req.body.order,
-//             thumbnailUrl: req.body.thumbnailUrl
-//         });
-
-//         newLesson.save().then(lesson => res.json(lesson));
-//     }
-// );
 
 const s3 = new AWS.S3({
     accessKeyId: AWS_ACCESS_KEY_ID,
@@ -96,10 +71,6 @@ function checkFileType(file, cb) {
 router.post('/upload', 
     passport.authenticate('jwt', { session: false }),
     (req, res) => {
-        const { errors, isValid } = validateLessonInput(req.body);
-        if (!isValid) {
-            return res.status(400).json(errors);
-        }
         lessonUpload(req, res, (error) => {
             if (error) {
                 res.json({ error: error });
