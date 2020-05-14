@@ -24,8 +24,8 @@ const users_arr = [
                 'courses': []
         }, 
         {
-                'firstName': 'Erick Santos',
-                'lastName': 'Koe2',
+                'firstName': 'Erick',
+                'lastName': 'Santos',
                 'instructor': false,
                 'email': 'erick@santos.com',
                 'password': 'password',

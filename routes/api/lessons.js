@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const passport = require('passport');
+const validateLessonInput = require('../../validation/lesson')
 
 const AWS = require("aws-sdk");
 const AWS_Uploaded_File_URL_LINK = require('../../config/keys').AWS_Uploaded_File_URL_LINK;
@@ -30,7 +31,9 @@ router.get("/", (req, res) => {
 
 //show lesson
 router.get("/:id", (req, res) => {
-    Lesson.findById( req.params.id ).populate('instructor').populate('course') 
+    Lesson.findById( req.params.id )
+        .populate('instructor')
+        .populate('course') 
         .populate({ 
             path: 'comments',
             populate: {
@@ -120,11 +123,32 @@ router.patch('/:id',
         }
 
         Lesson.findOneAndUpdate({ _id: req.params.id }, req.body, 
-            { new: true }, function (err, lesson) {
-                res.json(lesson);
+            { new: true } )
+            .populate('instructor')
+            .populate('course') 
+            .populate({ 
+                path: 'comments',
+                populate: {
+                    path: 'responses',
+                    populate: {
+                        path: 'author',
+                    },
+                },
+            })
+            .populate({
+                path:'comments',
+                populate: {
+                    path: 'author',
+                },
+            })
+            .exec(function(err, user) {
+                res.json(user);
         });
     }
 );
+
+
+
 
 //delete lesson
 router.delete('/:id',

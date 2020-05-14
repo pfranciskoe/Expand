@@ -8,7 +8,9 @@ router.get("/test", (req, res) => res.json({ msg: "This is the responses route" 
 
 //show response
 router.get("/:id", (req, res) => {
-    Response.findById( req.params.id ).populate('author').populate('parent')
+    Response.findById( req.params.id )
+        .populate('author')
+        .populate('parent')
         .then(response => res.json(response))
         .catch(err => res.status(404).json({ noresponsefound: 'No comment response found' }));    
 })
@@ -45,7 +47,10 @@ router.patch('/:id',
         }
 
         Response.findOneAndUpdate({ _id: req.params.id }, req.body, 
-            { new: true }, function (err, response) {
+            { new: true } )
+            .populate('author')
+            .populate('parent')
+            .exec(function(err, response) {
                 res.json(response);
         });
     }   
