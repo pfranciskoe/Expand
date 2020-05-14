@@ -8,7 +8,7 @@ class MainPage extends React.Component {
           backgroundImage: 'url(https://expand-dev.s3-us-west-1.amazonaws.com/images/expand-main-splash.jpg)'
         }; 
         const bannerStyle = {
-          backgroundImage: 'url(https://expand-dev.s3-us-west-1.amazonaws.com/images/resize.png)'
+          backgroundImage: 'url(https://expand-dev.s3-us-west-1.amazonaws.com/images/resize2.png)'
         };
         return (
           <div className="main-box">
