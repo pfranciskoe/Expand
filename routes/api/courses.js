@@ -51,10 +51,17 @@ router.patch('/:id',
             return res.status(400).json(errors);
         }
 
-        Course.findOneAndUpdate({ _id: req.params.id }, req.body, 
-            { new: true }, function (err, course) {
-                res.json(course);
-        });
+        Course.findOneAndUpdate(
+          { _id: req.params.id },
+          req.body,
+          { new: true },
+          function (err, course) {
+            res.json(course);
+          }
+        )
+          .populate("instructor")
+          .populate("students")
+          .populate("lessons");
     }   
 );
 
