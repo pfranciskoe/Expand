@@ -33,7 +33,6 @@ router.get("/:id", (req, res) => {
     Lesson.findById( req.params.id ).populate('instructor').populate('course') 
         .populate({ 
             path: 'comments',
-            path: 'author',
             populate: {
                 path: 'responses',
                 populate: {
