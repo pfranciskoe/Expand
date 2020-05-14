@@ -1,5 +1,5 @@
 import React from "react";
-import "../../stylesheets/lessons.css"
+import "../../stylesheets/lesson-forms.css"
 
 class LessonForm extends React.Component{
     constructor(props){

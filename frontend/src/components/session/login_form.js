@@ -65,6 +65,10 @@ class LoginForm extends React.Component {
     render() {
         return (
             <div className="form-container">
+                <div className="bg-session-image"></div>
+                <div className="promo-text">
+                    Expand your learning experience
+                </div>
                 <form onSubmit={this.handleSubmit}>
                     <div className="form">
                         <h1>Log In</h1>
@@ -82,7 +86,11 @@ class LoginForm extends React.Component {
                         />
                         <br />
                         <input className="button" type="submit" value="Submit" />
-                        <input className="button" id="demo" onClick={this.handleDemo} value="Demo User" />
+                        <input className="button" 
+                            id="demo" 
+                            type="submit" 
+                            onClick={this.handleDemo} 
+                            value="Demo" />
                         {this.renderErrors()}
                     </div>
                 </form>

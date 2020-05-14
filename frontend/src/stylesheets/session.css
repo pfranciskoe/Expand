@@ -1,7 +1,19 @@
 .form-container{
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    position: relative;
+    min-height: 700px;
+}
+
+.bg-session-image{
+    background-image: url("https://expand-dev.s3-us-west-1.amazonaws.com/images/books-angle.jpg");
+    background-size: auto;
+    min-height: 700px;
+    width: 100%;
+    opacity: 0.9;
+    z-index: -10;
+    position: absolute;
 }
 
 .form{
@@ -9,7 +21,12 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 20px;
+    margin: 0px 60px;
+    height: 700px;
+    z-index: 50;
+    background-color: white;
+    padding: 30px;
+    box-sizing: border-box;
 }
 
 .form h1{
@@ -22,6 +39,7 @@
     font-size: 18px;
     padding: 10px;
     border-radius: 5px;
+    border: 2px solid rgb(231, 231, 231);
 }
 
 .form input:focus{
@@ -39,6 +57,7 @@
     font-weight: 700;
     border-radius: 5px;
     font-size: inherit;
+    min-width: 100px;
 }
 
 .form .button:hover,
@@ -50,9 +69,6 @@
 .form #demo{
     margin-top: 10px;
     text-align: center;
-    width: 100px;
-    font-size: 14px;
-    padding: 10px 0px;
 }
 
 .errors{
@@ -90,4 +106,27 @@
 
 .status > div > label{
     padding: 7px;
+}
+
+.promo-text{
+    color: white;
+    font-size: 70px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    width: 50%;
+    margin: 40px;
+}
+
+@media only screen and (max-width: 600px) {
+  .promo-text {
+    display: none;
+  }
+
+  .form-container{
+      justify-content: center;
+  }
+
+  .form{
+      height: auto;
+      border-radius: 5px;
+  }
 }
