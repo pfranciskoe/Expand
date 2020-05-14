@@ -5,6 +5,7 @@ import Response from './response';
 class Comment extends React.Component{
     constructor(props){
         super(props);
+        console.log(this.props.comment);
     }
     render(){
         return(

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const CommentSchema = new Schema({
+const ResponseSchema = new Schema({
     author: {
         type: Schema.Types.ObjectId,
         ref: 'User',
@@ -11,26 +11,18 @@ const CommentSchema = new Schema({
         type: String,
         required: true,
     },
-    lesson: {
+    parent: {
         type: Schema.Types.ObjectId,
-        ref: 'Lesson',
-        required: true,
-    },
-    timestamp: {
-        type: Number,
+        ref: 'Comment',
         required: true,
     },
     videoUrl: {
         type: String,
     },
-    responses: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Response',
-    }],
     date: {
         type: Date,
         default: Date.now
     },
 })
 
-module.exports = Comment = mongoose.model('Comment', CommentSchema);
+module.exports = Response = mongoose.model('Response', ResponseSchema);

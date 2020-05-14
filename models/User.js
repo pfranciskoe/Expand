@@ -25,10 +25,13 @@ const UserSchema = new Schema({
     courses: [{
         type: Schema.Types.ObjectId,
         ref: 'Course'}],
+    responses: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Response'}],
     date: {
-    type: Date,
-    default: Date.now
-  },
+        type: Date,
+        default: Date.now
+    },
 })
 
 module.exports = User = mongoose.model('User', UserSchema);

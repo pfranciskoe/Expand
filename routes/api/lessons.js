@@ -30,7 +30,16 @@ router.get("/", (req, res) => {
 
 //show lesson
 router.get("/:id", (req, res) => {
-    Lesson.findById( req.params.id ).populate('instructor').populate('course').populate('comments')
+    Lesson.findById( req.params.id ).populate('instructor').populate('course') 
+        .populate({ 
+            path: 'comments',
+            populate: {
+                path: 'responses',
+                populate: {
+                    path: 'author',
+                },
+            },
+        })
         .then(lesson => res.json(lesson))
         .catch(err => res.status(404).json({ nolessonfound: 'No lesson found' }));    
 })

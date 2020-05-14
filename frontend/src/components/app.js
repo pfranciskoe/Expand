@@ -17,7 +17,7 @@ import CourseShowContainer from "./courses/course_show_container";
 const App = () => (
   <div>
     <NavBarContainer />
-    <Switch>
+    <Switch/>
       <AuthRoute exact path="/login" component={LoginFormContainer} />
       <AuthRoute exact path="/signup" component={SignupFormContainer} />
 
@@ -29,9 +29,12 @@ const App = () => (
       <ProtectedRoute path="/courses/:id" component={CourseShowContainer} />
       <ProtectedRoute path="/courses" component={CourseIndexContainer} />
       <ProtectedRoute path="/lessons/new" component={NewLessonContainer} />
-      <ProtectedRoute path="/lessons/:id" component={LessonShowContainer} />
-    </Switch>
-    <Route exact path="/" component={MainPage} />
+<<<<<<< HEAD
+    
+=======
+      <Route path="/lessons/:id" component={LessonShowContainer} />
+      <Route exact path="/" component={MainPage} />
+>>>>>>> master
   </div>
 );
 
