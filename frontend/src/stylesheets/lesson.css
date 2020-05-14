@@ -4,39 +4,72 @@
     align-items: center;
     width: 100%;
     height: 100%;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 .video-tag{
-    padding-top: 5%;
+    border-radius: 6px 6px 6px 6px;
+    margin-top: 2%;
     max-width: 95%;
     min-width: 90%;
     outline: none;
 }
+.lesson-info{
+    
+    border: 1px solid white;
+    border-radius: 6px 6px 0px 0px;
+    width: 90%;
+    background-color: rgb(190, 211, 250);
+    height: fit-content;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
 
+.lesson-info-title{
+    padding: 0px 20px;
+    margin: 10px 0px;
+    font-size: 24px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.lesson-info-desc{
+    font-size: 18px;
+    margin: 10px 0px;
+    padding: 0px 20px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
 .comment-box{
     width: 90%;
-    border: 1px solid paleturquoise ;
+    background-color: rgb(190, 211, 250);
     height: fit-content;
+    border-radius: 0px 0px 6px 6px;
 }
 .comment{   
-    border: 1px solid palevioletred;
+    background-color: white;
     border-radius: 4px;
     height: fit-content;
     padding: 10px;
-    margin: 10px;
+    margin: 15px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.response{   
+    background-color: white;
+    border-radius: 4px;
+    height: fit-content;
+    padding: 10px;
+    margin: 15px;
+    padding-left: 10px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 .comment-heatmap{
     display: flex;
-    border: 1px solid palevioletred;
+    /* background-color: rgb(190, 211, 250); */
     height: fit-content;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    border-radius: 4px;
     width: 90%;
 }
 
 .heatmap-canvas{
-    width: 100%;
-    height: 50px;
-    margin: 0px 15px;
+    width: calc(100% - 30px);
+    height: auto;
+    
 }
