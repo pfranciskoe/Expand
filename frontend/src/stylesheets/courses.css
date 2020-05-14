@@ -76,14 +76,14 @@
     padding: 10px;
     border-radius: 5px;
     width: 230px;
-    height: 196px;
+    /* height: 196px; */
     /* margin-top: 50px; */
     margin-bottom: 30px;
     -webkit-appearance:none;
     /* border: 1px solid #7c7b7b */
     border:none;
     box-shadow: 1px 1px 5px 0px #9695956e;
-
+    resize: none;
 
 }
 .show-box{

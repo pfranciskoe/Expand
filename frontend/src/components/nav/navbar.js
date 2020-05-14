@@ -7,12 +7,12 @@ class NavBar extends React.Component {
         super(props);
         this.logoutUser = this.logoutUser.bind(this);
         this.getLinks = this.getLinks.bind(this);
+        this.showList = this.showList.bind(this);
     }
 
     componentDidMount(){
-        const { clearErrors, fetchUser, getUserCourses, userId } = this.props;
+        const { clearErrors, fetchUser, userId } = this.props;
         if (userId) fetchUser(userId);
-        // getUserCourses(userId);
         clearErrors();
     }
 
@@ -32,29 +32,26 @@ class NavBar extends React.Component {
     courseList(){
         const {currentUser, courses} = this.props;
         if (currentUser){
-            let test = ["Biology", "Chemistry", "Physics", "Potato"];
             return (
-                <ul className="dropdown-list" id="course-dropdown">
-                    {test.map((course, idx) => {
-                        return (
-                            <li className="dropdown-item" key={idx}>{course}</li>
-                        )
-                    })}
-                    {/* {Object.values(courses).map((course) => {
-                        return (
-                            <li className="dropdown-item" key={course.id}>{course.title}</li>
-                        )
-                    })} */}
-                </ul>
+                <div id="dropdown" className="course-dropdown">
+                    <ul className="dropdown-list">
+                        {currentUser.courses.map((course, idx) => {
+                            return (
+                                <li key={idx} 
+                                    className="dropdown-item" >
+                                        {course.title[0].toUpperCase() + course.title.slice(1)}
+                                </li>
+                            )
+                        })}
+                    </ul>
+                </div>
             )
         }
     }
 
-    showList(){
-        return e => {
-            e.preventDefault();
-            document.getElementById("course-dropdown").classList.toggle("show-list");
-        }
+    showList(e){
+        e.preventDefault();
+        document.getElementById("dropdown").classList.toggle("show-list");
     }
 
     getLinks() {
@@ -85,11 +82,14 @@ class NavBar extends React.Component {
 
     render() {
         return (
-            <div className="navbar-container">
-                <div className="logo">
-                    <h1>Expand</h1>
+            <div>
+                <div className="navbar-container">
+                    <div className="logo">
+                        <h1>Expand</h1>
+                    </div>
+                    {this.getLinks()}
                 </div>
-                {this.getLinks()}
+                <div className="navbar-placeholder"></div>
             </div>
         );
     }
