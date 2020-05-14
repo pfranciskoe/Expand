@@ -9,8 +9,9 @@ class CourseShow extends React.Component{
     }
 
     componentDidMount(){
-        this.props.getCourse(this.props.match.params.id)
-        this.props.fetchUser(this.props.currentUserId)
+        this.props.getCourse(this.props.match.params.id);
+        this.props.fetchUser(this.props.currentUserId);
+        window.scrollTo(0, 0);
     }
 
     handleEnroll(){
