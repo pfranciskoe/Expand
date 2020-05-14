@@ -24,7 +24,8 @@
 
 .navbar-container h1{
     margin: 0px;
-    padding: 10px;
+    text-align: center;
+    vertical-align: middle;
 }
 
 .navlinks{
@@ -69,10 +70,26 @@ a:visited{
     background-color: darkblue;
 }
 
+.main-logo{
+    display: flex;
+}
+
 .logo{
     display: flex;
     justify-content: center;
     align-items: center;
+    max-height: 130px;
+}
+
+.tri-logo{
+    max-height: 40px;
+    padding-right: 10px;
+}
+
+.logo:hover,
+.tri-logo:hover,
+.navbar-container h1:hover{
+    cursor: pointer;
 }
 
 .navlinks .my-courses{
@@ -145,6 +162,10 @@ a:visited{
     border-bottom-right-radius: 5px;
 }
 
+#dropdown-button{
+    min-width: auto;
+}
+
 .user-courses{
     display: flex;
     position: relative;
@@ -174,3 +195,36 @@ button:focus{
     color: rgb(64, 152, 224);
 }
 
+.burger-menu{
+    display: none;
+}
+
+@media only screen and (max-width: 600px) {
+  .logo {
+    display: none;
+  }
+
+  .tri-logo{
+      display: block;
+  }
+
+  .main-logo h1{
+      display: none;
+  }
+
+  .dropdown-list{
+    max-width: 150px;
+    white-space: nowrap;
+    overflow: scroll;
+    text-overflow: ellipsis;
+  }
+
+  .navlinks{
+      display: none;
+  }
+
+  .burger-menu{
+      display: block;
+  }
+
+}
