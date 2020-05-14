@@ -22,6 +22,18 @@ class NavBar extends React.Component {
         document.removeEventListener("click", this.toggleDropdown);
     }
 
+    toggleDropdown(e){
+        e.stopPropagation();
+        let dropdownButton = document.getElementById("dropdown-button");
+        let dropdownArrow = document.getElementById("arrow");
+        let dropdownMenu = document.getElementById("dropdown");
+        if ((e.target === dropdownButton || e.target === dropdownArrow) && (!dropdownMenu.classList.contains("show-list"))){
+            dropdownMenu.classList.toggle("show-list");
+        } else if ((e.target !== dropdownMenu) && (dropdownMenu.classList.contains("show-list"))) {
+            dropdownMenu.classList.remove("show-list");
+        }
+    }
+
     logoutUser(e) {
         e.preventDefault();
         this.props.logout()
@@ -69,19 +81,14 @@ class NavBar extends React.Component {
         document.getElementById("dropdown").classList.toggle("show-list");
     }
 
-    toggleDropdown(e){
-        e.stopPropagation();
-        
-    }
-
     getLinks() {
         if (this.props.loggedIn) {
             return (
                 <div className="navlinks">
                     <div className="user-courses">
                         <NavLink className="my-courses" to={"/courses"}>Courses</NavLink>
-                        <button className="button courses-arrow dropdown" onClick={this.showList}>
-                            <i className="fas fa-caret-down"></i>
+                        <button id="dropdown-button" className="button courses-arrow dropdown">
+                            <i id="arrow" className="fas fa-caret-down"></i>
                         </button>
                         {this.courseList()}
                     </div>
