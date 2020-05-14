@@ -1,9 +1,9 @@
 import { connect } from "react-redux";
 import {
   getCourse,
-  updateCourse
+  updateCourse,
 } from "../../actions/courses_actions";
-import { fetchUser } from "../../actions/users_actions";
+import { fetchUser, updateUser } from "../../actions/users_actions";
 import CourseShow from "./course_show";
 
 const mSTP = (state, ownProps) => {
@@ -18,8 +18,8 @@ const mSTP = (state, ownProps) => {
 const mDTP = (dispatch) => ({
   getCourse: (courseId) => dispatch(getCourse(courseId)),
   updateCourse: (course) => dispatch(updateCourse(course)),
-  fetchUser: (userId) => dispatch(fetchUser(userId))
-  // need to add update user
+  fetchUser: (userId) => dispatch(fetchUser(userId)),
+  updateUser: (user) => dispatch(updateUser(user))
 });
 
 export default connect(mSTP, mDTP)(CourseShow);

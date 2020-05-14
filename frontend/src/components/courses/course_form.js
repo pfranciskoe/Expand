@@ -50,6 +50,7 @@ class CourseForm extends React.Component {
                 <br />
                 <br />
                 <textarea
+                  rows="3"
                   onChange={this.updateForm("description")}
                   value={this.state.description}
                 />

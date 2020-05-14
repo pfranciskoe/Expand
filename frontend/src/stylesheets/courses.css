@@ -76,14 +76,14 @@
     padding: 10px;
     border-radius: 5px;
     width: 230px;
-    height: 196px;
+    /* height: 196px; */
     /* margin-top: 50px; */
     margin-bottom: 30px;
     -webkit-appearance:none;
     /* border: 1px solid #7c7b7b */
     border:none;
     box-shadow: 1px 1px 5px 0px #9695956e;
-
+    resize: none;
 
 }
 .show-box{
@@ -126,7 +126,7 @@
 
 .lesson-list ol li{
     height: 20px;
-    width: 300px;
+    width: 400px;
     background-color: rgba(230, 230, 230, 0.7);
     padding: 10px;
     vertical-align: middle;
@@ -141,6 +141,7 @@
 }
 .lesson-list ol li a:hover, .lesson-list a{
    background-color:transparent;
+   color: #333;
 }
 
 .lesson-list ol li:hover{
