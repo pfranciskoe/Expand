@@ -7,6 +7,8 @@ const keys = require('../../config/keys');
 const passport = require('passport');
 const validateRegisterInput = require('../../validation/register');
 const validateLoginInput = require('../../validation/login');
+const validateUserInput = require('../../validation/user')
+
 router.get("/test", (req, res) => res.json({ msg: "This is the users route" }));
 
 //REGISTER ROUTE
@@ -106,9 +108,34 @@ passport.authenticate('jwt', { session: false }),
 
 //show user
 router.get("/:id", (req, res) => {
-    User.findById(req.params.id).populate('courses').populate('comments')
+    User.findById(req.params.id)
+        .populate('courses')
+        .populate('comments')
+        .populate('lessons')
         .then(user => res.json(user))
         .catch(err => res.status(404).json({ nocoursefound: 'No user found' }));
 })
+
+//update user
+router.patch('/:id',
+    passport.authenticate('jwt', { session: false }),
+    (req, res) => {
+        const { errors, isValid } = validateUserInput(req.body);
+
+        if (!isValid) {
+            return res.status(400).json(errors);
+        }
+
+        User.findOneAndUpdate({ _id: req.params.id }, req.body, 
+            { new: true } )
+            .populate('courses')
+            .populate('comments')
+            .populate('lessons')
+            .exec(function(err, user) {
+                res.json(user);
+        });
+    }
+);
+
 
 module.exports = router;

@@ -15,46 +15,38 @@ Response.deleteMany({},(err)=>console.log(err))
 
 
 const users_arr = [
-  {
-    firstName: "Peter",
-    lastName: "Koe",
-    instructor: true,
-    email: "peter@koe.com",
-    password: "password",
-    courses: [],
-  },
-  {
-    firstName: "Erick Santos",
-    lastName: "Koe2",
-    instructor: false,
-    email: "erick@santos.com",
-    password: "password",
-    courses: [],
-  },
-  {
-    firstName: "Zoe",
-    lastName: "Lin",
-    instructor: false,
-    email: "zoe@lin.com",
-    password: "password",
-    courses: [],
-  },
-  {
-    firstName: "Grant",
-    lastName: "Kleinman",
-    instructor: false,
-    email: "grant@kleinman.com",
-    password: "password",
-    courses: [],
-  },
-  {
-    firstName: "Demo",
-    lastName: "User",
-    instructor: true,
-    email: "demo@user.com",
-    password: "password",
-    courses: [],
-  }
+        {
+                'firstName': 'Peter',
+                'lastName': 'Koe',
+                'instructor': true,
+                'email': 'peter@koe.com',
+                'password': 'password',
+                'courses': []
+        }, 
+        {
+                'firstName': 'Erick',
+                'lastName': 'Santos',
+                'instructor': false,
+                'email': 'erick@santos.com',
+                'password': 'password',
+                'courses': []
+        },
+        {
+                'firstName': 'Zoe',
+                'lastName': 'Lin',
+                'instructor': false,
+                'email': 'zoe@lin.com',
+                'password': 'password',
+                'courses': []
+        },
+        {
+                'firstName': 'Grant',
+                'lastName': 'Kleinman',
+                'instructor': false,
+                'email': 'grant@kleinman.com',
+                'password': 'password',
+                'courses': []
+        }
 ];
 
 

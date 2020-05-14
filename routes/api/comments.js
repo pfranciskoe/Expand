@@ -8,11 +8,13 @@ router.get("/test", (req, res) => res.json({ msg: "This is the comments route" }
 
 //show comment
 router.get("/:id", (req, res) => {
-    Comment.findById( req.params.id ).populate('author').populate('lesson')
+    Comment.findById( req.params.id )
+        .populate('author')
+        .populate('lesson')
         .populate({ 
             path: 'responses',
             populate: {
-            path: 'author'
+                path: 'author'
             } 
         })
         .then(comment => res.json(comment))
@@ -51,11 +53,22 @@ router.patch('/:id',
         }
 
         Comment.findOneAndUpdate({ _id: req.params.id }, req.body, 
-            { new: true }, function (err, comment) {
+            { new: true } )
+            .populate('author')
+            .populate('lesson')
+            .populate({ 
+                path: 'responses',
+                populate: {
+                    path: 'author'
+                } 
+            })
+            .exec(function(err, comment) {
                 res.json(comment);
         });
     }   
 );
+
+
 
 //delete comment
 router.delete('/:id',
