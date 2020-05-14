@@ -18,12 +18,24 @@ class CourseShow extends React.Component{
       this.props.course.students.forEach(student =>{
         students.push(student._id)
       })
-      students.push(this.props.currentUserId)
-      const newCourse = {...this.props.course}
+      students.push(this.props.currentUserId);
+      const newCourse = {...this.props.course};
       newCourse.students = students;
-      debugger
-      this.props.updateCourse(newCourse)
-      this.setState({toggleEnroll: !this.state.toggleEnroll})
+      
+      this.props.updateCourse(newCourse);
+      this.addCourseToStudent();
+      this.setState({toggleEnroll: !this.state.toggleEnroll});
+    }
+
+    addCourseToStudent(){
+      const courses = [];
+      this.props.user.courses.forEach((course) => {
+        courses.push(course._id);
+      });
+      courses.push(this.props.match.params.id);
+      const newUser = { ...this.props.user };
+      newUser.courses = courses;
+      this.props.updateUser(newUser)
     }
 
     checkEnrollment(){
@@ -76,12 +88,15 @@ class CourseShow extends React.Component{
               </div>
               <div className="student-list">
                 <h2>students:</h2>
+
                 <ul>
-                  {students.map((student) => (
-                    <li
-                      key={student._id}
-                    >{`${student.firstName} ${student.lastName}`}</li>
-                  ))}
+                  {students.map((student, i) =>
+                    student ? (
+                      <li
+                        key={i}
+                      >{`${student.firstName} ${student.lastName}`}</li>
+                    ) : null
+                  )}
                 </ul>
               </div>
             </div>
