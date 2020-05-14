@@ -50,16 +50,26 @@
     height: fit-content;
     border-radius: 0px 0px 6px 6px;
 }
-.comment{   
+.comment{
+    display: flex;
+    flex-direction: column;
     background-color: white;
     border-radius: 4px;
     height: fit-content;
+    padding: 20px;
+    margin-bottom: 0px;
+    justify-content: space-around;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.comment-group{
+    background-color: rgb(190, 211, 250);
+    border-radius: 4px;
+    height: fit-content;
     padding: 10px;
-    margin: 15px;
+    padding-bottom: 0px;
     margin-bottom: 0px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
-
 .comment-heatmap{
     display: flex;
     /* background-color: rgb(190, 211, 250); */
@@ -80,16 +90,15 @@
     flex-direction: column;
     justify-content: space-between;
     background-color: white;
-    border-radius: 4px;
+    border-radius: 5px;
     height: fit-content;
-    padding: 10px;
+    padding: 20px;
     margin-top: 3px;
-    margin-right: 15px;
     margin-left: 25px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 .response-info{
-    margin-left: 25px;
+
 }
 .response-video-button{
     background-color: rgb(132, 169, 236);
@@ -108,4 +117,59 @@
     min-width: calc(100% - 50px);
     outline: none;
     margin: 0px 25px;
+}
+
+.comment-input{
+   outline: none;
+   border: 1px solid rgb(132, 169, 236);
+   border-style: solid;
+   border-radius: 5px;
+   margin-right: 3%;
+   padding: 0px;
+   width: 60%;
+   min-width: 300px;
+   height: 50px;
 }   
+.reply-buttons form{
+    display: flex;
+    flex-direction: column;
+    justify-content:space-around;
+    align-items: flex-start;
+}
+.comment-button{
+    margin-top: 5px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    width: 36%;
+    background-color: rgb(132, 169, 236);
+    outline: none;
+    height: 25px;
+}
+form .comment-button{
+    margin-top: 5px;
+}
+.comment-buttons form{
+    display: flex;
+    flex-direction: column;
+    justify-content:space-around;
+    align-items: flex-start;
+}
+.comment-buttons{
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+}
+.reply-buttons{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 10px 0px;
+    width : 100%;
+}
+.comment-button:hover{
+color: rgb(132, 169, 236);
+background-color: white;
+border: 1px solid rgb(132, 169, 236);
+}

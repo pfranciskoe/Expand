@@ -33,19 +33,21 @@ class Comment extends React.Component{
                     <div>{Math.floor(this.props.comment.timestamp / 60)}:{Math.ceil(this.props.comment.timestamp % 60)}</div>
                     <div>{this.props.comment.author.firstName} {this.props.comment.author.lastName}</div> 
                     <div>{this.props.comment.text}</div>
-                    {this.state.form 
-                    ? 
-                    <form>
-                        <input onChange={this.handleChange} type='text' value={this.state.text}/>
-                        <button onClick={this.handleSubmit}>REPLY</button>
-                    </form>
-                    :
-                    <button onClick={()=>this.setState({form:true})}>Expand Upon</button>
-                    }
+                    <div className='reply-buttons'>
+                        {this.state.form 
+                        ? 
+                        <form>
+                                <textarea className='comment-input' onChange={this.handleChange} value={this.state.text}/>
+                                <button className='comment-button' onClick={this.handleSubmit}>Reply</button>
+                        </form>
+                        :
+                            <button className='comment-button' onClick={()=>this.setState({form:true})}>Reply</button>
+                        }
+                    </div>
                 </div>
                 {this.props.comment.responses ? this.props.comment.responses.map((response, idx) => (
-                    <Response key={`response-${idx}`} response={response}/>)
-                ) : null }
+                    <Response key={`response-${idx}`} response={response} />)
+                ) : null}
             </div>
         )
     }

@@ -26,7 +26,7 @@ class LessonShow extends React.Component{
       const resp = {
         author: this.props.currentUserId,
         text: this.state.text,
-        parent: this.props.comment._id,
+        parent: this.props.lesson._id,
         timestamp: this.vid.currentTime
       }
       console.log(resp)
@@ -60,15 +60,17 @@ class LessonShow extends React.Component{
                 {this.props.lesson.instructor.firstName} {this.props.lesson.instructor.lastName}
                 </p>
               <p className='lesson-info-desc'>{this.props.lesson.description}</p>
+              <div className='comment-buttons'>
               {this.state.form
                 ?
                 <form>
-                  <input onChange={this.handleChange} type='text' value={this.state.text} />
-                  <button onClick={this.handleSubmit}>Submit</button>
+                  <textarea className='comment-input' onChange={this.handleChange} value={this.state.text} />
+                  <button className='comment-button' onClick={this.handleSubmit}>Submit</button>
                 </form>
                 :
-                <button onClick={() => this.setState({ form: true })}>Comment</button>
+                <button className='comment-button' onClick={() => this.setState({ form: true })}>Comment</button>
               }
+              </div>
             </div>
             <div className='comment-box'>
               {Object.values(this.props.lesson.comments).map((comment,idx)=>(
