@@ -16,7 +16,10 @@ router.get("/", (req, res) => {
 
 //show course
 router.get("/:id", (req, res) => {
-    Course.findById( req.params.id ).populate('instructor').populate('students').populate('lessons')
+    Course.findById( req.params.id )
+        .populate('instructor')
+        .populate('students')
+        .populate('lessons')
         .then(course => res.json(course))
         .catch(err => res.status(404).json({ nocoursefound: 'No course found' }));    
 })
@@ -51,17 +54,14 @@ router.patch('/:id',
             return res.status(400).json(errors);
         }
 
-        Course.findOneAndUpdate(
-          { _id: req.params.id },
-          req.body,
-          { new: true },
-          function (err, course) {
-            res.json(course);
-          }
-        )
-          .populate("instructor")
-          .populate("students")
-          .populate("lessons");
+        Course.findOneAndUpdate({ _id: req.params.id }, req.body, 
+            { new: true } )
+            .populate('instructor')
+            .populate('students')
+            .populate('lessons')
+            .exec(function(err, course) {
+                res.json(course);
+        });
     }   
 );
 
