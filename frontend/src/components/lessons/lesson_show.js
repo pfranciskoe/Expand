@@ -40,7 +40,8 @@ class LessonShow extends React.Component{
             </div>
             <div className='comment-box'>
               {Object.values(this.props.lesson.comments).map((comment,idx)=>(
-                <Comment key={`comment-${idx}`} comment={comment}/>
+                <Comment key={`comment-${idx}`} comment={comment} createResponse={this.props.createResponse}
+                  currentUserId={this.props.currentUserId}/>
               ))}
             </div>
           </div>
