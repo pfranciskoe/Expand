@@ -24,6 +24,7 @@ class NavBar extends React.Component {
 
     toggleDropdown(e){
         e.stopPropagation();
+        if (!this.props.loggedIn) return null;
         let dropdownButton = document.getElementById("dropdown-button");
         let dropdownArrow = document.getElementById("arrow");
         let dropdownMenu = document.getElementById("dropdown");
