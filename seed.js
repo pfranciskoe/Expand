@@ -3,6 +3,7 @@ const User = require('./models/User.js')
 const Course = require('./models/Course.js')
 const Lesson = require('./models/Lesson.js')
 const Comment = require('./models/Comment.js')
+const Response = require('./models/Response.js')
 const mongoose = require('mongoose')
 mongoose.connect(mongoURL.mongoURI, {useNewUrlParser: true});
 
@@ -10,32 +11,43 @@ User.deleteMany({},(err)=>console.log(err))
 Course.deleteMany({},(err)=>console.log(err))
 Lesson.deleteMany({},(err)=>console.log(err))
 Comment.deleteMany({},(err)=>console.log(err))
+Response.deleteMany({},(err)=>console.log(err))
 
 
-const users_arr = [{
-            'firstName': 'Instructor',
-            'lastName': 'Koe',
-            'instructor': true,
-            'email': 'peter@koe.com',
-            'password': 'password',
-            'courses': []
+const users_arr = [
+        {
+                'firstName': 'Peter',
+                'lastName': 'Koe',
+                'instructor': true,
+                'email': 'peter@koe.com',
+                'password': 'password',
+                'courses': []
         }, 
         {
-                'firstName': 'Student',
+                'firstName': 'Erick Santos',
                 'lastName': 'Koe2',
                 'instructor': false,
-                'email': 'peter1@koe.com',
+                'email': 'erick@santos.com',
                 'password': 'password',
                 'courses': []
         },
         {
-                'firstName': 'Peter',
-                'lastName': 'Koe3',
+                'firstName': 'Zoe',
+                'lastName': 'Lin',
                 'instructor': false,
-                'email': 'peter2@koe.com',
+                'email': 'zoe@lin.com',
                 'password': 'password',
                 'courses': []
-        }];
+        },
+        {
+                'firstName': 'Grant',
+                'lastName': 'Kleinman',
+                'instructor': false,
+                'email': 'grant@kleinman.com',
+                'password': 'password',
+                'courses': []
+        }
+];
 
 
 User.create(users_arr, function (err, users) {
@@ -132,11 +144,11 @@ User.create(users_arr, function (err, users) {
                                                                 timestamp: 22,
                                                         },
                                                         {
-                                                                author: user1, //must be a teacher
+                                                                author: user1,
                                                                 text: "Oh yeah, I forgot to say...",
                                                                 lesson: lesson1,
                                                                 timestamp: 22,
-                                                                videoUrl: '/responses/111' //optional field for response video
+                                                                videoUrl: '/responses/111'
                                                         },
                                                 ]
 
@@ -147,11 +159,61 @@ User.create(users_arr, function (err, users) {
                                                                 let comment1 = comments[1]._id;
                                                                 let comment2 = comments[2]._id;
 
-                                                                //add comments to lessons
                                                                 lessons[0].comments = [comment0, comment1];
                                                                 lessons[1].comments = [comment2];
                                                                 lessons[0].save();
                                                                 lessons[1].save();
+
+                                                                const responses_arr = [
+                                                                        {
+                                                                                author: user1,
+                                                                                text: "These are the potatoes of Omicron Persei 8, which are both alive and sentient.",
+                                                                                parent: comment0,
+                                                                        },
+                                                                        {
+                                                                                author: user2,
+                                                                                text: "Remember when Dan Quayle insisted that potato was spelled with an E?",
+                                                                                parent: comment0,
+                                                                        },
+                                                                        {
+                                                                                author: user3,
+                                                                                text: "Ooga ooga booga.",
+                                                                                parent: comment0,
+                                                                        },
+                                                                        {
+                                                                                author: user1,
+                                                                                text: "See this video for thorough instruction on doing the twist.",
+                                                                                parent: comment1,
+                                                                                videoUrl: '/newResponseVideoHere',
+                                                                        },
+                                                                        {
+                                                                                author: user2,
+                                                                                text: "Great followup, thank you!!",
+                                                                                parent: comment2,
+                                                                                videoUrl: '/newResponseVideoHere',
+                                                                        },
+                                                                ]
+
+                                                                Response.create(responses_arr, function (err, responses) {
+                                                                        if (err) { console.log(err) }
+                                                                        else {
+                                                                                let response0 = responses[0]._id;
+                                                                                let response1 = responses[1]._id;
+                                                                                let response2 = responses[2]._id;
+                                                                                let response3 = responses[3]._id;
+                                                                                let response4 = responses[4]._id;
+
+                                                                                comments[0].responses = [response0, response1];
+                                                                                comments[1].responses = [response2];
+                                                                                comments[1].responses = [response2];
+                                                                                comments[0].save();
+                                                                                comments[1].save();
+                                                                                
+                                                                                users[0].responses = [response0, response3];
+                                                                                users[1].responses = [response1, response4];
+                                                                                users[2].responses = [response2];
+                                                                        }
+                                                                })
                                                         }
                                                 })
                                         }

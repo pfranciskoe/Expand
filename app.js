@@ -7,6 +7,7 @@ const users = require("./routes/api/users");
 const courses = require('./routes/api/courses')
 const lessons = require('./routes/api/lessons')
 const comments = require('./routes/api/comments')
+const responses = require('./routes/api/responses')
 
 const path = require('path');
 if (process.env.NODE_ENV === 'production') {
@@ -37,3 +38,4 @@ app.use("/api/users", users);
 app.use('/api/courses', courses)
 app.use('/api/lessons', lessons)
 app.use('/api/comments', comments)
+app.use('/api/responses', responses)
