@@ -14,7 +14,9 @@ export default (state = {}, action) => {
             });
             return newState;
         case RECEIVE_COURSE:
-            return Object.assign({}, state, {[action.course.data._id]: action.course.data});
+            let nextState= {...state};
+            nextState[action.course.data._id] = action.course.data;
+            return nextState;
         case REMOVE_COURSE:
             let copyState = Object.assign({}, state);
             delete copyState[action.courseId];

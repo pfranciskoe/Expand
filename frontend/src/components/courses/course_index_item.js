@@ -43,9 +43,12 @@ class CourseIndexItem extends React.Component{
 
     render(){
         const {course, currentUser} = this.props;
+        const courseStyle = {
+          backgroundImage: `url(https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=967&q=80)`,
+        }; 
         return(
-            <div className="course-list-item">
-                <h1>{course.title}</h1>
+            <div className="course-list-item" style={courseStyle}>
+                <Link id="title" to={`/courses/${course._id}`}>{course.title}</Link>
                 <p>{course.description}</p>
                 {currentUser.id === course.instructor 
                 ? (<div>
