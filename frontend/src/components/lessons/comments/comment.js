@@ -17,12 +17,12 @@ class Comment extends React.Component{
             author: this.props.currentUserId,
             text: this.state.text,
             parent: this.props.comment._id,
-            // videoUrl: this.state.selectedFile
+            videoUrl: this.state.selectedFile
         }
         console.log(resp)
         this.props.createResponse(resp)
         .then(()=>this.setState({form:false}))
-        // .then(()=>this.props.fetchRE
+       
     } else {
         this.setState({ form: false }) }
     }
