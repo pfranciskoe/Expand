@@ -5,7 +5,7 @@ export const getResponse = (id) => {
 };
 
 export const createResponse = (response) => {
-  return axios.post("/api/responses", response);
+  return axios.post(`/api/responses/`, response);
 };
 
 export const updateResponse = (response) => {
