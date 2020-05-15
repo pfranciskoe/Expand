@@ -1,21 +1,51 @@
-.main-list{
+.profile-container{
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-details-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px;
+}
+
+.user-info,
+.user-courses-box h1{
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    padding: 40px;
-    justify-content: flex-start;
 }
 
-.main-list h2{
-    background-color: rgb(240, 240, 240);
-    padding: 30px;
-    border-radius: 10px;
-    width: fit-content;
+ul{
+    margin: 0;
+    padding: 0;
 }
 
-.tweet-box h3{
-    background-color: rgb(205, 236, 247);
-    width: fit-content;
-    padding: 20px;
-    border-radius: 10px;
+.user-courses-box li{
+    list-style: none;
+    margin: 20px;
+    padding: 10px 20px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: 500;
+    background-color: rgb(207, 207, 207);
+    border-radius: 5px;
+    color: black;
 }
+
+.user-courses-box li:hover{
+    cursor: pointer;
+    color: white;
+    background-color: rgb(118, 172, 243);
+}
+
+.user-courses-box a{
+    color: black;
+}
+
+.user-courses-box a:visited{
+    color: black;
+}
+
+
+
