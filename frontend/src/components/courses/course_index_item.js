@@ -41,15 +41,24 @@ class CourseIndexItem extends React.Component{
     //     return newDate.toDateString();
     // }
 
+
     render(){
         const {course, currentUser} = this.props;
+        let colors = ['#F3E190 ', '#97D8CF', '#E79DCC', '#68AF91'];
+        //colors in array: yellow, blue, pink, green
+        let color = colors[Math.floor(Math.random() * colors.length)];
         const courseStyle = {
-          backgroundImage: `url(https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=967&q=80)`,
+            //   backgroundImage: `url(https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=967&q=80)`,
+            background: `${color}`,
+            boxShadow: `2px 2px 16px 0px ${color}`,
         }; 
+
         return(
             <div className="course-list-item" style={courseStyle}>
-                <Link id="title" to={`/courses/${course._id}`}>{course.title}</Link>
-                <p>{course.description}</p>
+                <div id='title-container'>
+                    <Link id="title" to={`/courses/${course._id}`}>{course.title}</Link>
+                </div>
+                <div id='description-container'>{course.description}</div>
                 {currentUser.id === course.instructor 
                 ? (<div>
                     <Link to={`/courses/${course._id}/edit`}>Edit Course</Link>

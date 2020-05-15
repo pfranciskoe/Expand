@@ -84,7 +84,7 @@ class CourseShow extends React.Component {
     const { students, lessons, instructor } = this.props.course;
     const buttonDiv = this.state.enrolled ? (
       <button id="enroll" onClick={this.handleUnroll}>
-        Unroll
+        Unenroll
       </button>
     ) : (
       <button id="enroll" onClick={this.handleEnroll}>
@@ -94,35 +94,36 @@ class CourseShow extends React.Component {
     return (
       <div className="show-box">
         <div className="info">
-          <h1>{this.props.course.title}</h1>
-          <p>{`By ${instructor.firstName} ${instructor.lastName}`}</p>
-          <p>{this.props.course.description}</p>
+          <h1 className='course-title'>{this.props.course.title}</h1>
+          <p className='course-author'>{`By ${instructor.firstName} ${instructor.lastName}`}</p>
+          <div className='course-divider-1'></div>
+          <p className='course-description-header'>Course Description:</p>
+          <p classname='course-description'>{this.props.course.description}</p>
           {this.props.user.instructor ? null : buttonDiv}
+          <div className='course-divider-2'></div>
         </div>
         <div className="course-content">
           <div className="lesson-list">
-            <h2>Lessons:</h2>
+            <h2>Lessons</h2>
             {this.props.currentUserId === instructor._id ? (
               <Link to={`/courses/${this.props.course._id}/lessons/new`}>Add a lesson</Link>
             ) : null}
             <ol>
-              {lessons.map((lesson) => (
-                <li>
-                  <Link to={`/lessons/${lesson._id}`}>{lesson.title}</Link>
-                </li>
+              {lessons.map((lesson, i) => (
+                  <Link to={`/lessons/${lesson._id}`}><li className ='lesson-list-item' key={`${i}`}>{lesson.title}</li></Link>
               ))}
             </ol>
           </div>
           <div className="student-list">
-            <h2>students:</h2>
+            <h2>Enrollment List</h2>
 
-            <ul>
+            <span>
               {students.map((student, i) =>
                 student ? (
-                  <li key={student._id}>{`${student.firstName} ${student.lastName}`}</li>
+                  <li className='student-name' key={student._id}>{`${student.firstName} ${student.lastName}`}</li>
                 ) : null
               )}
-            </ul>
+            </span>
           </div>
         </div>
       </div>
