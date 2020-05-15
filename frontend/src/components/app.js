@@ -13,6 +13,7 @@ import EditCourseFormContainer from './courses/edit_course_container'
 import NewLessonContainer from "./lessons/new_lesson_container";
 import LessonShowContainer from "./lessons/lesson_show_container";
 import CourseShowContainer from "./courses/course_show_container";
+import UserShowContainer from './users/user_show_container';
 
 const App = () => (
   <div>
@@ -27,6 +28,7 @@ const App = () => (
       <ProtectedRoute path="/courses/:id" component={CourseShowContainer} />
       <ProtectedRoute path="/courses" component={CourseIndexContainer} />
       <ProtectedRoute path="/lessons/:id" component={LessonShowContainer} />
+      <ProtectedRoute path="/users/:userId" component={UserShowContainer} />
       <Route exact path="/" component={MainPage} />
     </Switch>
   </div>
