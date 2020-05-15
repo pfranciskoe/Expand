@@ -2,6 +2,7 @@ import React from "react";
 import "../../stylesheets/lesson.css"
 import Comment from './comments/comment'
 import CommentHeatmap from './comments/comment_heatmap'
+
 class LessonShow extends React.Component{
     constructor(props){
         super(props)
@@ -31,10 +32,10 @@ class LessonShow extends React.Component{
         timestamp: this.vid.currentTime
       }
       this.props.createComment(resp)
-        .then(() => this.setState({ form: false, loading2:true}))
+        .then(() => this.setState({ form: false, loading2: true, text: ''}))
         .then(
           ()=>this.props.getLesson(this.props.match.params.id)
-        ).then(()=>this.setState({loading2:false}))
+      ).then(() => this.setState({ loading2: false, text: ''}))
     } else {
       this.setState({ form: false })
     }

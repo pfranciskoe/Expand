@@ -1,7 +1,11 @@
 import React from "react";
 import "../../../stylesheets/lesson.css"
 import Response from './response';
-
+Number.prototype.pad = function (size) {
+    let s = String(this);
+    while (s.length < (size || 2)) { s = "0" + s; }
+    return s;
+}
 class Comment extends React.Component{
     constructor(props){
         super(props);
@@ -10,16 +14,18 @@ class Comment extends React.Component{
         this.handleChange=this.handleChange.bind(this)
         this.handleSelectedFile=this.handleSelectedFile.bind(this)
         this.handleDelete=this.handleDelete.bind(this)
+        this.toggleButton = this.toggleButton.bind(this)
     }
     handleDelete(){
         this.props.deleteComment().then(()=>this.props.getLesson())
     }
     handleSubmit(event){
         event.preventDefault()
+        this.toggleButton()
         const { text, selectedFile } = this.state;
         if (this.state.text) {
         const data = new FormData()
-            data.append('file', selectedFile);
+            if (this.state.selectedFile) { data.append('file', selectedFile);}
             data.append('text', text);
             data.append('author',this.props.currentUserId);
             data.append('parent', this.props.comment._id);
@@ -27,9 +33,9 @@ class Comment extends React.Component{
         this.props.createResponse(data).then(
         ()=> this.props.getLesson()
         )
-        .then(()=>this.setState({form:false}))
+            .then(() => this.setState({ form: false, text: ''}))
         } else {
-        this.setState({ form: false }) }
+        this.setState({ form: false, text: '' }) }
     }
     handleChange(event){
         this.setState({text: event.target.value})
@@ -55,19 +61,22 @@ class Comment extends React.Component{
             formButton.disabled = true;
         }
         formButton.classList.toggle("no-button");
-        document.getElementById("spinner").classList.toggle("show-spinner");
     }
     render(){
         return(
             <div className='comment-group'>
                 <div className='comment'>
-                    <div>{Math.floor(this.props.comment.timestamp / 60)}:{Math.ceil(this.props.comment.timestamp % 60)}</div>
-                    <div className='response-info-name'>{this.props.comment.author.firstName} {this.props.comment.author.lastName}</div> 
+                    <div>{Math.floor(this.props.comment.timestamp / 60).pad(2)}:{Math.ceil(this.props.comment.timestamp % 60).pad(2)}</div>
+                    {this.props.comment.author.instructor ?
+                    <div className='response-info-instructor-name'>{this.props.comment.author.firstName} {this.props.comment.author.lastName}</div>
+                    :
+                    <div className='response-info-name'>{this.props.comment.author.firstName} {this.props.comment.author.lastName}</div>
+                    }
                     <div className='response-info-text'>{this.props.comment.text}</div>
                     <div className='reply-buttons'>
                         {this.state.form 
                         ? 
-                        <form>
+                        <form className='form1'>
                                 <textarea className='comment-input' onChange={this.handleChange} value={this.state.text}/>
                                 <label>
                                     Expand with a video:
@@ -78,7 +87,6 @@ class Comment extends React.Component{
                                     />
                                 </label>
                                 <button className='comment-button' id='replybutton' onClick={this.handleSubmit}>Reply</button>
-                                <div id="spinner" className="spinner"></div>
                         </form>
                         :
                             <button className='comment-button' onClick={()=>this.setState({form:true})}>Reply</button>

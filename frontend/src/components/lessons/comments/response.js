@@ -22,7 +22,11 @@ class Response extends React.Component {
         return (
             <div className='response'>
                 <div className='response-info'>
+                    {this.props.response.author.instructor ?
+                    <p className='response-info-instructor-name'>{this.props.response.author.firstName} {this.props.response.author.lastName}</p>
+                    :
                     <p className='response-info-name'>{this.props.response.author.firstName} {this.props.response.author.lastName}</p>
+                    }
                     <p className='response-info-text'>{this.props.response.text}</p>
                 </div>
                 {this.props.response.videoUrl ?
