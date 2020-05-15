@@ -9,6 +9,10 @@ class Comment extends React.Component{
         this.handleSubmit=this.handleSubmit.bind(this)
         this.handleChange=this.handleChange.bind(this)
         this.handleSelectedFile=this.handleSelectedFile.bind(this)
+        this.handleDelete=this.handleDelete.bind(this)
+    }
+    handleDelete(){
+        this.props.deleteComment().then(()=>this.props.getLesson())
     }
     handleSubmit(event){
         event.preventDefault()
@@ -68,12 +72,13 @@ class Comment extends React.Component{
                         :
                             <button className='comment-button' onClick={()=>this.setState({form:true})}>Reply</button>
                         }
-                        <button className='delete-button' onClick={this.props.deleteComment}>Delete</button>
+                        <button className='delete-button' onClick={this.handleDelete}>Delete</button>
                     </div>
                 </div>
                 {this.props.comment.responses ? this.props.comment.responses.map((response, idx) => (
                     <Response key={`response-${idx}`} response={response} 
-                    deleteResponse={()=>this.props.deleteResponse(response._id)}/>)
+                    deleteResponse={()=>this.props.deleteResponse(response._id)}
+                    getLesson={this.props.getLesson}/>)
                 ) : null}
             </div>
         )
