@@ -9,11 +9,11 @@ class CourseShow extends React.Component {
     this.state = { enrolled: this.checkEnrollment() };
   }
 
-    componentDidMount(){
-        this.props.getCourse(this.props.match.params.id);
-        this.props.fetchUser(this.props.currentUserId);
-        window.scrollTo(0, 0);
-    }
+  componentDidMount(){
+      this.props.getCourse(this.props.match.params.id);
+      this.props.fetchUser(this.props.currentUserId);
+      window.scrollTo(0, 0);
+  }
 
   handleEnroll() {
     const students = [];
@@ -97,13 +97,13 @@ class CourseShow extends React.Component {
           <h1>{this.props.course.title}</h1>
           <p>{`By ${instructor.firstName} ${instructor.lastName}`}</p>
           <p>{this.props.course.description}</p>
-          {buttonDiv}
+          {this.props.user.instructor ? null : buttonDiv}
         </div>
         <div className="course-content">
           <div className="lesson-list">
             <h2>Lessons:</h2>
             {this.props.currentUserId === instructor._id ? (
-              <Link to="/lessons/new">Add a lesson</Link>
+              <Link to={`/courses/${this.props.course._id}/lessons/new`}>Add a lesson</Link>
             ) : null}
             <ol>
               {lessons.map((lesson) => (
@@ -119,7 +119,7 @@ class CourseShow extends React.Component {
             <ul>
               {students.map((student, i) =>
                 student ? (
-                  <li key={i}>{`${student.firstName} ${student.lastName}`}</li>
+                  <li key={student._id}>{`${student.firstName} ${student.lastName}`}</li>
                 ) : null
               )}
             </ul>

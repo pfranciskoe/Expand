@@ -23,8 +23,29 @@ class LessonForm extends React.Component{
         return e => this.setState({[field]: e.target.value});
     }
 
+    formValidations(){
+      const { title, description, instructor, course, thumbnailUrl } = this.state;
+      let fields = [title, description, instructor, course, thumbnailUrl];
+      for(let i = 0; i < fields.length; i++){
+        if (fields[i].length === 0) return false;
+      }
+      return true;
+    }
+
+    toggleButton() {
+      let formButton = document.getElementById("form-submit");
+      if (formButton.disabled){
+        formButton.disabled = false;
+      } else {
+        formButton.disabled = true;
+      }
+      formButton.classList.toggle("no-button");
+      document.getElementById("spinner").classList.toggle("show-spinner");
+    }
+
     handleSubmit(e){
         e.preventDefault();
+        this.toggleButton();
         const {title, description, videoUrl, instructor, course, order, thumbnailUrl, selectedFile} = this.state;
         let result;
         if (this.props.formType === "Create Lesson"){
@@ -37,12 +58,15 @@ class LessonForm extends React.Component{
           data.append('course', course);
           data.append('order', order);
           data.append('thumbnailUrl', thumbnailUrl);
-          debugger
           result = data;
         } else {
           result = { title, description, videoUrl, instructor, course, order, thumbnailUrl };
         }
-        this.props.action(result);
+        if (this.formValidations){
+          this.props.action(result);
+        } else {
+          console.log("Missing fields");
+        }
     }
 
     handleSelectedFile(e) {
@@ -97,9 +121,10 @@ class LessonForm extends React.Component{
                 </label>
               </div>
 
-              <button className="button" type="submit">
+              <button id="form-submit" className="button" type="submit">
                 Submit
               </button>
+              <div id="spinner" className="spinner"></div>
             </form>
           </div>
         );
