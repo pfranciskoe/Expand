@@ -8,6 +8,7 @@ class CourseIndex extends React.Component {
 
     componentDidMount() {
         this.props.getCourses();
+        window.scrollTo(0, 0);
     }
 
     render() {

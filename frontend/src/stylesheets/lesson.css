@@ -1,3 +1,6 @@
+html {
+  scroll-behavior: smooth;
+}
 .lesson-show-page{
     display: flex;
     flex-direction: column;
@@ -25,7 +28,8 @@
 
 .lesson-info-title{
     padding: 0px 20px;
-    margin: 10px 0px;
+    padding-top: 20px;
+    margin: 0px;
     font-size: 24px;
     font-weight: 700;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -45,8 +49,10 @@
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 .comment-box{
-    width: 90%;
+    width: calc(90% - 20px);
     background-color: rgb(190, 211, 250);
+    padding:10px;
+    padding-top: 7px;
     height: fit-content;
     border-radius: 0px 0px 6px 6px;
 }
@@ -57,6 +63,7 @@
     border-radius: 4px;
     height: fit-content;
     padding: 20px;
+    margin-top: 3px;
     margin-bottom: 0px;
     justify-content: space-around;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -65,8 +72,7 @@
     background-color: rgb(190, 211, 250);
     border-radius: 4px;
     height: fit-content;
-    padding: 10px;
-    padding-bottom: 0px;
+    padding: 0px 0px;
     margin-bottom: 0px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
@@ -77,13 +83,20 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    height: 50px;
     width: 90%;
+    border-radius: 5px;
+    background-color:rgb(190, 211, 250) ;
 }
-
+.comment-heatmap{
+    cursor: pointer;
+    
+}
 .heatmap-canvas{
     width: calc(100% - 30px);
     height: auto;
-    
+    border-radius:25px;
+    background-color: white;
 }
 .response{
     display: flex;
@@ -94,17 +107,19 @@
     height: fit-content;
     padding: 20px;
     margin-top: 3px;
-    margin-left: 25px;
+    margin-left: 15px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
-.response-info{
-
+.response-info-name{
+    font-weight: 700;
+}
+.response-info-text{
+    font-weight: 500;
 }
 .response-video-button{
     background-color: rgb(132, 169, 236);
     border-radius: 5px;
     align-content: center;
-    margin-left: 25px;
     width: 25px;
     height: 25px;
     border: none;
@@ -116,7 +131,7 @@
     max-width: calc(100% - 50px);
     min-width: calc(100% - 50px);
     outline: none;
-    margin: 0px 25px;
+    margin: 5px 0px 0px 0px;
 }
 
 .comment-input{
@@ -141,7 +156,7 @@
     color: white;
     border: none;
     border-radius: 5px;
-    width: 36%;
+    width: 10%;
     background-color: rgb(132, 169, 236);
     outline: none;
     height: 25px;
@@ -172,4 +187,20 @@ form .comment-button{
 color: rgb(132, 169, 236);
 background-color: white;
 border: 1px solid rgb(132, 169, 236);
+}
+
+.delete-button{
+    margin-top: 5px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    width: 10%;
+    background-color: rgb(132, 169, 236);
+    outline: none;
+    height: 25px;
+}
+.delete-button:hover{
+color: rgb(223, 0, 0);
+background-color: white;
+border: 1px solid rgb(223, 0, 0);
 }

@@ -9,21 +9,26 @@ class Comment extends React.Component{
         this.handleSubmit=this.handleSubmit.bind(this)
         this.handleChange=this.handleChange.bind(this)
         this.handleSelectedFile=this.handleSelectedFile.bind(this)
+        this.handleDelete=this.handleDelete.bind(this)
+    }
+    handleDelete(){
+        this.props.deleteComment().then(()=>this.props.getLesson())
     }
     handleSubmit(event){
         event.preventDefault()
+        const { text, selectedFile } = this.state;
         if (this.state.text) {
-        const resp = {
-            author: this.props.currentUserId,
-            text: this.state.text,
-            parent: this.props.comment._id,
-            videoUrl: this.state.selectedFile
-        }
-        console.log(resp)
-        this.props.createResponse(resp)
+        const data = new FormData()
+            data.append('file', selectedFile);
+            data.append('text', text);
+            data.append('author',this.props.currentUserId);
+            data.append('parent', this.props.comment._id);
+        console.log(data)
+        this.props.createResponse(data).then(
+        ()=> this.props.getLesson()
+        )
         .then(()=>this.setState({form:false}))
-       
-    } else {
+        } else {
         this.setState({ form: false }) }
     }
     handleChange(event){
@@ -34,20 +39,21 @@ class Comment extends React.Component{
         e.preventDefault();
         const file = e.currentTarget.files[0];
         const fileReader = new FileReader(e.target);
+        if (file) fileReader.readAsDataURL(file);
         fileReader.onloadend = () => {
             this.setState({
                 selectedFile: file,
             });
         }
-        if (file) fileReader.readAsDataURL(file);
+        
     }
     render(){
         return(
             <div className='comment-group'>
                 <div className='comment'>
                     <div>{Math.floor(this.props.comment.timestamp / 60)}:{Math.ceil(this.props.comment.timestamp % 60)}</div>
-                    <div>{this.props.comment.author.firstName} {this.props.comment.author.lastName}</div> 
-                    <div>{this.props.comment.text}</div>
+                    <div className='response-info-name'>{this.props.comment.author.firstName} {this.props.comment.author.lastName}</div> 
+                    <div className='response-info-text'>{this.props.comment.text}</div>
                     <div className='reply-buttons'>
                         {this.state.form 
                         ? 
@@ -66,10 +72,13 @@ class Comment extends React.Component{
                         :
                             <button className='comment-button' onClick={()=>this.setState({form:true})}>Reply</button>
                         }
+                        <button className='delete-button' onClick={this.handleDelete}>Delete</button>
                     </div>
                 </div>
                 {this.props.comment.responses ? this.props.comment.responses.map((response, idx) => (
-                    <Response key={`response-${idx}`} response={response} />)
+                    <Response key={`response-${idx}`} response={response} 
+                    deleteResponse={()=>this.props.deleteResponse(response._id)}
+                    getLesson={this.props.getLesson}/>)
                 ) : null}
             </div>
         )

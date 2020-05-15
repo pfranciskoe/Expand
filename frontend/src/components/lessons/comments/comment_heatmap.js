@@ -4,7 +4,6 @@ import "../../../stylesheets/lesson.css"
 class CommentHeatmap extends React.Component {
     constructor(props) {
         super(props);
-        console.log(this)
     }
     componentDidMount() {
         this.setupAndDraw(this.props.lesson.comments,this.props.vidLength)
@@ -19,10 +18,11 @@ class CommentHeatmap extends React.Component {
         
         comments.forEach((comment)=>{
             const timeRound = comment.timestamp / vidLength
-            console.log(timeRound)
             ctx.beginPath()
-            ctx.fillStyle = "#2B3972"
-            ctx.arc((2000 * timeRound), 25 ,15,0, 2*Math.PI,false)
+            if (comment.author.instructor){
+                ctx.fillStyle = "#f5a2a2"
+            } else { ctx.fillStyle = "#a2cdf5"}
+            ctx.arc(15+(2000 * timeRound), 15 ,15,0, 2*Math.PI,false)
             ctx.fill()
         })
     }
@@ -30,8 +30,9 @@ class CommentHeatmap extends React.Component {
 
     render() {
         return (
-            <div className='comment-heatmap'>
-                <canvas id="canvas" height='50' width='2000' className='heatmap-canvas'>
+            <div onClick={this.props.onHit}className='comment-heatmap'>
+                <canvas id="canvas" height='30' width='2030' className='heatmap-canvas'
+                >
 
                 </canvas>
             </div>

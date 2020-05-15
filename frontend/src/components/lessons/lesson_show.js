@@ -8,6 +8,7 @@ class LessonShow extends React.Component{
         this.state={loading:true, loading2:true, text:'', form:false}
         this.handleSubmit=this.handleSubmit.bind(this)
         this.handleChange=this.handleChange.bind(this)
+        this.handleScroll=this.handleScroll.bind(this)
     }
 
     componentDidMount(){
@@ -26,34 +27,42 @@ class LessonShow extends React.Component{
       const resp = {
         author: this.props.currentUserId,
         text: this.state.text,
-        parent: this.props.lesson._id,
+        lesson: this.props.lesson._id,
         timestamp: this.vid.currentTime
       }
-      console.log(resp)
       this.props.createComment(resp)
-        .then(() => this.setState({ form: false }))
+        .then(() => this.setState({ form: false, loading2:true}))
+        .then(
+          ()=>this.props.getLesson(this.props.match.params.id)
+        ).then(()=>this.setState({loading2:false}))
     } else {
       this.setState({ form: false })
     }
   }
   handleChange(event) {
     this.setState({ text: event.target.value })
-    console.log(this.state)
+  }
+  handleScroll(){
+    const ele = document.getElementById('comment-box')
+    const bodyRect = document.body.getBoundingClientRect()
+    const elemRect = ele.getBoundingClientRect()
+    const offset = elemRect.top - bodyRect.top;
+    window.scrollTo(0,offset-80)
   }
     render(){
       if (this.state.loading === true) {
         return(
-          <div>LOADING</div> 
+          <div></div> 
         )
       } else {
         return (
-          <div className='lesson-show-page'>
+          <div  className='lesson-show-page'>
             <video className='video-tag' controls>
               <source src={this.props.lesson.videoUrl}
               type="video/mp4" />
             </video>
             {this.state.loading2 == false ?
-            <CommentHeatmap lesson={this.props.lesson} vidLength={this.vidLength}/> : null }
+              <CommentHeatmap onHit={this.handleScroll} lesson={this.props.lesson} vidLength={this.vidLength}/> : null }
             <div className='lesson-info'>
               <p className='lesson-info-title'>{this.props.lesson.title}</p>
               <p className='lesson-info-instructor'>
@@ -72,10 +81,11 @@ class LessonShow extends React.Component{
               }
               </div>
             </div>
-            <div className='comment-box'>
+            <div className='comment-box' id='comment-box'>
               {Object.values(this.props.lesson.comments).map((comment,idx)=>(
                 <Comment key={`comment-${idx}`} comment={comment} createResponse={this.props.createResponse}
-                  currentUserId={this.props.currentUserId}/>
+                  currentUserId={this.props.currentUserId} getLesson={() => this.props.getLesson(this.props.match.params.id)}
+                  deleteComment={() => this.props.deleteComment(comment._id)} deleteResponse={this.props.deleteResponse}/>
               ))}
             </div>
           </div>
