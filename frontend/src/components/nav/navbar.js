@@ -107,7 +107,7 @@ class NavBar extends React.Component {
                         </button>
                         {this.courseList()}
                     </div>
-                    <Link to={"/profile"}>Profile</Link>
+                    <Link to={`/users/${this.props.userId}`}>Profile</Link>
                     <button className="logout" onClick={this.logoutUser}>Logout</button>
                 </div>
             );
@@ -132,7 +132,7 @@ class NavBar extends React.Component {
                         </button>
                         {this.courseList()}
                     </div>
-                    <Link to={"/profile"}>Profile</Link>
+                    <Link to={`/users/${this.props.userId}`}>Profile</Link>
                     <button className="logout" onClick={this.logoutUser}>Logout</button>
                 </div>
             );
