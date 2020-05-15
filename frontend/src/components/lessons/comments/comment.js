@@ -12,20 +12,19 @@ class Comment extends React.Component{
     }
     handleSubmit(event){
         event.preventDefault()
+        const { text, selectedFile } = this.state;
         if (this.state.text) {
-        const resp = {
-            author: this.props.currentUserId,
-            text: this.state.text,
-            parent: this.props.comment._id,
-            videoUrl: this.state.selectedFile
-        }
-        console.log(resp)
-        this.props.createResponse(resp).then(
+        const data = new FormData()
+            data.append('file', selectedFile);
+            data.append('text', text);
+            data.append('author',this.props.currentUserId);
+            data.append('parent', this.props.comment._id);
+        console.log(data)
+        this.props.createResponse(data).then(
         ()=> this.props.getLesson()
         )
         .then(()=>this.setState({form:false}))
-       
-    } else {
+        } else {
         this.setState({ form: false }) }
     }
     handleChange(event){
@@ -36,12 +35,13 @@ class Comment extends React.Component{
         e.preventDefault();
         const file = e.currentTarget.files[0];
         const fileReader = new FileReader(e.target);
+        if (file) fileReader.readAsDataURL(file);
         fileReader.onloadend = () => {
             this.setState({
                 selectedFile: file,
             });
         }
-        if (file) fileReader.readAsDataURL(file);
+        
     }
     render(){
         return(
