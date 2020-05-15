@@ -44,7 +44,7 @@
 
 .form input:focus{
     outline: none;
-    border: 2px solid rgb(64, 152, 224);
+    border: 2px solid #4098e0;
     border-radius: 5px;
 }
 

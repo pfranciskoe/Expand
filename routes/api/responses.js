@@ -67,25 +67,33 @@ router.post('/',
         lessonUpload(req, res, (error) => {
             if (error) {
                 res.json({ error: error });
-            } else { //upload failed
-                if (req.file === undefined) {
-                    console.log(req.body)
-                    res.json('Error: No File Selected');
-                } else {
+            } else {
+                if (req.file) {
         const newResponse = new Response({
             author: req.body.author,
             text: req.body.text,
             parent: req.body.parent,
             videoUrl: req.file.location,
-        });
-
+        })
         newResponse.save().then(response => {
             Comment.findOneAndUpdate({ _id: response.parent }, { $push: { responses: response._id } })
             .then(()=>res.json(response))
         });
+        } else {
+        const newResponse = new Response({
+            author: req.body.author,
+            text: req.body.text,
+            parent: req.body.parent,
+        })
+        newResponse.save().then(response => {
+            Comment.findOneAndUpdate({ _id: response.parent }, { $push: { responses: response._id } })
+            .then(()=>res.json(response))
+        });
+        }}});
 
-    }}})}
-);
+        
+
+    });
 
 //update response
 router.patch('/:id',

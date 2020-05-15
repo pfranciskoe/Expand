@@ -114,7 +114,7 @@ User.create(users_arr, function (err, users) {
                                 let course2 = courses[2]._id;
                                 let course3 = courses[3]._id;
                                 let course4 = courses[4]._id;
-                                users[0].courses = [corse0, course1, course2]
+                                users[0].courses = [course0, course1, course2]
                                 users[0].save();
                                 users[1].courses = [course0, course1, course2, course3]
                                 users[1].save();
