@@ -139,7 +139,13 @@ class LessonForm extends React.Component{
               <button id="form-submit" className="button" type="submit">
                 Submit
               </button>
-              <div id="spinner" className="spinner"></div>
+              {/* <div id="spinner" className="spinner"></div> */}
+              <div id="spinner" className="spinner">
+                <img className="tri-logo"
+                  src="https://expand-dev.s3-us-west-1.amazonaws.com/images/triangles.png"
+                  alt="Expand"
+                />
+              </div>
             </form>
           </div>
         );
