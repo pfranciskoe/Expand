@@ -47,6 +47,16 @@ class Comment extends React.Component{
         }
         
     }
+    toggleButton() {
+        let formButton = document.getElementById("replybutton");
+        if (formButton.disabled) {
+            formButton.disabled = false;
+        } else {
+            formButton.disabled = true;
+        }
+        formButton.classList.toggle("no-button");
+        document.getElementById("spinner").classList.toggle("show-spinner");
+    }
     render(){
         return(
             <div className='comment-group'>
@@ -67,7 +77,8 @@ class Comment extends React.Component{
                                         onChange={this.handleSelectedFile}
                                     />
                                 </label>
-                                <button className='comment-button' onClick={this.handleSubmit}>Reply</button>
+                                <button className='comment-button' id='replybutton' onClick={this.handleSubmit}>Reply</button>
+                                <div id="spinner" className="spinner"></div>
                         </form>
                         :
                             <button className='comment-button' onClick={()=>this.setState({form:true})}>Reply</button>
