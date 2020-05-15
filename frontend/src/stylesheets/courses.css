@@ -17,15 +17,16 @@
 .course-list-item{
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     width: 300px;
-    height: 270px;
+    height: 200px;
     margin: 20px 20px; 
     border-radius: 10px;
     text-align: center;
-    box-shadow: 2px 2px 16px 0px rgba(141, 140, 140, 0.75);
+    /* box-shadow: 2px 2px 16px 0px rgba(141, 140, 140, 0.75); */
     background-size: cover;
     position: relative;
     z-index: 1;
     padding-top: 30px;
+    
     
 }
 
@@ -48,13 +49,23 @@
     font-size: 16px;
     cursor: pointer;
 }
+
+#title-container {
+    height: 60px;
+}
+
+#description-container {
+    padding: 17px;
+    text-align: left;
+}
+
 .course-list-item #title{
-    
     font-size: 24px;
     text-decoration: none;
     color: #333;
     font-weight: bold;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    white-space : normal;
 }
 
 .course-list-item #title:hover{
@@ -153,5 +164,48 @@
     list-style: none;
 }
 
+#enroll {
+    margin: 0px 10px;
+    padding: 10px 20px;
+    background-color: rgb(132, 169, 236);
+    border-radius: 5px;
+    color: white;
+    font-weight: 800;
+    cursor: pointer;
+}
 
+.student-name {
+    list-style-type: none;
+    padding-bottom: 10px;
+}
 
+.lesson-list-item:hover {
+    color: rgb(0, 54, 0);
+}
+
+/* .course-title {
+    border-bottom: solid black;
+} */
+
+.course-author {
+    font-size: 28px;
+}
+
+.course-divider-1 {
+    width: 700px;
+    border-bottom: solid rgb(64, 152, 224);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+}
+
+.course-divider-2 {
+    width: 700px;
+    border-bottom: solid rgb(64, 152, 224);
+    padding-bottom: 40px;
+    margin-bottom: 60px;
+}
+
+.course-description-header {
+    font-weight: 500;
+}
