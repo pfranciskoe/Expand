@@ -58,10 +58,9 @@
     border-radius: 5px;
     font-size: inherit;
     min-width: 100px;
-}
-
-.button{
-    transition: background-color 0.5s;
+    -webkit-transition: background-color 100ms linear;
+    -ms-transition: background-color 100ms linear;
+    transition: background-color 100ms linear;
 }
 
 .form .button:hover,
