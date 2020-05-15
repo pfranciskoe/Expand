@@ -1,6 +1,7 @@
 import React from 'react';
 import "../../stylesheets/main.css";
-import {Link} from "react-router-dom"
+import {Link} from "react-router-dom";
+import { FaGithub} from "react-icons/fa";
 
 class MainPage extends React.Component {
 
@@ -68,7 +69,10 @@ class MainPage extends React.Component {
                 </a>
               </div>
             </div>
-            <footer></footer>
+            <footer>
+              <p>Learn more about us: </p>
+              <a src="https://github.com/pfranciskoe/Expand" id="icon"><FaGithub /></a>
+            </footer>
           </div>
         );
     }
