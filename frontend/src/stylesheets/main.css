@@ -114,7 +114,6 @@ html, body{
 .name{
     margin-top: 10px;
     margin-bottom: 50px;
-    
 }
 
 .name a{
@@ -122,6 +121,8 @@ html, body{
     font-size: 19px;
     color:#333;
     margin-right: 5px;
+    text-align: center;
+    width: 150px;
 }
 
 .name a:hover, #icon:hover{
