@@ -52,8 +52,8 @@ class Comment extends React.Component{
             <div className='comment-group'>
                 <div className='comment'>
                     <div>{Math.floor(this.props.comment.timestamp / 60)}:{Math.ceil(this.props.comment.timestamp % 60)}</div>
-                    <div>{this.props.comment.author.firstName} {this.props.comment.author.lastName}</div> 
-                    <div>{this.props.comment.text}</div>
+                    <div className='response-info-name'>{this.props.comment.author.firstName} {this.props.comment.author.lastName}</div> 
+                    <div className='response-info-text'>{this.props.comment.text}</div>
                     <div className='reply-buttons'>
                         {this.state.form 
                         ? 

@@ -41,6 +41,13 @@ class LessonShow extends React.Component{
   handleChange(event) {
     this.setState({ text: event.target.value })
   }
+  handleScroll(){
+    const ele = document.getElementById('comment-box')
+    const bodyRect = document.body.getBoundingClientRect()
+    const elemRect = ele.getBoundingClientRect()
+    const offset = elemRect.top - bodyRect.top;
+    window.scrollTo(0,offset)
+  }
     render(){
       if (this.state.loading === true) {
         return(
@@ -48,7 +55,7 @@ class LessonShow extends React.Component{
         )
       } else {
         return (
-          <div className='lesson-show-page'>
+          <div onClick={this.handleScroll} className='lesson-show-page'>
             <video className='video-tag' controls>
               <source src={this.props.lesson.videoUrl}
               type="video/mp4" />
@@ -73,7 +80,7 @@ class LessonShow extends React.Component{
               }
               </div>
             </div>
-            <div className='comment-box'>
+            <div className='comment-box' id='comment-box'>
               {Object.values(this.props.lesson.comments).map((comment,idx)=>(
                 <Comment key={`comment-${idx}`} comment={comment} createResponse={this.props.createResponse}
                   currentUserId={this.props.currentUserId} getLesson={() => this.props.getLesson(this.props.match.params.id)}
