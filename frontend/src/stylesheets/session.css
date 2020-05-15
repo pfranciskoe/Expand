@@ -60,6 +60,10 @@
     min-width: 100px;
 }
 
+.button{
+    transition: background-color 0.5s;
+}
+
 .form .button:hover,
 .navlinks .button:hover{
     background-color: rgb(56, 102, 230);
