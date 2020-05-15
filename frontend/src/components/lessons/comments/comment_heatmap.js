@@ -19,7 +19,9 @@ class CommentHeatmap extends React.Component {
         comments.forEach((comment)=>{
             const timeRound = comment.timestamp / vidLength
             ctx.beginPath()
-            ctx.fillStyle = "#2B3972"
+            if (comment.author.instructor){
+                ctx.fillStyle = "#f5a2a2"
+            } else { ctx.fillStyle = "#a2cdf5"}
             ctx.arc(15+(2000 * timeRound), 15 ,15,0, 2*Math.PI,false)
             ctx.fill()
         })
