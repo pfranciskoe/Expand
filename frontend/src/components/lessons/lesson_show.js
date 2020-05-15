@@ -47,7 +47,7 @@ class LessonShow extends React.Component{
     const bodyRect = document.body.getBoundingClientRect()
     const elemRect = ele.getBoundingClientRect()
     const offset = elemRect.top - bodyRect.top;
-    window.scrollTo(0,offset)
+    window.scrollTo(0,offset-80)
   }
     render(){
       if (this.state.loading === true) {
