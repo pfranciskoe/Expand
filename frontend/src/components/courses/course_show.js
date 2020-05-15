@@ -103,7 +103,7 @@ class CourseShow extends React.Component {
           <div className="lesson-list">
             <h2>Lessons:</h2>
             {this.props.currentUserId === instructor._id ? (
-              <Link to="/lessons/new">Add a lesson</Link>
+              <Link to={`/courses/${this.props.course._id}/lessons/new`}>Add a lesson</Link>
             ) : null}
             <ol>
               {lessons.map((lesson) => (

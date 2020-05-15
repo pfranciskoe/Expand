@@ -9,3 +9,40 @@
     padding: 5px 5px;
 }
 
+.no-button{
+    background-color: rgb(185, 185, 185);
+    position: relative;
+}
+
+.no-button:hover{
+    cursor: none;
+    background-color: rgb(185, 185, 185);
+}
+
+.spinner{
+    display: none;
+    height: 20px;
+    width: 20px;
+    border: 5px solid rgb(228, 228, 228);
+    border-top: 5px solid rgb(100, 211, 226);
+    border-radius: 50%;
+    position: absolute;
+    top: 55px;
+    right: 10px;
+    animation: spin 800ms linear infinite;
+    -webkit-animation: spin 800ms linear infinite;
+}
+
+.show-spinner{
+    display: block;
+}
+
+@keyframes spin{
+    0% {transform: rotate(0deg);}
+    100% {transform: rotate(360deg);}
+}
+
+@-webkit-keyframes spin{
+    0% {transform: rotate(0deg);}
+    100% {transform: rotate(360deg);}
+}
