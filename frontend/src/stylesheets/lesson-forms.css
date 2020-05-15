@@ -27,8 +27,7 @@
     border-top: 5px solid rgb(100, 211, 226);
     border-radius: 50%;
     position: absolute;
-    top: 55px;
-    right: 10px;
+    top: 15%;
     animation: spin 800ms linear infinite;
     -webkit-animation: spin 800ms linear infinite;
 }
