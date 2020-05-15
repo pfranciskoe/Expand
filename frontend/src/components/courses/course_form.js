@@ -1,4 +1,5 @@
 import React from "react";
+import {withRouter} from "react-router-dom";
 
 class CourseForm extends React.Component {
 
@@ -29,7 +30,9 @@ class CourseForm extends React.Component {
             this.props.action(course)
         }
         this.props.action(course);
-        this.setState({success: true})
+        this.setState({ success: true })
+        this.props.history.push("/courses")
+        
     }
 
     render() {
@@ -76,4 +79,4 @@ class CourseForm extends React.Component {
     }
 }
 
-export default CourseForm;
+export default withRouter(CourseForm);
