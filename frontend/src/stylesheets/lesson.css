@@ -1,3 +1,6 @@
+html {
+  scroll-behavior: smooth;
+}
 .lesson-show-page{
     display: flex;
     flex-direction: column;
@@ -25,7 +28,8 @@
 
 .lesson-info-title{
     padding: 0px 20px;
-    margin: 10px 0px;
+    padding-top: 20px;
+    margin: 0px;
     font-size: 24px;
     font-weight: 700;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -79,13 +83,20 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    height: 50px;
     width: 90%;
+    border-radius: 5px;
+    background-color:rgb(190, 211, 250) ;
 }
-
+.comment-heatmap{
+    cursor: pointer;
+    
+}
 .heatmap-canvas{
     width: calc(100% - 30px);
     height: auto;
-    
+    border-radius:25px;
+    background-color: white;
 }
 .response{
     display: flex;
@@ -99,7 +110,12 @@
     margin-left: 15px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
-
+.response-info-name{
+    font-weight: 700;
+}
+.response-info-text{
+    font-weight: 500;
+}
 .response-video-button{
     background-color: rgb(132, 169, 236);
     border-radius: 5px;
