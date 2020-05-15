@@ -132,6 +132,12 @@ html {
     font-weight: 800;
     outline: none;
 }
+.response-video-button:hover{
+    background-color: white;
+    border: 1px solid rgb(132, 169, 236);
+    color: rgb(132, 169, 236);
+
+}
 .response-video video{
     max-width: calc(100% - 50px);
     min-width: calc(100% - 50px);
