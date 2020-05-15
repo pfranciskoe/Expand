@@ -10,6 +10,7 @@ class NavBar extends React.Component {
         this.showList = this.showList.bind(this);
         this.toggleDropdown = this.toggleDropdown.bind(this);
         this.goHome = this.goHome.bind(this);
+        this.handleLink = this.handleLink.bind(this);
     }
 
     componentDidMount(){
@@ -70,15 +71,23 @@ class NavBar extends React.Component {
                         {Object.values(courses).map((course, idx) => {
                             return (
                                 <li key={idx} >
-                                    <NavLink className="dropdown-item" to={`/courses/${course._id}`}>
+                                    <a className="dropdown-item" 
+                                        onClick={this.handleLink(course._id)}>
                                         {course.title[0].toUpperCase() + course.title.slice(1)}
-                                    </NavLink>
+                                    </a>
                                 </li>
                             )
                         })}
                     </ul>
                 </div>
             )
+        }
+    }
+
+    handleLink(courseId){
+        return e => {
+            this.props.getCourse(courseId)
+            .then( () => this.props.history.push(`/courses/${courseId}`));
         }
     }
 

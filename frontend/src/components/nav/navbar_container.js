@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { logout, clearErrors } from '../../actions/session_actions';
 import { fetchUser } from '../../actions/users_actions';
 import NavBar from './navbar';
-import { getUserCourses } from '../../actions/courses_actions';
+import { getUserCourses, getCourse } from '../../actions/courses_actions';
 
 const mapStateToProps = ({entities: {users, courses}, session}) => {
     let userId = undefined;
@@ -19,7 +19,8 @@ const mapDispatchToProps = dispatch => ({
     clearErrors: () => dispatch(clearErrors()),
     logout: () => dispatch(logout()),
     fetchUser: (userId) => dispatch(fetchUser(userId)),
-    getUserCourses: (userId) => dispatch(getUserCourses(userId))
+    getUserCourses: (userId) => dispatch(getUserCourses(userId)),
+    getCourse: (courseId) => dispatch(getCourse(courseId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
