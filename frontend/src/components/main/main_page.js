@@ -50,32 +50,32 @@ class MainPage extends React.Component {
             <div className="content-box">
               <h1 className="banner-header"> What Make Us Unique</h1>
               <div className="banner-box" style={bannerStyle}></div>
-              <h1 className="banner-header"> Meet the team</h1>
+              <h1 className="banner-header"> Meet the Team</h1>
               <div className="team">
-                <a href="https://www.linkedin.com/in/peter-koe-377385128/">
+                <a href="https://www.linkedin.com/in/peter-koe-377385128/" target="_blank">
                   <div className="pic" id="peter" style={peter}></div>
                 </a>
-                <a href="https://www.linkedin.com/in/erick-santos2/">
+                <a href="https://www.linkedin.com/in/erick-santos2/" target="_blank">
                   <div className="pic" style={erick}></div>
                 </a>
-                <a href="https://www.linkedin.com/in/grant-kleinman-pe-35930070/">
+                <a href="https://www.linkedin.com/in/grant-kleinman-pe-35930070/" target="_blank">
                   <div className="pic" style={grant}></div>
                 </a>
-                <a href="https://www.linkedin.com/in/zixuan-lin-2a2953a9/">
+                <a href="https://www.linkedin.com/in/zixuan-lin-2a2953a9/" target="_blank">
                   <div className="pic" style={zoe}></div>
                 </a>
               </div>
               <div className="name">
-                <a href="https://www.linkedin.com/in/peter-koe-377385128/">
+                <a href="https://www.linkedin.com/in/peter-koe-377385128/" target="_blank">
                   Peter Koe
                 </a>
-                <a href="https://www.linkedin.com/in/erick-santos2/">
+                <a href="https://www.linkedin.com/in/erick-santos2/" target="_blank">
                   Erick Santos
                 </a>
-                <a href="https://www.linkedin.com/in/grant-kleinman-pe-35930070/">
+                <a href="https://www.linkedin.com/in/grant-kleinman-pe-35930070/" target="_blank">
                   Grant Kleinman
                 </a>
-                <a href="https://www.linkedin.com/in/zixuan-lin-2a2953a9/">
+                <a href="https://www.linkedin.com/in/zixuan-lin-2a2953a9/" target="_blank">
                   Zoe Lin
                 </a>
               </div>
