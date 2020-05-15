@@ -20,7 +20,7 @@ class CommentHeatmap extends React.Component {
             const timeRound = comment.timestamp / vidLength
             ctx.beginPath()
             ctx.fillStyle = "#2B3972"
-            ctx.arc((2000 * timeRound), 25 ,15,0, 2*Math.PI,false)
+            ctx.arc(15+(2000 * timeRound), 15 ,15,0, 2*Math.PI,false)
             ctx.fill()
         })
     }
@@ -28,8 +28,9 @@ class CommentHeatmap extends React.Component {
 
     render() {
         return (
-            <div className='comment-heatmap'>
-                <canvas id="canvas" height='50' width='2000' className='heatmap-canvas'>
+            <div onClick={this.props.onHit}className='comment-heatmap'>
+                <canvas id="canvas" height='30' width='2030' className='heatmap-canvas'
+                >
 
                 </canvas>
             </div>

@@ -8,6 +8,7 @@ class LessonShow extends React.Component{
         this.state={loading:true, loading2:true, text:'', form:false}
         this.handleSubmit=this.handleSubmit.bind(this)
         this.handleChange=this.handleChange.bind(this)
+        this.handleScroll=this.handleScroll.bind(this)
     }
 
     componentDidMount(){
@@ -55,13 +56,13 @@ class LessonShow extends React.Component{
         )
       } else {
         return (
-          <div onClick={this.handleScroll} className='lesson-show-page'>
+          <div  className='lesson-show-page'>
             <video className='video-tag' controls>
               <source src={this.props.lesson.videoUrl}
               type="video/mp4" />
             </video>
             {this.state.loading2 == false ?
-            <CommentHeatmap lesson={this.props.lesson} vidLength={this.vidLength}/> : null }
+              <CommentHeatmap onHit={this.handleScroll} lesson={this.props.lesson} vidLength={this.vidLength}/> : null }
             <div className='lesson-info'>
               <p className='lesson-info-title'>{this.props.lesson.title}</p>
               <p className='lesson-info-instructor'>
