@@ -4,7 +4,6 @@ import "../../../stylesheets/lesson.css"
 class CommentHeatmap extends React.Component {
     constructor(props) {
         super(props);
-        console.log(this)
     }
     componentDidMount() {
         this.setupAndDraw(this.props.lesson.comments,this.props.vidLength)
@@ -19,7 +18,6 @@ class CommentHeatmap extends React.Component {
         
         comments.forEach((comment)=>{
             const timeRound = comment.timestamp / vidLength
-            console.log(timeRound)
             ctx.beginPath()
             ctx.fillStyle = "#2B3972"
             ctx.arc((2000 * timeRound), 25 ,15,0, 2*Math.PI,false)

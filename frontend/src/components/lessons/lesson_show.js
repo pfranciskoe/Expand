@@ -29,24 +29,22 @@ class LessonShow extends React.Component{
         lesson: this.props.lesson._id,
         timestamp: this.vid.currentTime
       }
-      console.log(resp)
       this.props.createComment(resp)
-        .then(() => this.setState({ form: false }))
+        .then(() => this.setState({ form: false, loading2:true}))
         .then(
           ()=>this.props.getLesson(this.props.match.params.id)
-        )
+        ).then(()=>this.setState({loading2:false}))
     } else {
       this.setState({ form: false })
     }
   }
   handleChange(event) {
     this.setState({ text: event.target.value })
-    console.log(this.state)
   }
     render(){
       if (this.state.loading === true) {
         return(
-          <div>LOADING</div> 
+          <div></div> 
         )
       } else {
         return (

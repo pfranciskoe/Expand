@@ -5,12 +5,18 @@ class Response extends React.Component {
         super(props);
         this.state={video:false}
         this.toggle = this.toggle.bind(this)
+        this.handleDelete=this.handleDelete.bind(this)
     }
     toggle(){
         if (this.state.video) {
         this.setState({ video: false }) } else {
         this.setState({ video: true })
         }
+    }
+    handleDelete(){
+        
+            this.props.deleteResponse().then(() => this.props.getLesson())
+        
     }
     render() {
         return (
@@ -33,7 +39,7 @@ class Response extends React.Component {
                         <video src={this.props.response.videoUrl} controls="controls" autoPlay='autoPlay' type="video/mp4"/>
                 </div>
                 : null }
-                <button className='delete-button' onClick={this.props.deleteResponse}>Delete</button>
+                <button className='delete-button' onClick={this.handleDelete}>Delete</button>
             </div>
         )
     }
