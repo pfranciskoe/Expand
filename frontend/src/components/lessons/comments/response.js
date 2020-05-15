@@ -28,6 +28,7 @@ class Response extends React.Component {
                     </button>)
                     : null}
                 {this.state.video ?
+                    <button className='delete-button' onClick={this.props.deleteResponse}>Delete</button>
                 <div className='response-video'>
                         <video src={this.props.response.videoUrl} controls="controls" autoPlay='autoPlay' type="video/mp4"/>
                 </div>

@@ -24,7 +24,7 @@ router.post('/',
         if (!isValid) {
             return res.status(400).json(errors);
         }
-        console.log(req)
+
         const newResponse = new Response({
             author: req.body.author,
             text: req.body.text,
@@ -32,7 +32,10 @@ router.post('/',
             videoUrl: req.body.videoUrl,
         });
 
-        newResponse.save().then(response => res.json(response));
+        newResponse.save().then(response => {
+            Comment.findOneAndUpdate({ _id: response.parent }, { $push: { responses: response._id } })
+            .then(()=>res.json(response))
+        });
     }
 );
 
@@ -45,12 +48,13 @@ router.patch('/:id',
         if (!isValid) {
             return res.status(400).json(errors);
         }
-
+        
         Response.findOneAndUpdate({ _id: req.params.id }, req.body, 
             { new: true } )
             .populate('author')
             .populate('parent')
             .exec(function(err, response) {
+               
                 res.json(response);
         });
     }   
@@ -62,7 +66,8 @@ router.delete('/:id',
     (req, res) => {
         Response.findOneAndDelete({ _id: req.params.id },
             function (err, response) {
-                res.json(response);
+                Comment.findOneAndUpdate({ _id: response.parent }, { $pull: { responses: [response._id] } }).then(() =>
+                res.json(response));
             });
     }
 );

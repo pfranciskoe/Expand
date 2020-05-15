@@ -26,12 +26,15 @@ class LessonShow extends React.Component{
       const resp = {
         author: this.props.currentUserId,
         text: this.state.text,
-        parent: this.props.lesson._id,
+        lesson: this.props.lesson._id,
         timestamp: this.vid.currentTime
       }
       console.log(resp)
       this.props.createComment(resp)
         .then(() => this.setState({ form: false }))
+        .then(
+          ()=>this.props.getLesson(this.props.match.params.id)
+        )
     } else {
       this.setState({ form: false })
     }
@@ -75,7 +78,8 @@ class LessonShow extends React.Component{
             <div className='comment-box'>
               {Object.values(this.props.lesson.comments).map((comment,idx)=>(
                 <Comment key={`comment-${idx}`} comment={comment} createResponse={this.props.createResponse}
-                  currentUserId={this.props.currentUserId}/>
+                  currentUserId={this.props.currentUserId} getLesson={() => this.props.getLesson(this.props.match.params.id)}
+                  deleteComment={() => this.props.deleteComment(comment._id)} deleteResponse={this.props.deleteResponse}/>
               ))}
             </div>
           </div>
