@@ -52,29 +52,37 @@ class MainPage extends React.Component {
               <div className="banner-box" style={bannerStyle}></div>
               <h1 className="banner-header"> Meet the team</h1>
               <div className="team">
-                <div className="pic" id="peter" style={peter}></div>
-                <div className="pic" style={erick}></div>
-                <div className="pic" style={grant}></div>
-                <div className="pic" style={zoe}></div>
+                <a href="https://www.linkedin.com/in/peter-koe-377385128/">
+                  <div className="pic" id="peter" style={peter}></div>
+                </a>
+                <a href="https://www.linkedin.com/in/erick-santos2/">
+                  <div className="pic" style={erick}></div>
+                </a>
+                <a href="https://www.linkedin.com/in/grant-kleinman-pe-35930070/">
+                  <div className="pic" style={grant}></div>
+                </a>
+                <a href="https://www.linkedin.com/in/zixuan-lin-2a2953a9/">
+                  <div className="pic" style={zoe}></div>
+                </a>
               </div>
               <div className="name">
-                <a src="https://www.linkedin.com/in/peter-koe-377385128/">
+                <a href="https://www.linkedin.com/in/peter-koe-377385128/">
                   Peter Koe
                 </a>
-                <a src="https://www.linkedin.com/in/erick-santos2/">
+                <a href="https://www.linkedin.com/in/erick-santos2/">
                   Erick Santos
                 </a>
-                <a src="https://www.linkedin.com/in/grant-kleinman-pe-35930070/">
+                <a href="https://www.linkedin.com/in/grant-kleinman-pe-35930070/">
                   Grant Kleinman
                 </a>
-                <a src="https://www.linkedin.com/in/zixuan-lin-2a2953a9/">
+                <a href="https://www.linkedin.com/in/zixuan-lin-2a2953a9/">
                   Zoe Lin
                 </a>
               </div>
             </div>
             <footer>
               <p>Learn more about us: </p>
-              <a src="https://github.com/pfranciskoe/Expand" id="icon">
+              <a href="https://github.com/pfranciskoe/Expand" id="icon">
                 <FaGithub />
               </a>
             </footer>

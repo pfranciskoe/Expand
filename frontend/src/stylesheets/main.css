@@ -103,6 +103,10 @@ html, body{
     justify-content: space-evenly;
 }
 
+.team a:hover{
+    background-color: transparent;
+}
+
 .name{
     margin-top: 10px;
     margin-bottom: 50px;
@@ -152,6 +156,7 @@ footer{
 }
 
 #icon{
+    color: #333;
     font-size: 24px;
     margin-left: 10px;
 }
