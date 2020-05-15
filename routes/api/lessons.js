@@ -156,41 +156,24 @@ router.delete('/:id',
     (req, res) => {
         Lesson.findOneAndDelete({ _id: req.params.id },
             function (err, lesson) {
+                let params = {
+                    Bucket: AWS_BUCKET_NAME,
+                    Key: lesson.videoUrl.split(".com/")[1]
+                };
+                s3.deleteObject(params, (err, data) => {
+                    if (err) {
+                        return res.status(400).json(err);
+                    } else {
+                        res.send({
+                            status: "200",
+                            responseType: "string",
+                            response: "success"
+                        });
+                    }
+                });
                 res.json(lesson);
             });
     }
 );
-
-// router.route("/:id").delete((req, res, next) => {
-//     DOCUMENT.findByIdAndRemove(req.params.id, (err, result) => {
-//         if (err) {
-//             return next(err);
-//         }
-//         //Now Delete the file from AWS-S3
-//         // https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#deleteObject-property
-//         let s3bucket = new AWS.S3({
-//             accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-//             secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-//             region: process.env.AWS_REGION
-//         });
-
-//         let params = {
-//             Bucket: process.env.AWS_BUCKET_NAME,
-//             Key: result.s3_key
-//         };
-
-//         s3bucket.deleteObject(params, (err, data) => {
-//             if (err) {
-//                 console.log(err);
-//             } else {
-//                 res.send({
-//                     status: "200",
-//                     responseType: "string",
-//                     response: "success"
-//                 });
-//             }
-//         });
-//     });
-// });
 
 module.exports = router; 
