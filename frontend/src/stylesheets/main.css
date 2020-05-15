@@ -48,8 +48,8 @@ html, body{
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 42px;
     margin-left: 6%;
-    margin-bottom: 8%;
-
+    margin-bottom: 4%;
+    width:68%;
     text-shadow: 2px 8px 6px rgba(0,0,0,0.2),
                  0px -5px 35px rgba(255,255,255,0.3);
 }
@@ -63,7 +63,7 @@ html, body{
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     background-color: #FBB040;
     font-weight: 600;
-    margin-left: 50px;
+    margin-left: 66px;
     text-align: center;
     vertical-align: middle;
     padding: 15px;

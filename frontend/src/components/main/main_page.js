@@ -39,7 +39,10 @@ class MainPage extends React.Component {
             <div className="splash-box" style={splashStyle}>
               <div className="overlay">
                 <div className="splash-content">
-                  <h1>Expand your online learning experience.</h1>
+                  <h1>
+                    Expansive online video learning with a new level of student
+                    and instructor engagement
+                  </h1>
                   <Link to="/signup">Start Today</Link>
                 </div>
               </div>
@@ -71,7 +74,9 @@ class MainPage extends React.Component {
             </div>
             <footer>
               <p>Learn more about us: </p>
-              <a src="https://github.com/pfranciskoe/Expand" id="icon"><FaGithub /></a>
+              <a src="https://github.com/pfranciskoe/Expand" id="icon">
+                <FaGithub />
+              </a>
             </footer>
           </div>
         );
