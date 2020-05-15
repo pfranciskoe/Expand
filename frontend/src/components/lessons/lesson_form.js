@@ -1,5 +1,6 @@
 import React from "react";
 import "../../stylesheets/lesson-forms.css"
+import {withRouter} from "react-router-dom";
 
 class LessonForm extends React.Component{
     constructor(props){
@@ -17,6 +18,10 @@ class LessonForm extends React.Component{
         };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleSelectedFile = this.handleSelectedFile.bind(this);
+    }
+
+    componentDidMount(){
+      this.props.getCourse(this.props.match.params.courseId)
     }
 
     updateForm(field){
@@ -62,12 +67,21 @@ class LessonForm extends React.Component{
         } else {
           result = { title, description, videoUrl, instructor, course, order, thumbnailUrl };
         }
+        const newCourse = {...this.props.course}
+        const lessons = newCourse.lessons;
         if (this.formValidations){
-          this.props.action(result);
+          this.props.action(result)
+            .then(lesson => {
+              lessons.push(lesson.lesson.data);
+              newCourse[lessons] = lessons;
+              this.props.history.push(`/lessons/${lesson.lesson.data._id}`);
+              this.props.updateCourse(newCourse)
+            });
         } else {
           console.log("Missing fields");
         }
     }
+
 
     handleSelectedFile(e) {
       e.preventDefault();
@@ -82,6 +96,7 @@ class LessonForm extends React.Component{
     }
 
     render(){
+      
         const {selectedFile, title, description, videoUrl} = this.state;
         return (
           <div className="lesson-box">
@@ -131,4 +146,4 @@ class LessonForm extends React.Component{
     }
 }
 
-export default LessonForm
+export default withRouter(LessonForm);
