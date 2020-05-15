@@ -25,11 +25,11 @@ router.get("/:id", (req, res) => {
 router.post('/',
     passport.authenticate('jwt', { session: false }),
     (req, res) => {
-        const { errors, isValid } = validateCommentInput(req.body);
+        // const { errors, isValid } = validateCommentInput(req.body);
 
-        if (!isValid) {
-            return res.status(400).json(errors);
-        }
+        // if (!isValid) {
+        //     return res.status(400).json(errors);
+        // }
 
         const newComment = new Comment({
             author: req.body.author,
@@ -37,8 +37,13 @@ router.post('/',
             lesson: req.body.lesson,
             timestamp: req.body.timestamp,
         });
-
-        newComment.save().then(comment => res.json(comment));
+        
+        newComment.save().then(comment => {
+            Lesson.findOneAndUpdate({ _id: comment.lesson }, { $push: { comments: comment._id } }).then(
+        
+            ()=>res.json(comment)
+            )
+        });
     }
 );
 
@@ -76,7 +81,8 @@ router.delete('/:id',
     (req, res) => {
         Comment.findOneAndDelete({ _id: req.params.id },
             function (err, comment) {
-                res.json(comment);
+                Lesson.findOneAndUpdate({ _id: comment.lesson }, { $pull: { comments: [comment._id] } }).then(()=>
+                res.json(comment))
             });
     }
 );

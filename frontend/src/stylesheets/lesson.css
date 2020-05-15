@@ -173,3 +173,19 @@ color: rgb(132, 169, 236);
 background-color: white;
 border: 1px solid rgb(132, 169, 236);
 }
+
+.delete-button{
+    margin-top: 5px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    width: 36%;
+    background-color: rgb(132, 169, 236);
+    outline: none;
+    height: 25px;
+}
+.delete-button:hover{
+color: white;
+background-color: rgb(223, 0, 0);
+border: 1px solid white;
+}

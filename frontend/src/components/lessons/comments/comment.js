@@ -20,7 +20,9 @@ class Comment extends React.Component{
             videoUrl: this.state.selectedFile
         }
         console.log(resp)
-        this.props.createResponse(resp)
+        this.props.createResponse(resp).then(
+        ()=> this.props.getLesson()
+        )
         .then(()=>this.setState({form:false}))
        
     } else {
@@ -66,10 +68,12 @@ class Comment extends React.Component{
                         :
                             <button className='comment-button' onClick={()=>this.setState({form:true})}>Reply</button>
                         }
+                        <button className='delete-button' onClick={this.props.deleteComment}>Delete</button>
                     </div>
                 </div>
                 {this.props.comment.responses ? this.props.comment.responses.map((response, idx) => (
-                    <Response key={`response-${idx}`} response={response} />)
+                    <Response key={`response-${idx}`} response={response} 
+                    deleteResponse={()=>this.props.deleteResponse(response._id)}/>)
                 ) : null}
             </div>
         )
