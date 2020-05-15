@@ -113,6 +113,11 @@ html {
 .response-info-name{
     font-weight: 700;
 }
+
+.response-info-instructor-name{
+    font-weight: 700;
+    color: rgb(223, 0, 0);
+}
 .response-info-text{
     font-weight: 500;
 }
@@ -126,6 +131,12 @@ html {
     color: white;
     font-weight: 800;
     outline: none;
+}
+.response-video-button:hover{
+    background-color: white;
+    border: 1px solid rgb(132, 169, 236);
+    color: rgb(132, 169, 236);
+
 }
 .response-video video{
     max-width: calc(100% - 50px);
@@ -204,3 +215,16 @@ color: rgb(223, 0, 0);
 background-color: white;
 border: 1px solid rgb(223, 0, 0);
 }
+
+
+
+.form1 .no-button{
+    background-color: rgb(185, 185, 185);
+    position: relative;
+}
+
+.form1 .no-button:hover{
+    cursor: initial;
+    background-color: rgb(185, 185, 185);
+}
+
