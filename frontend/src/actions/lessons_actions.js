@@ -1,4 +1,5 @@
 import * as lessonsAPIUtil from "../util/lessons_api_util";
+import {updateCourse} from "../actions/courses_actions";
 
 export const RECEIVE_LESSONS = "RECEIVE_LESSONS";
 export const RECEIVE_LESSON = "RECEIVE_LESSON";
