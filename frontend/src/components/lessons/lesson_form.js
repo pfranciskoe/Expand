@@ -14,7 +14,8 @@ class LessonForm extends React.Component{
           course,
           order,
           thumbnailUrl,
-          selectedFile: null
+          selectedFile: null,
+          errors: false
         };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleSelectedFile = this.handleSelectedFile.bind(this);
@@ -69,7 +70,7 @@ class LessonForm extends React.Component{
         }
         const newCourse = {...this.props.course}
         const lessons = newCourse.lessons;
-        if (this.formValidations){
+        if (this.formValidations() && selectedFile){
           this.props.action(result)
             .then(lesson => {
               lessons.push(lesson.lesson.data);
@@ -78,10 +79,10 @@ class LessonForm extends React.Component{
               this.props.updateCourse(newCourse)
             });
         } else {
-          console.log("Missing fields");
+          this.toggleButton();
+          this.setState({errors: true})
         }
     }
-
 
     handleSelectedFile(e) {
       e.preventDefault();
@@ -95,9 +96,18 @@ class LessonForm extends React.Component{
       if (file) fileReader.readAsDataURL(file);
     }
 
+    showErrors(){
+      if (this.state.errors){
+        return (
+          <div className="errors">
+            Missing fields
+          </div>
+        )
+      }
+    }
+
     render(){
-      
-        const {selectedFile, title, description, videoUrl} = this.state;
+        const {title, description} = this.state;
         return (
           <div className="lesson-box">
             <form className="form" onSubmit={this.handleSubmit}>
@@ -139,13 +149,13 @@ class LessonForm extends React.Component{
               <button id="form-submit" className="button" type="submit">
                 Submit
               </button>
-              {/* <div id="spinner" className="spinner"></div> */}
               <div id="spinner" className="spinner">
-                <img className="tri-logo"
+                <img 
                   src="https://expand-dev.s3-us-west-1.amazonaws.com/images/triangles.png"
                   alt="Expand"
                 />
               </div>
+              {this.showErrors()}
             </form>
           </div>
         );
