@@ -14,10 +14,13 @@ class NavBar extends React.Component {
     }
 
     componentDidMount(){
-        const { clearErrors, fetchUser, userId } = this.props;
-        if (userId) fetchUser(userId);
+        const { clearErrors, getCourses, fetchUser, userId } = this.props;
+        if (userId){
+            fetchUser(userId);
+            getCourses();
+        }
         clearErrors();
-        document.addEventListener("click", this.toggleDropdown)
+        document.addEventListener("click", this.toggleDropdown);
     }
 
     componentWillUnmount(){
@@ -86,8 +89,7 @@ class NavBar extends React.Component {
 
     handleLink(courseId){
         return e => {
-            this.props.getCourse(courseId)
-            .then( () => this.props.history.push(`/courses/${courseId}`));
+            this.props.history.push(`/courses/${courseId}`);
         }
     }
 

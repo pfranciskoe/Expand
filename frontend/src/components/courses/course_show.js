@@ -110,7 +110,7 @@ class CourseShow extends React.Component {
             ) : null}
             <ol>
               {lessons.map((lesson, i) => (
-                  <Link to={`/lessons/${lesson._id}`}><li className ='lesson-list-item' key={`${i}`}>{lesson.title}</li></Link>
+                  <Link key={i} to={`/lessons/${lesson._id}`}><li className ='lesson-list-item' key={`${i}`}>{lesson.title}</li></Link>
               ))}
             </ol>
           </div>
@@ -120,7 +120,7 @@ class CourseShow extends React.Component {
             <span>
               {students.map((student, i) =>
                 student ? (
-                  <li className='student-name' key={student._id}>{`${student.firstName} ${student.lastName}`}</li>
+                  <li key={student._id} className='student-name'>{`${student.firstName} ${student.lastName}`}</li>
                 ) : null
               )}
             </span>
