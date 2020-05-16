@@ -13,8 +13,8 @@ class UserShow extends React.Component{
     }
 
     render(){
-        const {user, courses} = this.props;
-        if (!user || !Object.values(courses).length) return null;
+        const {user} = this.props;
+        if (!user) return null;
         return (
             <div className="profile-container">
                 <div className="user-details-box">
