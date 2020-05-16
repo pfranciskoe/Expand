@@ -37,6 +37,7 @@ class NavBar extends React.Component {
         let dropdownButton = document.getElementById("dropdown-button");
         let dropdownArrow = document.getElementById("arrow");
         let dropdownMenu = document.getElementById("dropdown");
+        if (!dropdownButton || !dropdownArrow || !dropdownMenu) return null;
         if ((e.target === dropdownButton || e.target === dropdownArrow) && (!dropdownMenu.classList.contains("show-list"))){
             dropdownMenu.classList.toggle("show-list");
         } else if ((e.target !== dropdownMenu) && (dropdownMenu.classList.contains("show-list"))) {
