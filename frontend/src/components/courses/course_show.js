@@ -98,7 +98,7 @@ class CourseShow extends React.Component {
           <p className='course-author'>{`By ${instructor.firstName} ${instructor.lastName}`}</p>
           <div className='course-divider-1'></div>
           <p className='course-description-header'>Course Description:</p>
-          <p classname='course-description'>{this.props.course.description}</p>
+          <p className='course-description'>{this.props.course.description}</p>
           {this.props.user.instructor ? null : buttonDiv}
           <div className='course-divider-2'></div>
         </div>
