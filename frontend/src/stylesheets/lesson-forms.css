@@ -20,22 +20,33 @@
 }
 
 .spinner{
-    display: none;
-    /* display: block; */
-    /* height: 20px;
-    width: 20px;
-    border: 5px solid rgb(228, 228, 228);
-    border-top: 5px solid rgb(100, 211, 226);
-    border-radius: 50%; */
-    /* transform: translateX(-50%) translateY(-50%); */
-    position: absolute;
-    top: 15%;
-    animation: spin 800ms linear infinite;
-    -webkit-animation: spin 800ms linear infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.show-spinner{
+.spinner img{
+    display: none;
+    max-height: 40px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+    position: absolute;
+    top: 72%;
+    animation: load 1000ms linear infinite;
+    -webkit-animation: load 1000ms linear infinite;
+}
+
+.spinner .show-spinner{
     display: block;
+}
+
+@keyframes load{
+  50%{
+    transform:rotatez(180deg) scale(0.5);
+  }
+  100%{
+    transform:rotatez(360deg) scale(1.1);
+  }
 }
 
 @keyframes spin{
