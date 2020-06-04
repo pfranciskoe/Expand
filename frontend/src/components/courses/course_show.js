@@ -70,6 +70,7 @@ class CourseShow extends React.Component {
 
   checkEnrollment() {
     if (!this.props.user) return null;
+    if (this.props.user.instructor) return false;
     let enrolled = false;
     enrolled = this.props.user.courses.some(
       (course) => course._id === this.props.match.params.id
