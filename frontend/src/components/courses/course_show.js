@@ -90,9 +90,9 @@ class CourseShow extends React.Component {
   handleDelete(id){
     return (e) => {
       e.preventDefault();
-      // this.props.deleteLesson(id)
-      this.closeConfirmation(e);
+      this.props.deleteLesson(id)
       this.removeLessonFromCourse(id);
+      this.closeConfirmation(e);
     }
   }
 

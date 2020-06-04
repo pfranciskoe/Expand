@@ -171,7 +171,7 @@ router.delete('/:id',
                         });
                     }
                 });
-                res.json(lesson);
+                // res.json(lesson);
             });
     }
 );
