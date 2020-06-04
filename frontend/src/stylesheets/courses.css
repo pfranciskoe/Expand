@@ -132,7 +132,6 @@
 
 .info, .lesson-list{
     margin-left: 30px;
-    
 }
 
 .lesson-list ol li{
@@ -183,9 +182,26 @@
     color: rgb(0, 54, 0);
 }
 
-/* .course-title {
-    border-bottom: solid black;
-} */
+.lesson-list-item-box{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.trash-icon{
+    margin-top: 10px;
+    padding: 10px;
+    border: none;
+    background: none;
+    font-size: 20px;
+    color: rgb(157, 183, 233);
+    transition: 100ms;
+}
+
+.trash-icon:hover{
+    cursor: pointer;
+    color: rgb(36, 93, 201);
+}
 
 .course-author {
     font-size: 28px;
@@ -208,4 +224,57 @@
 
 .course-description-header {
     font-weight: 500;
+}
+
+.modal-back{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 100;
+}
+
+.modal-interior{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    padding: 30px;
+    transform: translate(-50%, -50%);
+}
+
+.modal-back .delete-options{
+    margin: 10px;
+}
+
+.modal-back .delete-options button{
+    background-color: rgb(132, 169, 236);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    margin: 0 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.modal-back .delete-options button:first-child:hover{
+    cursor: pointer;
+    background-color: rgb(36, 93, 201);
+}
+
+.modal-back .delete-options button:last-child{
+    background-color: rgb(182, 182, 182);
+}
+
+.modal-back .delete-options button:last-child:hover{
+    cursor: pointer;
+    background-color: rgb(61, 61, 61);
 }

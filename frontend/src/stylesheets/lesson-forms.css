@@ -19,6 +19,12 @@
     background-color: rgb(185, 185, 185);
 }
 
+.lesson-list .no-button,
+.lesson-list .no-button:hover{
+    cursor: initial;
+    color: rgb(157, 183, 233);
+}
+
 .spinner{
     display: flex;
     justify-content: center;

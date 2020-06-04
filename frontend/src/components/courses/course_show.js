@@ -6,7 +6,13 @@ class CourseShow extends React.Component {
     super(props);
     this.handleEnroll = this.handleEnroll.bind(this);
     this.handleUnroll = this.handleUnroll.bind(this);
-    this.state = { enrolled: this.checkEnrollment() };
+    this.openConfirmation = this.openConfirmation.bind(this);
+    this.closeConfirmation = this.closeConfirmation.bind(this);
+    this.removeLessonFromCourse = this.removeLessonFromCourse.bind(this);
+    this.state = { 
+      enrolled: this.checkEnrollment(),
+      chooseToDelete: ""
+     };
   }
 
   componentDidMount(){
@@ -14,6 +20,8 @@ class CourseShow extends React.Component {
       this.props.fetchUser(this.props.currentUserId);
       window.scrollTo(0, 0);
   }
+
+  /* handle enrollment - start */
 
   handleEnroll() {
     const students = [];
@@ -76,6 +84,62 @@ class CourseShow extends React.Component {
     );
     return enrolled;
   }
+  /* handle enrollment - end */
+
+  /* delete lesson - start */
+  handleDelete(id){
+    return (e) => {
+      e.preventDefault();
+      this.props.deleteLesson(id)
+      this.removeLessonFromCourse(id);
+      this.closeConfirmation(e);
+    }
+  }
+
+  openConfirmation(i){
+    return (e) => {
+      e.preventDefault();
+      this.setState({chooseToDelete: `${i}`});
+    }
+  }
+
+  closeConfirmation(e){
+    e.preventDefault();
+    this.setState({chooseToDelete: ""});
+  }
+
+  removeLessonFromCourse(id) {
+    const lessons = [];
+    const { course, updateCourse } = this.props;
+    course.lessons.forEach((lesson) => {
+      if (lesson._id !== id) lessons.push(lesson);
+    })
+    const newCourse = { ...course };
+    newCourse.lessons = lessons;
+    updateCourse(newCourse);
+  }
+
+  confirmToDelete(){
+    const {chooseToDelete} = this.state;
+    const {course} = this.props;
+    if (chooseToDelete){
+      let chosenLesson = course.lessons[chooseToDelete];
+      return (
+        <div className="modal-back" onClick={this.closeConfirmation}>
+          <div className="modal-interior" onClick={e => e.stopPropagation()}>
+            <h2>Delete "{chosenLesson.title}"?</h2>
+            <p>This change will be permanent!</p>
+            <div className="delete-options">
+              <button onClick={this.handleDelete(chosenLesson._id)}>Delete</button>
+              <button onClick={this.closeConfirmation}>Keep</button>
+            </div>
+          </div>
+        </div>
+      )
+    }
+  }
+
+  /* delete lesson - end */
 
   render() {
     if (!this.props.course) return null;
@@ -93,6 +157,7 @@ class CourseShow extends React.Component {
     );
     return (
       <div className="show-box">
+        {this.confirmToDelete()}
         <div className="info">
           <h1 className='course-title'>{this.props.course.title}</h1>
           <p className='course-author'>{`By ${instructor.firstName} ${instructor.lastName}`}</p>
@@ -110,13 +175,15 @@ class CourseShow extends React.Component {
             ) : null}
             <ol>
               {lessons.map((lesson, i) => (
-                  <Link key={i} to={`/lessons/${lesson._id}`}><li className ='lesson-list-item' key={`${i}`}>{lesson.title}</li></Link>
+                <div key={i} className="lesson-list-item-box">
+                  <Link to={`/lessons/${lesson._id}`}><li className ='lesson-list-item' key={`${i}`}>{lesson.title}</li></Link>
+                  <button id="trash-icon" className="trash-icon" onClick={this.openConfirmation(i)}><i className="fas fa-trash-alt"></i></button>
+                </div>
               ))}
             </ol>
           </div>
           <div className="student-list">
             <h2>Enrollment List</h2>
-
             <span>
               {students.map((student, i) =>
                 student ? (
