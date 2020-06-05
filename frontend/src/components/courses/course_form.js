@@ -73,7 +73,6 @@ class CourseForm extends React.Component {
 
     handleSubmit(e) {
       e.preventDefault();
-      const { course } = this.props;      
       const { title, description, instructor, photoUrl, photoFile } = this.state;
       let result;
       const data = new FormData();
