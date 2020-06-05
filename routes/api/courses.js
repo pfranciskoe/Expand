@@ -38,6 +38,7 @@ router.post('/',
             title: req.body.title,
             description: req.body.description,
             instructor: req.body.instructor,
+            thumbnailUrl: req.body.thumbnailUrl
         });
         
         newCourse.save().then(course => res.json(course.populate('students')));

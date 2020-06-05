@@ -11,10 +11,27 @@ class CourseForm extends React.Component {
             instructor: this.props.course.instructor,
             success: false,
             photoFile: null,
-            photoUrl: this.props.thumbnailUrl
+            photoUrl: this.props.thumbnailUrl,
+            errors: false
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleFile = this.handleFile.bind(this);
+    }
+
+    showErrors() {
+      if (this.state.errors) {
+        return (
+          <div className="errors">
+            Missing fields
+          </div>
+        )
+      }
+    }
+
+    checkFields(){
+      const {title, description} = this.state;
+      console.log(title && description)
+      return title && description;
     }
 
     updateForm(field) {
@@ -53,10 +70,13 @@ class CourseForm extends React.Component {
             course = { ...course, _id: this.props.course._id }
             this.props.action(course)
         }
-        //validations
-        this.props.action(course);
-        this.setState({ success: true })
-        this.props.history.push("/courses")
+        if (this.checkFields()){
+          this.props.action(course);
+          this.setState({ success: true })
+          this.props.history.push("/courses")
+        } else {
+          this.setState({errors: true});
+        }
     }
 
     render() {
@@ -114,10 +134,10 @@ class CourseForm extends React.Component {
                   </label>
                 </div>
               </div>
-
               <button className="button" type="submit">
                 Submit
               </button>
+              {this.showErrors()}
             </form>
             )}
           </div>
