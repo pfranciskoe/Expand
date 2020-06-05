@@ -10,12 +10,13 @@ class EditCourseForm extends React.Component {
     componentDidMount() {
         this.props.getCourse(this.props.course._id)
     }
+
     render() {
-        const { course, formType, action } = this.props
+        const { course, formType, action, deleteCourse } = this.props
         return (
             <div>
                 <CourseForm course={course}
-                    formType={formType} action={action} />
+                    formType={formType} action={action} deleteCourse={deleteCourse} />
             </div>
         )
     }

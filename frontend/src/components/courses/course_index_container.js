@@ -1,5 +1,5 @@
 import {connect} from "react-redux";
-import {getCourses, getCourse, deleteCourse} from "../../actions/courses_actions";
+import {getCourses, getCourse} from "../../actions/courses_actions";
 import CourseIndex from "./course_index";
 
 const mSTP = state => ({
@@ -8,9 +8,7 @@ const mSTP = state => ({
 })
 
 const mDTP = dispatch => ({
-    getCourses: () => dispatch(getCourses()),
-    getCourse: (courseId) => dispatch(getCourse(courseId)),
-    deleteCourse: (courseId) => dispatch(deleteCourse(courseId))
+    getCourses: () => dispatch(getCourses())
 })
 
 export default connect(mSTP, mDTP)(CourseIndex);

@@ -12,7 +12,7 @@ class CourseIndex extends React.Component {
     }
 
     render() {
-        const { courses, getCourse, updateCourse, deleteCourse, currentUser } = this.props
+        const { courses, updateCourse, currentUser } = this.props
         return (
             <div className="courses-box">
                 <h1>Find what interests you</h1>
@@ -20,8 +20,7 @@ class CourseIndex extends React.Component {
                     {Object.values(courses).map((course, i) => (
                         <CourseIndexItem
                             key={i} course={course}
-                            updateCourse={updateCourse} 
-                            deleteCourse={deleteCourse} 
+                            updateCourse={updateCourse}
                             currentUser={currentUser}
                             />
                     ))}

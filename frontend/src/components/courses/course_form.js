@@ -16,6 +16,7 @@ class CourseForm extends React.Component {
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleFile = this.handleFile.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
     }
 
     showErrors() {
@@ -28,9 +29,16 @@ class CourseForm extends React.Component {
       }
     }
 
+    deleteOption(){
+      if (this.props.formType === "Update Course"){
+        return (
+          <button className="delete-button" onClick={this.handleDelete}>Delete</button>
+        )
+      }
+    }
+
     checkFields(){
       const {title, description} = this.state;
-      console.log(title && description)
       return title && description;
     }
 
@@ -57,26 +65,35 @@ class CourseForm extends React.Component {
       if (file) fileReader.readAsDataURL(file);
     }
 
+    handleDelete(e) {
+      e.preventDefault();
+      this.props.deleteCourse(this.props.course._id)
+        .then(this.props.history.push("/courses"));
+    }
+
     handleSubmit(e) {
-        e.preventDefault();
-        const { title, description, instructor, photoUrl } = this.state;
-        let course = {
-          title,
-          description,
-          instructor,
-          thumbnailUrl: photoUrl ? photoUrl : ""
-        }
-        if (this.props.formType === "Update Course") {
-            course = { ...course, _id: this.props.course._id }
-            this.props.action(course)
-        }
-        if (this.checkFields()){
-          this.props.action(course);
-          this.setState({ success: true })
-          this.props.history.push("/courses")
-        } else {
-          this.setState({errors: true});
-        }
+      e.preventDefault();
+      const { course } = this.props;      
+      const { title, description, instructor, photoUrl, photoFile } = this.state;
+      let result;
+      if (this.props.formType === "Create Course") {
+        const data = new FormData();
+        data.append('file', photoFile);
+        data.append('title', title);
+        data.append('description', description);
+        data.append('instructor', instructor);
+        data.append('thumbnailUrl', photoUrl ? photoUrl : "https://expand-dev.s3-us-west-1.amazonaws.com/images/m-clouds.jpg");
+        result = data;
+      } else {
+        result = { ...course, _id: this.props.course._id }
+      }
+      if (this.checkFields()) {
+        this.props.action(result);
+        this.setState({ success: true })
+        this.props.history.push("/courses")
+      } else {
+        this.setState({ errors: true });
+      }
     }
 
     render() {
@@ -137,6 +154,7 @@ class CourseForm extends React.Component {
               <button className="button" type="submit">
                 Submit
               </button>
+              {this.deleteOption()}
               {this.showErrors()}
             </form>
             )}

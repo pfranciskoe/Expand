@@ -5,15 +5,8 @@ import "../../stylesheets/courses.css"
 class CourseIndexItem extends React.Component{
     constructor(props){
         super(props);
-        this.handleDelete = this.handleDelete.bind(this);
         this.showDetails = this.showDetails.bind(this);
         this.hideDetails = this.hideDetails.bind(this);
-    }
-
-    handleDelete(e){
-        e.preventDefault();
-        this.props.deleteCourse(this.props.course._id)
-            .then(this.props.history.push("/courses"));
     }
 
     showDetails(){
@@ -27,9 +20,7 @@ class CourseIndexItem extends React.Component{
     render(){
         const {course, currentUser} = this.props;
         const courseStyle = {
-            backgroundImage: `url(https://expand-dev.s3-us-west-1.amazonaws.com/images/m-clouds.jpg)`,
-            // backgroundImage: `url(https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=967&q=80)`,
-            // backgroundImage: `url(${course.thumbnailUrl})`
+            backgroundImage: `url(${course.thumbnailUrl})`
         }; 
 
         return(
@@ -37,7 +28,10 @@ class CourseIndexItem extends React.Component{
                 style={courseStyle}
                 onMouseEnter={this.showDetails}
                 onMouseLeave={this.hideDetails}
-                onClick={() => this.props.history.push(`/courses/${course._id}`)}>
+                onClick={(e) => {
+                    e.preventDefault();
+                    this.props.history.push(`/courses/${course._id}`);
+                }}>
                 <div id='description-container'>
                     <div id={`desc-${course._id}`} className="desc-back">
                         <p>{course.description}</p>
@@ -52,7 +46,7 @@ class CourseIndexItem extends React.Component{
                             ? (
                                 <Link to={`/courses/${course._id}/edit`}
                                     onClick={(e) => e.stopPropagation()}>
-                                    <i className="fas fa-pencil-alt"></i>
+                                    <i title="Edit Course" className="fas fa-pencil-alt"></i>
                                 </Link>
                             )
                             : (null)

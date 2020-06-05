@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { createCourse } from "../../actions/courses_actions";
+import { createCourse, deleteCourse } from "../../actions/courses_actions";
 import CourseForm from "./course_form";
 
 const mSTP = (state, ownProps) => ({
@@ -13,7 +13,8 @@ const mSTP = (state, ownProps) => ({
 })
 
 const mDTP = dispatch => ({
-    action: (course) => dispatch(createCourse(course))
+    action: (course) => dispatch(createCourse(course)),
+    deleteCourse: (courseId) => dispatch(deleteCourse(courseId))
 })
 
 export default connect(mSTP, mDTP)(CourseForm);

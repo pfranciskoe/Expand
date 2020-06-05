@@ -4,8 +4,6 @@ const passport = require('passport');
 const validateLessonInput = require('../../validation/lesson')
 
 const AWS = require("aws-sdk");
-const AWS_Uploaded_File_URL_LINK = require('../../config/keys').AWS_Uploaded_File_URL_LINK;
-const AWS_REGION = require('../../config/keys').AWS_REGION;
 const AWS_SECRET_ACCESS_KEY = require('../../config/keys').AWS_SECRET_ACCESS_KEY;
 const AWS_ACCESS_KEY_ID = require('../../config/keys').AWS_ACCESS_KEY_ID;
 const AWS_BUCKET_NAME = require('../../config/keys').AWS_BUCKET_NAME;
@@ -13,9 +11,6 @@ const AWS_BUCKET_NAME = require('../../config/keys').AWS_BUCKET_NAME;
 const multer = require("multer");
 const multerS3 = require('multer-s3');
 const path = require('path');
-const url = require('url');
-const storage = multer.memoryStorage();
-const upload = multer({ storage: storage });
 
 const Lesson = require('../../models/Lesson');
 

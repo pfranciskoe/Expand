@@ -39,7 +39,7 @@
 }
 
 .course-list-item p {
-    font-size: 16px;
+    font-size: 15px;
     color: rgb(56, 56, 56);
 }
 
@@ -66,12 +66,13 @@
     z-index: 100;
 }
 
-.title-box .edit-link a:hover{
-    color: rgb(36, 93, 201);
-}
-
 .title-box .edit-link a:visited{
     color: rgb(157, 183, 233);
+}
+
+.title-box .edit-link a:hover{
+    color: rgb(0, 51, 146);
+    /* color: rgb(36, 93, 201); */
 }
 
 #title-container {
