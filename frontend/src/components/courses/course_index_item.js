@@ -42,7 +42,7 @@ class CourseIndexItem extends React.Component{
                         {course.title}
                     </div>
                     <div className="edit-link">
-                        {currentUser.id === course.instructor
+                        {currentUser.id === course.instructor || currentUser.id === course.instructor._id
                             ? (
                                 <Link to={`/courses/${course._id}/edit`}
                                     onClick={(e) => e.stopPropagation()}>
