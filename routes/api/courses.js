@@ -112,11 +112,11 @@ router.post('/',
 router.patch('/:id',
     passport.authenticate('jwt', { session: false }),
     (req, res) => {
-        const { errors, isValid } = validateCourseInput(req.body);
+        // const { errors, isValid } = validateCourseInput(req.body);
 
-        if (!isValid) {
-            return res.status(400).json(errors);
-        }
+        // if (!isValid) {
+        //     return res.status(400).json(errors);
+        // }
 
         Course.findOneAndUpdate({ _id: req.params.id }, req.body, 
             { new: true } )

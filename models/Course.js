@@ -29,7 +29,6 @@ const CourseSchema = new Schema({
     },
     thumbnailUrl: {
         type: String,
-        required: true,
     }
 });
 
