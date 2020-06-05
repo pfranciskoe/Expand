@@ -19,6 +19,19 @@ class CourseForm extends React.Component {
         this.handleDelete = this.handleDelete.bind(this);
     }
 
+    addCourseToInstructor(courseId) {
+      if (this.props.formType === "Create Course"){
+        const courses = [];
+        this.props.user.courses.forEach((course) => {
+          courses.push(course._id);
+        });
+        courses.push(courseId);
+        const newUser = { ...this.props.user };
+        newUser.courses = courses;
+        this.props.updateUser(newUser);
+      }
+    }
+
     showErrors() {
       if (this.state.errors) {
         return (
@@ -92,7 +105,7 @@ class CourseForm extends React.Component {
         result = data;
       }
       if (this.checkFields()) {
-        this.props.action(result);
+        this.props.action(result).then(res => this.addCourseToInstructor(res.course.data._id))
         this.setState({ success: true })
         this.props.history.push("/courses")
       } else {

@@ -109,9 +109,7 @@ passport.authenticate('jwt', { session: false }),
 //show user
 router.get("/:id", (req, res) => {
     User.findById(req.params.id)
-        .populate('courses')
-        .populate('comments')
-        .populate('lessons')
+        .populate('courses').populate('comments').populate('lessons')
         .then(user => res.json(user))
         .catch(err => res.status(404).json({ nocoursefound: 'No user found' }));
 })
