@@ -278,3 +278,97 @@
     cursor: pointer;
     background-color: rgb(61, 61, 61);
 }
+
+.vid-thumb-box{
+    width: 50%;
+    height: 100%;
+    padding: 0px 20px;
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#vid-thumb-background{
+    background-color: rgb(233, 233, 233);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 340px;
+    height: 260px;
+}
+
+#vid-thumb-background:hover, 
+.vid-thumb-back:hover{
+    cursor: pointer;
+    background-color: rgb(243, 243, 243);
+}
+
+.vid-thumb-preview:hover{
+    cursor: pointer;
+}
+
+#file-upload{
+    width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.vid-thumb-back{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 320px;
+    height: 235px;
+    padding: 10px;
+    border: 2px dashed lightgray;
+    box-sizing: border-box;
+    background-color: rgb(233, 233, 233);
+    position: relative;
+}
+
+.form-details{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.course-details{
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 30px;
+}
+
+.vid-thumb-box i{
+    font-size: 40px;
+    color: rgb(185, 185, 185);
+}
+
+.vid-thumb-preview img{
+    max-width: 320px;
+    max-height: 100%;
+}
+
+.vid-thumb-preview .image-load{
+    animation: fadeIn 700ms;
+    -webkit-animation: fadeIn 700ms;
+}
+
+@keyframes fadeIn{
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+@-webkit-keyframes fadeIn{
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}

@@ -26,6 +26,10 @@ const CourseSchema = new Schema({
     date: {
         type: Date,
         default: Date.now
+    },
+    thumbnailUrl: {
+        type: String,
+        required: true,
     }
 });
 
