@@ -112,8 +112,8 @@ class CourseForm extends React.Component {
             :(
             <form className="form" onSubmit={this.handleSubmit}>
               {this.props.formType === "Create Course" 
-              ? <h1>Create a new course</h1> 
-              : <h1>Update the course</h1>
+              ? <h1>Create a New Course</h1> 
+              : <h1>Update Course Details</h1>
               }
               <div className="form-details">
                 <div className="course-details">
@@ -139,21 +139,22 @@ class CourseForm extends React.Component {
                     />
                   </label>
                 </div>
-
-                <div className="vid-thumb-box">
-                  <input type="file" name="file-upload" id="file-upload" onChange={this.handleFile} />
-                  <label htmlFor="file-upload">
-                    <div id="vid-thumb-background">
-                      <div className="vid-thumb-back">
-                        <i className="fas fa-cloud-upload-alt"></i>
-                        <p>Add thumbnail image (optional)</p>
+                {(this.props.formType === "Update Course") ? (null) : (
+                  <div className="vid-thumb-box">
+                    <input type="file" name="file-upload" id="file-upload" onChange={this.handleFile} />
+                    <label htmlFor="file-upload">
+                      <div id="vid-thumb-background">
+                        <div className="vid-thumb-back">
+                          <i className="fas fa-cloud-upload-alt"></i>
+                          <p>Add thumbnail image (optional)</p>
+                        </div>
                       </div>
-                    </div>
-                    <div className="vid-thumb-preview">
-                      {preview}
-                    </div>
-                  </label>
-                </div>
+                      <div className="vid-thumb-preview">
+                        {preview}
+                      </div>
+                    </label>
+                  </div>
+                )}
               </div>
               <button className="button" type="submit">
                 Submit

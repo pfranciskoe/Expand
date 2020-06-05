@@ -69,21 +69,19 @@ router.post('/',
     passport.authenticate('jwt', { session: false }),
     (req, res) => {
         imageUpload(req, res, (error) => {
-            if (error) {
-                res.json({ error: error });
-            } else { //upload failed
-                if (req.file === undefined) {
-                    res.json('Error: No File Selected');
-                } else { // save file
-                    const newCourse = new Course({
-                        title: req.body.title,
-                        description: req.body.description,
-                        instructor: req.body.instructor,
-                        thumbnailUrl: req.file.location // req.body.thumbnailUrl ? "https://expand-dev.s3-us-west-1.amazonaws.com/images/m-clouds.jpg" : 
-                    });
-                    newCourse.save().then(course => res.json(course.populate('students')));
-                }
+            let thumbnailUrl = "";
+            if (error || req.file === undefined) {
+                thumbnailUrl = req.body.thumbnailUrl;
+            } else {
+                thumbnailUrl = req.file.location;
             }
+            const newCourse = new Course({
+                title: req.body.title,
+                description: req.body.description,
+                instructor: req.body.instructor,
+                thumbnailUrl
+            });
+            newCourse.save().then(course => res.json(course.populate('students')));
         });
     });
 
@@ -91,12 +89,6 @@ router.post('/',
 router.patch('/:id',
     passport.authenticate('jwt', { session: false }),
     (req, res) => {
-        // const { errors, isValid } = validateCourseInput(req.body);
-
-        // if (!isValid) {
-        //     return res.status(400).json(errors);
-        // }
-
         Course.findOneAndUpdate({ _id: req.params.id }, req.body, 
             { new: true } )
             .populate('instructor')
