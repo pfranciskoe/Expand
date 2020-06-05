@@ -93,15 +93,15 @@ User.create(users_arr, function (err, users) {
                         {
                                 'instructor': `${user4}`,
                                 'students': [`${user2}`, `${user5}`],
-                                'title': 'Womp Rat Hunting',
-                                'description': "They're not much bigger than two meters, but honestly that's a pretty huge rat.",
+                                'title': 'Intro to HTML',
+                                'description': "A quick look into HTML fundamentals.",
                                 'lessons': [],
                         },
                         {
                                 'instructor': `${user4}`,
                                 'students': [`${user3}`, `${user5}`],
-                                'title': 'Coffin Dancing',
-                                'description': "In-depth lessons from the Nana Otafrija Pallbearing and Waiting Service of the Republic of Ghana.",
+                                'title': 'Complete React&Redux Tutorial',
+                                'description': "A complete course on the fundamentals of React and Redux.",
                                 'lessons': [],
                         },
                 ];
@@ -129,7 +129,7 @@ User.create(users_arr, function (err, users) {
                                         {
                                                 title: 'Plucking Potatoes Out of the Ground',
                                                 description: 'Something about roots, if potatoes even have roots idk find out with this video.',
-                                                videoUrl: '/videos/1234',
+                                                videoUrl: 'https://expand-dev.s3-us-west-1.amazonaws.com/rick-1589412873465.mp4',
                                                 instructor: user1,
                                                 course: course0,
                                                 order: 1,
@@ -139,7 +139,7 @@ User.create(users_arr, function (err, users) {
                                         {
                                                 title: 'Cooking Potatoes',
                                                 description: "Boil 'em, mash 'em, stick 'em in a stew.",
-                                                videoUrl: '/videos/potato2',
+                                                videoUrl: 'https://expand-dev.s3-us-west-1.amazonaws.com/rick-1589412873465.mp4',
                                                 instructor: user1,
                                                 course: course0,
                                                 order: 2,
@@ -149,7 +149,7 @@ User.create(users_arr, function (err, users) {
                                         {
                                                 title: 'Understanding Potatoes',
                                                 description: "Potatoes are our friends. Treat them with dignity and respect, and they'll end up tastier.",
-                                                videoUrl: '/videos/potato3',
+                                                videoUrl: 'https://expand-dev.s3-us-west-1.amazonaws.com/rick-1589412873465.mp4',
                                                 instructor: user1,
                                                 course: course0,
                                                 order: 3,
@@ -159,7 +159,7 @@ User.create(users_arr, function (err, users) {
                                         {
                                                 title: 'Introduction to Go',
                                                 description: "Welcome to our introduction to the Go programming language. This lesson will provide an introduction to Go.",
-                                                videoUrl: 'COPY FROM',
+                                                videoUrl: 'https://expand-dev.s3-us-west-1.amazonaws.com/golang1.mp4',
                                                 instructor: user1,
                                                 course: course1,
                                                 order: 1,
@@ -169,7 +169,7 @@ User.create(users_arr, function (err, users) {
                                         {
                                                 title: 'Setting Up a Development Environment',
                                                 description: "This lesson will provide a structured approach describing an introductory development environment to get you programming in Go.",
-                                                videoUrl: 'COPY FROM',
+                                                videoUrl: 'https://expand-dev.s3-us-west-1.amazonaws.com/Golang2.mp4',
                                                 instructor: user1,
                                                 course: course1,
                                                 order: 2,
@@ -179,7 +179,7 @@ User.create(users_arr, function (err, users) {
                                         {
                                                 title: 'Variables',
                                                 description: "This lesson will go in-depth describing the nuances of Go variables.",
-                                                videoUrl: 'COPY FROM',
+                                                videoUrl: 'https://expand-dev.s3-us-west-1.amazonaws.com/golang3.mp4',
                                                 instructor: user1,
                                                 course: course1,
                                                 order: 3,
@@ -189,7 +189,7 @@ User.create(users_arr, function (err, users) {
                                         {
                                                 title: 'Typing',
                                                 description: "Just some plain stock footage of someone typing.",
-                                                videoUrl: '/videos/dada1',
+                                                videoUrl: 'https://expand-dev.s3-us-west-1.amazonaws.com/Computer+Keyboard+-+3174.mp4',
                                                 instructor: user1,
                                                 course: course2,
                                                 order: 1,
@@ -199,7 +199,7 @@ User.create(users_arr, function (err, users) {
                                         {
                                                 title: 'Typing with Coffee',
                                                 description: "This individual is much more productive now that they have a nice shot of espresso.",
-                                                videoUrl: '/videos/dada1',
+                                                videoUrl: 'https://expand-dev.s3-us-west-1.amazonaws.com/Keyboard+-+1046.mp4',
                                                 instructor: user1,
                                                 course: course2,
                                                 order: 2,
@@ -209,7 +209,7 @@ User.create(users_arr, function (err, users) {
                                         {
                                                 title: 'Typing with a Fan',
                                                 description: "To be honest we are not completely sure if any typing is going on. Cool fan though.",
-                                                videoUrl: '/videos/dada1',
+                                                videoUrl: 'https://expand-dev.s3-us-west-1.amazonaws.com/Homework+-+1028.mp4',
                                                 instructor: user1,
                                                 course: course2,
                                                 order: 3,
@@ -217,9 +217,9 @@ User.create(users_arr, function (err, users) {
                                                 comments: [],
                                         },
                                         {
-                                                title: "What's the Right Vehicle for You?",
-                                                description: "It's probably a T-16 Skyhopper. They'll help you get your bullseyes.",
-                                                videoUrl: '/videos/womp1',
+                                                title: "Introduction",
+                                                description: "A quick summary of HTML.",
+                                                videoUrl: 'https://expand-dev.s3-us-west-1.amazonaws.com/y2mate.com+-+HTML+Tutorial+for+Beginners+-+00+-+Introduction+to+HTML_dD2EISBDjWM_240p.mp4',
                                                 instructor: user4,
                                                 course: course3,
                                                 order: 1,
@@ -227,15 +227,55 @@ User.create(users_arr, function (err, users) {
                                                 comments: [],
                                         },
                                         {
-                                                title: 'Music Choice',
-                                                description: "It should go something like this: Doo doo doo doo doo doo doo doo doo doo doo doo, doo dee doo dee doo dee doo, doo dee doo dee doo dee doo.",
-                                                videoUrl: '/videos/coff1',
+                                                title: "Creating Your First Webpage",
+                                                description: "https://expand-dev.s3-us-west-1.amazonaws.com/y2mate.com+-+HTML+Tutorial+for+Beginners+-+01+-+Creating+the+first+web+page_-USAeFpVf_A_144p.mp4",
+                                                videoUrl: '/videos/womp1',
+                                                instructor: user4,
+                                                course: course3,
+                                                order: 2,
+                                                thumbnailUrl: '/images/womp1',
+                                                comments: [],
+                                        },
+                                        {
+                                                title: "Line breaks, Spacing, and Comments",
+                                                description: "https://expand-dev.s3-us-west-1.amazonaws.com/y2mate.com+-+HTML+Tutorial+for+Beginners+-+02+-+Line+breaks%2C+spacing%2C+and+comments_i3GE-toQg-o_240p.mp4",
+                                                videoUrl: '/videos/womp1',
+                                                instructor: user4,
+                                                course: course3,
+                                                order: 3,
+                                                thumbnailUrl: '/images/womp1',
+                                                comments: [],
+                                        },
+                                        {
+                                                title: 'Introduction',
+                                                description: "In this course we'll be learning what React is and how to use it to make awesome, reactive SPA's. We'll also look at how we can use Redux to help with our app's state management.",
+                                                videoUrl: 'https://expand-dev.s3-us-west-1.amazonaws.com/y2mate.com+-+Complete+React+Tutorial+(%26+Redux+)+%231-+Introduction_OxIDLw0M-m0_240p.mp4',
                                                 instructor: user4,
                                                 course: course4,
                                                 order: 1,
                                                 thumbnailUrl: '/images/coff1',
                                                 comments: [],
-                                        }
+                                        },
+                                        {
+                                                title: 'How React Works',
+                                                description: "in this React tutorial I'll be giving you a very birds-eye view of how React works behind the scenes.",
+                                                videoUrl: 'https://expand-dev.s3-us-west-1.amazonaws.com/y2mate.com+-+Complete+React+Tutorial+(%26+Redux)++%232+-+How+React+Works_pKYiKbf7sP0_360p.mp4',
+                                                instructor: user4,
+                                                course: course4,
+                                                order: 2,
+                                                thumbnailUrl: '/images/coff1',
+                                                comments: [],
+                                        },
+                                        {
+                                                title: 'React Setup (with CDN)',
+                                                description: "We will only use the React CDN for the first few lessons, to learn the basics. Then we'll move on to create full React apps with the Create React App package.",
+                                                videoUrl: 'https://expand-dev.s3-us-west-1.amazonaws.com/y2mate.com+-+Complete+React+Tutorial+(%26+Redux)+%233+-+React+Setup+(with+CDN)_SAX6RMEFVM4_360p.mp4',
+                                                instructor: user4,
+                                                course: course4,
+                                                order: 3,
+                                                thumbnailUrl: '/images/coff1',
+                                                comments: [],
+                                        },
                                 ]
 
                                 Lesson.create(lessons_arr, function (err, lessons) {
@@ -248,11 +288,19 @@ User.create(users_arr, function (err, users) {
                                                 let lesson4 = lessons[4]._id;
                                                 let lesson5 = lessons[5]._id;
                                                 let lesson6 = lessons[6]._id;
+                                                let lesson7 = lessons[7]._id;
+                                                let lesson8 = lessons[8]._id;
+                                                let lesson9 = lessons[9]._id;
+                                                let lesson10 = lessons[10]._id;
+                                                let lesson11 = lessons[11]._id;
+                                                let lesson12 = lessons[12]._id;
+                                                let lesson13 = lessons[13]._id;
+                                                let lesson14 = lessons[14]._id;
                                                 courses[0].lessons = [lesson0, lesson1, lesson2];
-                                                courses[1].lessons = [lesson3];
-                                                courses[2].lessons = [lesson4];
-                                                courses[3].lessons = [lesson5];
-                                                courses[4].lessons = [lesson6];
+                                                courses[1].lessons = [lesson3, lesson4, lesson5];
+                                                courses[2].lessons = [lesson6, lesson7, lesson8];
+                                                courses[3].lessons = [lesson9, lesson10, lesson11];
+                                                courses[4].lessons = [lesson12, lesson13, lesson14];
                                                 courses[0].save();
                                                 courses[1].save();
                                                 courses[2].save();
