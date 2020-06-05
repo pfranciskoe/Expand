@@ -4,6 +4,7 @@ import {
   updateCourse,
 } from "../../actions/courses_actions";
 import { fetchUser, updateUser } from "../../actions/users_actions";
+import { deleteLesson } from '../../actions/lessons_actions';
 import CourseShow from "./course_show";
 
 const mSTP = (state, ownProps) => {
@@ -19,7 +20,8 @@ const mDTP = (dispatch) => ({
   getCourse: (courseId) => dispatch(getCourse(courseId)),
   updateCourse: (course) => dispatch(updateCourse(course)),
   fetchUser: (userId) => dispatch(fetchUser(userId)),
-  updateUser: (user) => dispatch(updateUser(user))
+  updateUser: (user) => dispatch(updateUser(user)),
+  deleteLesson: (id) => dispatch(deleteLesson(id))
 });
 
 export default connect(mSTP, mDTP)(CourseShow);
