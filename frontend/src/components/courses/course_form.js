@@ -82,7 +82,7 @@ class CourseForm extends React.Component {
         data.append('title', title);
         data.append('description', description);
         data.append('instructor', instructor);
-        data.append('thumbnailUrl', photoUrl ? photoUrl : "https://expand-dev.s3-us-west-1.amazonaws.com/images/m-clouds.jpg");
+        data.append('thumbnailUrl', photoUrl);
         result = data;
       } else {
         result = { ...course, _id: this.props.course._id }

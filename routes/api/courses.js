@@ -79,7 +79,7 @@ router.post('/',
                         title: req.body.title,
                         description: req.body.description,
                         instructor: req.body.instructor,
-                        thumbnailUrl: req.file.location
+                        thumbnailUrl: req.body.thumbnailUrl ? "https://expand-dev.s3-us-west-1.amazonaws.com/images/m-clouds.jpg" : req.file.location
                     });
                     newCourse.save().then(course => res.json(course.populate('students')));
                 }
