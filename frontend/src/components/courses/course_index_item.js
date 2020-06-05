@@ -27,31 +27,39 @@ class CourseIndexItem extends React.Component{
     render(){
         const {course, currentUser} = this.props;
         const courseStyle = {
-            backgroundImage: `url(https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=967&q=80)`,
+            backgroundImage: `url(https://expand-dev.s3-us-west-1.amazonaws.com/images/m-clouds.jpg)`,
+            // backgroundImage: `url(https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=967&q=80)`,
             // backgroundImage: `url(${course.thumbnailUrl})`
         }; 
 
         return(
-            <NavLink id="title" className="course-list-item-link" to={`/courses/${course._id}`}>
-                <div className="course-list-item" 
-                    style={courseStyle} 
-                    onMouseEnter={this.showDetails}
-                    onMouseLeave={this.hideDetails}>
+            <div className="course-list-item"
+                style={courseStyle}
+                onMouseEnter={this.showDetails}
+                onMouseLeave={this.hideDetails}
+                onClick={() => this.props.history.push(`/courses/${course._id}`)}>
+                <div id='description-container'>
+                    <div id={`desc-${course._id}`} className="desc-back">
+                        <p>{course.description}</p>
+                    </div>
+                </div>
+                <div className="title-box">
                     <div id='title-container'>
                         {course.title}
                     </div>
-                    <div id='description-container'>
-                        <p id={`desc-${course._id}`}>{course.description}</p>
+                    <div className="edit-link">
+                        {currentUser.id === course.instructor
+                            ? (
+                                <Link to={`/courses/${course._id}/edit`}
+                                    onClick={(e) => e.stopPropagation()}>
+                                    <i className="fas fa-pencil-alt"></i>
+                                </Link>
+                            )
+                            : (null)
+                        }
                     </div>
-                    {currentUser.id === course.instructor 
-                    ? (<div>
-                        <Link to={`/courses/${course._id}/edit`}>Edit Course</Link>
-                        <button onClick={this.handleDelete}>Delete Course</button>
-                        </div>)
-                    : (null)
-                    }
                 </div>
-            </NavLink>
+            </div>
         )
     }
 }

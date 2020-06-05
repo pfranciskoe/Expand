@@ -19,23 +19,23 @@
     margin: 20px 20px; 
     text-align: center;
     background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
     position: relative;
     z-index: 1;
-    padding-top: 30px;
     box-sizing: border-box;
     color: rgb(61, 61, 61);
-    box-shadow: 2px 2px 16px 0px rgba(175, 175, 175, 0.75);
+    box-shadow: 2px 2px 16px 0px rgba(209, 209, 209, 0.75);
     transition: 300ms ease-in-out;
     overflow: hidden;
 }
 
 .course-list-item:hover{
+    cursor: pointer;
     box-shadow: 5px 5px 36px 0px rgba(119, 119, 119, 0.75);
     /* box-shadow: 0px 0px 26px 0px rgba(45, 128, 224, 0.75); */
-}
-
-.course-list-item-link:hover{
-    background-color: none;
 }
 
 .course-list-item p {
@@ -43,47 +43,75 @@
     color: rgb(56, 56, 56);
 }
 
-.course-list-item a {
-    color: rgb(64, 152, 224);
-    text-decoration: underline;
+.title-box{
+    width: inherit;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
 }
 
-.course-list-item button {
-    color: rgb(64, 152, 224);
-    text-decoration: underline;
-    background-color: transparent;
-    border:none;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-#title #title-container {
+.title-box .edit-link{
     height: 60px;
-    font-size: 24px;
+    box-sizing: border-box;
+    padding: 10px 15px;
+    position: relative;
+}
+
+.title-box .edit-link a{
+    position: absolute;
+    left: -10px;
+    padding: 10px;
+    color: rgb(157, 183, 233);
+    z-index: 100;
+}
+
+.title-box .edit-link a:hover{
+    color: rgb(36, 93, 201);
+}
+
+.title-box .edit-link a:visited{
+    color: rgb(157, 183, 233);
+}
+
+#title-container {
+    height: 60px;
+    max-height: 60px;
+    max-width: 270px;
+    text-overflow: ellipsis;
+    font-size: 18px;
+    text-align: left;
     text-decoration: none;
     color: rgb(66, 66, 66);
-    font-weight: bold;
+    font-weight: 500;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     box-sizing: border-box;
-    padding: 0px 20px;
+    padding: 10px 15px;
     white-space : normal;
 }
 
 .course-list-item #description-container {
-    text-align: left;
     width: 300px;
+    height: 140px;
+    text-align: left;
     white-space : normal;
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.course-list-item #description-container p{
+.course-list-item #description-container .desc-back{
     width: 300px;
-    height: 100px;
-    padding: 15px;
+    height: inherit;
+    padding: 20px;
     box-sizing: border-box;
     position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     left: -300px;
-    bottom: -127px;
+    bottom: 0px;
     background: rgba(223, 223, 223, 0.8);
     transition: 200ms ease-in-out;
 }
@@ -109,8 +137,14 @@
     border:none;
     box-shadow: 1px 1px 5px 0px #9695956e;
     resize: none;
-
 }
+
+.form textarea:focus{
+    outline: none;
+    border: 2px solid #4098e0;
+    border-radius: 5px;
+}
+
 .show-box{
     margin: 20px;
     margin-left: 5%;
