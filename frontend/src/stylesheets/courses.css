@@ -23,13 +23,15 @@
     z-index: 1;
     padding-top: 30px;
     box-sizing: border-box;
-    color: black;
-    box-shadow: 2px 2px 16px 0px rgba(151, 151, 151, 0.75);
+    color: rgb(61, 61, 61);
+    box-shadow: 2px 2px 16px 0px rgba(175, 175, 175, 0.75);
     transition: 300ms ease-in-out;
+    overflow: hidden;
 }
 
 .course-list-item:hover{
-    box-shadow: 0px 0px 26px 0px rgba(45, 128, 224, 0.75);
+    box-shadow: 5px 5px 36px 0px rgba(119, 119, 119, 0.75);
+    /* box-shadow: 0px 0px 26px 0px rgba(45, 128, 224, 0.75); */
 }
 
 .course-list-item-link:hover{
@@ -38,7 +40,7 @@
 
 .course-list-item p {
     font-size: 16px;
-    color: #444;
+    color: rgb(56, 56, 56);
 }
 
 .course-list-item a {
@@ -59,7 +61,7 @@
     height: 60px;
     font-size: 24px;
     text-decoration: none;
-    color: #333;
+    color: rgb(66, 66, 66);
     font-weight: bold;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     box-sizing: border-box;
@@ -68,11 +70,22 @@
 }
 
 .course-list-item #description-container {
-    padding: 17px;
     text-align: left;
     width: 300px;
     white-space : normal;
+    position: relative;
+}
+
+.course-list-item #description-container p{
+    width: 300px;
+    height: 100px;
+    padding: 15px;
     box-sizing: border-box;
+    position: absolute;
+    left: -300px;
+    bottom: -127px;
+    background: rgba(223, 223, 223, 0.8);
+    transition: 200ms ease-in-out;
 }
 
 .course-list a:hover{

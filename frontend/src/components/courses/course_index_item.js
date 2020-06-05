@@ -6,13 +6,22 @@ class CourseIndexItem extends React.Component{
     constructor(props){
         super(props);
         this.handleDelete = this.handleDelete.bind(this);
+        this.showDetails = this.showDetails.bind(this);
+        this.hideDetails = this.hideDetails.bind(this);
     }
-
 
     handleDelete(e){
         e.preventDefault();
         this.props.deleteCourse(this.props.course._id)
             .then(this.props.history.push("/courses"));
+    }
+
+    showDetails(){
+        document.getElementById(`desc-${this.props.course._id}`).style.left = "0px";
+    }
+
+    hideDetails(){
+        document.getElementById(`desc-${this.props.course._id}`).style.left = "-300px";
     }
 
     render(){
@@ -24,11 +33,16 @@ class CourseIndexItem extends React.Component{
 
         return(
             <NavLink id="title" className="course-list-item-link" to={`/courses/${course._id}`}>
-                <div className="course-list-item" style={courseStyle}>
+                <div className="course-list-item" 
+                    style={courseStyle} 
+                    onMouseEnter={this.showDetails}
+                    onMouseLeave={this.hideDetails}>
                     <div id='title-container'>
                         {course.title}
                     </div>
-                    <p id='description-container'>{course.description}</p>
+                    <div id='description-container'>
+                        <p id={`desc-${course._id}`}>{course.description}</p>
+                    </div>
                     {currentUser.id === course.instructor 
                     ? (<div>
                         <Link to={`/courses/${course._id}/edit`}>Edit Course</Link>
