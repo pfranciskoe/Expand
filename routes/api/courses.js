@@ -79,7 +79,7 @@ router.post('/',
                         title: req.body.title,
                         description: req.body.description,
                         instructor: req.body.instructor,
-                        thumbnailUrl: req.body.thumbnailUrl ? "https://expand-dev.s3-us-west-1.amazonaws.com/images/m-clouds.jpg" : req.file.location
+                        thumbnailUrl: req.file.location // req.body.thumbnailUrl ? "https://expand-dev.s3-us-west-1.amazonaws.com/images/m-clouds.jpg" : 
                     });
                     newCourse.save().then(course => res.json(course.populate('students')));
                 }
@@ -87,36 +87,15 @@ router.post('/',
         });
     });
 
-
-// //post course
-// router.post('/',
-//     passport.authenticate('jwt', { session: false }),
-//     (req, res) => {
-//         const { errors, isValid } = validateCourseInput(req.body);
-
-//         if (!isValid) {
-//             return res.status(400).json(errors);
-//         }
-
-//         const newCourse = new Course({
-//             title: req.body.title,
-//             description: req.body.description,
-//             instructor: req.body.instructor,
-//         });
-
-//         newCourse.save().then(course => res.json(course.populate('students')));
-//     }
-// );
-
 //update course
 router.patch('/:id',
     passport.authenticate('jwt', { session: false }),
     (req, res) => {
-        const { errors, isValid } = validateCourseInput(req.body);
+        // const { errors, isValid } = validateCourseInput(req.body);
 
-        if (!isValid) {
-            return res.status(400).json(errors);
-        }
+        // if (!isValid) {
+        //     return res.status(400).json(errors);
+        // }
 
         Course.findOneAndUpdate({ _id: req.params.id }, req.body, 
             { new: true } )

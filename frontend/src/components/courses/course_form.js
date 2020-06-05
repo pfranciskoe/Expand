@@ -73,19 +73,23 @@ class CourseForm extends React.Component {
 
     handleSubmit(e) {
       e.preventDefault();
-      const { course } = this.props;      
       const { title, description, instructor, photoUrl, photoFile } = this.state;
       let result;
-      if (this.props.formType === "Create Course") {
-        const data = new FormData();
-        data.append('file', photoFile);
-        data.append('title', title);
-        data.append('description', description);
-        data.append('instructor', instructor);
-        data.append('thumbnailUrl', photoUrl);
-        result = data;
+      const data = new FormData();
+      data.append('file', photoFile);
+      data.append('title', title);
+      data.append('description', description);
+      data.append('instructor', instructor);
+      data.append('thumbnailUrl', photoUrl ? photoUrl : "https://expand-dev.s3-us-west-1.amazonaws.com/images/m-clouds.jpg");
+      if (this.props.formType === "Update Course") {
+        result = {
+          title: title,
+          description: description,
+          instructor: instructor,
+          _id: this.props.course._id
+        }
       } else {
-        result = { ...course, _id: this.props.course._id }
+        result = data;
       }
       if (this.checkFields()) {
         this.props.action(result);
