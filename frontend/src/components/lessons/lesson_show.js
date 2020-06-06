@@ -26,12 +26,22 @@ class LessonShow extends React.Component {
   handleSubmit (event) {
     event.preventDefault()
     if (this.state.text) {
-      const resp = {
-        author: this.props.currentUserId,
-        text: this.state.text,
-        lesson: this.props.lesson._id,
-        timestamp: this.vid.currentTime
-      }
+      let resp = {}
+      if (this.vid){
+        resp = {
+          author: this.props.currentUserId,
+          text: this.state.text,
+          lesson: this.props.lesson._id,
+          timestamp: this.vid.currentTime
+        }
+    } else {
+        resp = {
+          author: this.props.currentUserId,
+          text: this.state.text,
+          lesson: this.props.lesson._id,
+          timestamp: null
+        }
+    }
       this.props.createComment(resp)
         .then(() => this.setState({ form: false, loading2: true, text: '' }))
         .then(
