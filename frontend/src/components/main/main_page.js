@@ -82,7 +82,7 @@ class MainPage extends React.Component {
             </div>
             <footer>
               <p>Learn more about us: </p>
-              <a href="https://github.com/pfranciskoe/Expand" id="icon">
+              <a href="https://github.com/pfranciskoe/Expand" id="icon" target="_blank">
                 <FaGithub />
               </a>
             </footer>
