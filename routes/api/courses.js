@@ -1,7 +1,15 @@
 const express = require("express");
 const router = express.Router();
 const passport = require('passport');
-const mongoose = require('mongoose');
+
+const AWS = require("aws-sdk");
+const AWS_SECRET_ACCESS_KEY = require('../../config/keys').AWS_SECRET_ACCESS_KEY;
+const AWS_ACCESS_KEY_ID = require('../../config/keys').AWS_ACCESS_KEY_ID;
+const AWS_BUCKET_NAME = require('../../config/keys').AWS_BUCKET_NAME;
+
+const multer = require("multer");
+const multerS3 = require('multer-s3');
+const path = require('path');
 
 const Course = require('../../models/Course');
 const validateCourseInput = require('../../validation/course');
@@ -24,36 +32,63 @@ router.get("/:id", (req, res) => {
         .catch(err => res.status(404).json({ nocoursefound: 'No course found' }));    
 })
 
-//post course
+const s3 = new AWS.S3({
+    accessKeyId: AWS_ACCESS_KEY_ID,
+    secretAccessKey: AWS_SECRET_ACCESS_KEY,
+    Bucket: AWS_BUCKET_NAME
+});
+
+const imageUpload = multer({
+    storage: multerS3({
+        s3: s3,
+        bucket: AWS_BUCKET_NAME,
+        acl: 'public-read',
+        key: function (req, file, cb) {
+            cb(null, path.basename(file.originalname, path.extname(file.originalname)) + '-' + Date.now() + path.extname(file.originalname))
+        }
+    }),
+    limits: { fileSize: 1000000000 }, // 1GB
+    fileFilter: function (req, file, cb) {
+        checkFileType(file, cb);
+    }
+}).single('file');
+
+function checkFileType(file, cb) {
+    const filetypes = /jpg|jpeg|png|gif/;
+    const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+    const mimetype = filetypes.test(file.mimetype);
+    if (mimetype && extname) {
+        return cb(null, true);
+    } else {
+        cb('Error: Images Only!');
+    }
+}
+
+//create course
 router.post('/',
     passport.authenticate('jwt', { session: false }),
     (req, res) => {
-        const { errors, isValid } = validateCourseInput(req.body);
-
-        if (!isValid) {
-            return res.status(400).json(errors);
-        }
-
-        const newCourse = new Course({
-            title: req.body.title,
-            description: req.body.description,
-            instructor: req.body.instructor,
+        imageUpload(req, res, (error) => {
+            let thumbnailUrl = "";
+            if (error || req.file === undefined) {
+                thumbnailUrl = req.body.thumbnailUrl;
+            } else {
+                thumbnailUrl = req.file.location;
+            }
+            const newCourse = new Course({
+                title: req.body.title,
+                description: req.body.description,
+                instructor: req.body.instructor,
+                thumbnailUrl
+            });
+            newCourse.save().then(course => res.json(course.populate('students')));
         });
-        
-        newCourse.save().then(course => res.json(course.populate('students')));
-    }
-);
+    });
 
 //update course
 router.patch('/:id',
     passport.authenticate('jwt', { session: false }),
     (req, res) => {
-        const { errors, isValid } = validateCourseInput(req.body);
-
-        if (!isValid) {
-            return res.status(400).json(errors);
-        }
-
         Course.findOneAndUpdate({ _id: req.params.id }, req.body, 
             { new: true } )
             .populate('instructor')
