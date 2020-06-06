@@ -12,14 +12,16 @@ class CourseForm extends React.Component {
             success: false,
             photoFile: null,
             photoUrl: this.props.thumbnailUrl,
-            errors: false
+            errors: false,
+            confirmDelete: false
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleFile = this.handleFile.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
+        this.toggleConfirmDelete = this.toggleConfirmDelete.bind(this);
     }
 
-    addCourseToInstructor(courseId) {
+    addCourseToInstructor(courseId){
       if (this.props.formType === "Create Course"){
         const courses = [];
         this.props.user.courses.forEach((course) => {
@@ -32,6 +34,18 @@ class CourseForm extends React.Component {
       }
     }
 
+    removeCourseFromInstructor(courseId){
+      const courses = [];
+      const user = this.props.user;
+      if (!user.courses.length) return;
+      user.courses.forEach( course => {
+        if (course._id !== courseId) courses.push(course);
+      });
+      const newUser = { ...user};
+      newUser.courses = courses;
+      this.props.updateUser(newUser);
+    }
+
     showErrors() {
       if (this.state.errors) {
         return (
@@ -42,14 +56,50 @@ class CourseForm extends React.Component {
       }
     }
 
+    // deleting course start
     deleteOption(){
       if (this.props.formType === "Update Course"){
         return (
-          <button className="delete-button" onClick={this.handleDelete}>Delete</button>
+          <button className="delete-course-btn" onClick={this.toggleConfirmDelete}>Delete</button>
         )
       }
     }
 
+    toggleConfirmDelete(e){
+      e.preventDefault();
+      const status = this.state.confirmDelete;
+      this.setState({ confirmDelete: !status });
+    }
+
+    confirmToDelete() {
+      const { confirmDelete } = this.state;
+      const { course } = this.props;
+      if (confirmDelete) {
+        return (
+          <div className="modal-back" onClick={this.toggleConfirmDelete}>
+            <div className="modal-interior" onClick={e => e.stopPropagation()}>
+              <h2>Delete "{course.title}"?</h2>
+              <p>This change will be permanent!</p>
+              <div className="delete-options">
+                <button onClick={this.handleDelete}>Delete</button>
+                <button onClick={this.toggleConfirmDelete}>Keep</button>
+              </div>
+            </div>
+          </div>
+        )
+      }
+    }
+
+    handleDelete(e) {
+      e.preventDefault();
+      const id = this.props.course._id;
+      this.removeCourseFromInstructor(id);
+      this.props.deleteCourse(id)
+        .then(this.props.history.push("/courses"));
+    }
+    //deleting course end
+
+    //handle file start
     checkFields(){
       const {title, description} = this.state;
       return title && description;
@@ -77,12 +127,7 @@ class CourseForm extends React.Component {
       this.hideBackground();
       if (file) fileReader.readAsDataURL(file);
     }
-
-    handleDelete(e) {
-      e.preventDefault();
-      this.props.deleteCourse(this.props.course._id)
-        .then(this.props.history.push("/courses"));
-    }
+    //handle file end
 
     handleSubmit(e) {
       e.preventDefault();
@@ -120,6 +165,7 @@ class CourseForm extends React.Component {
           : null;
         return (
           <div>
+            {this.confirmToDelete()}
             {this.state.success 
             ? <h1>Your course is saved!</h1>
             :(

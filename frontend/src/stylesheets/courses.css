@@ -289,6 +289,7 @@
     justify-content: center;
     align-items: center;
     background-color: white;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -300,21 +301,24 @@
     margin: 10px;
 }
 
-.modal-back .delete-options button{
-    background-color: rgb(132, 169, 236);
+.modal-back .delete-options button,
+.delete-course-btn{
+    background-color: rgb(236, 132, 132);
     color: white;
     border: none;
     border-radius: 5px;
     padding: 10px 20px;
+    min-width: 100px;
     box-sizing: border-box;
-    margin: 0 10px;
+    margin: 10px;
     font-size: 18px;
     font-weight: bold;
 }
 
-.modal-back .delete-options button:first-child:hover{
+.modal-back .delete-options button:first-child:hover,
+.delete-course-btn:hover{
     cursor: pointer;
-    background-color: rgb(36, 93, 201);
+    background-color: rgb(156, 16, 16);
 }
 
 .modal-back .delete-options button:last-child{
