@@ -53,7 +53,7 @@ A online video learning platform features comment heatmap and video commeting, o
 Lesson videos and course thumbnails are saved to AWS through the use of multer middleware to handle file uploading.
     We imposed file type restrictions and a size limit to reduce storage costs. After a new lesson form submission succeeds, the
     corresponding course is updated to include the new lesson.
-```
+```javascript
 const lessonUpload = multer({
     storage: multerS3({
         s3: s3,
@@ -76,7 +76,7 @@ When a student submits a comment/question, the submission is represented in a he
     This allows the instructor to identify specific areas of the lesson where students had the most questions. 
     Clicking on a region in the heatmap will take you to the appropriate comments to which instructors can reply by text and/or video.
 
-```
+```javascript
   draw (ctx, comments, vidLength) {
     comments.forEach((comment) => {
       const timeRound = comment.timestamp / vidLength
