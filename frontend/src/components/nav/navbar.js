@@ -90,7 +90,8 @@ class NavBar extends React.Component {
 
     handleLink(courseId){
         return e => {
-            this.props.history.push(`/courses/${courseId}`);
+            this.props.getCourse(courseId)
+                .then(this.props.history.push(`/courses/${courseId}`));
         }
     }
 

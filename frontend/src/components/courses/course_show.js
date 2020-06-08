@@ -156,6 +156,7 @@ class CourseShow extends React.Component {
         Enroll
       </button>
     );
+
     return (
       <div className="show-box">
         {this.confirmToDelete()}
@@ -178,7 +179,9 @@ class CourseShow extends React.Component {
               {lessons.map((lesson, i) => (
                 <div key={i} className="lesson-list-item-box">
                   <Link to={`/lessons/${lesson._id}`}><li className ='lesson-list-item' key={`${i}`}>{lesson.title}</li></Link>
-                  <button id="trash-icon" className="trash-icon" onClick={this.openConfirmation(i)}><i className="fas fa-trash-alt"></i></button>
+                  {this.props.currentUserId === instructor._id ?
+                    (<button id="trash-icon" className="trash-icon" onClick={this.openConfirmation(i)}><i className="fas fa-trash-alt"></i></button>)
+                    : null}
                 </div>
               ))}
             </ol>

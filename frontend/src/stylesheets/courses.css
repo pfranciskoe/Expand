@@ -18,7 +18,8 @@
     height: 200px;
     margin: 20px 20px; 
     text-align: center;
-    background-size: cover;
+    background-color: rgba(223, 223, 223, 0.8);
+    background-size: contain;
     display: flex;
     flex-direction: column;
     justify-content: center;
