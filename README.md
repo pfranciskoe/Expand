@@ -1,5 +1,5 @@
 # Expand
-An online video learning platform featuring comment heatmaps and video commenting, offering a new level of student and instructor engagement.
+An online video learning platform offering a new level of student and instructor engagement through video comment heatmaps and instructor video replies.
   
 ## Technologies
 * MongoDB
