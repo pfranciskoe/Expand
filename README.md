@@ -1,75 +1,53 @@
 # Expand
 ## Background
-A Learning tool for teachers to followup with students when they have questions.
-
-
-## MVPS / Base Features
-- [ ] User Auth
-* Users can sign up as students or teachers.
-* Users can log in
-- [ ] Courses
-* Courses can be viewed on a searchable index
-* teachers should be able to make and delete a course 
-* students can enroll in a course
-* Courses can have multiple videos
-- [ ] Video Posting
-* teachers should be able to post and delete videos to course
-- [ ] Video Reply System
-* students should be able to make time stamped comments on videos.
-* teachers should be able to reply to either one or many comments with a video or text message.
-* students and teacher should be able to see comments in the the UI of the video player.
-
-Bonus
-- [ ] Time stamped links
-* students and teachers should be able to comment with time stamped links to other videos.
-- [ ] Chat
-* students and teachers should be able to directly message one another.
-
-
+A online video learning platform features comment heatmap and video commeting, offering a new level of student and instructor engagement.
+  
 ## Tech Overview
 * MongoDB
 * Mongoose
-* Express
-* React-Redux
-* NodeJS
-* Backend Server S3
-* Deploy through Heroku or AWS
+* Express.js
+* React
+* Redux
+* Node.js
+* AWS S3 integration
+* Heroku deployment
+  
+## Features
+  
+### HomePage
+<p align="center">
+  <img width="auto" height="auto" src="https://github.com/pfranciskoe/Expand/blob/master/demo/expd-1.gif?raw=true">
+</p>
 
+  
+### Courses & Lessons
+* Users can view all the courses and its details
+* Instructors are able to create, edit and delete courses
 
-## Work Breakdown
+<p align="center">
+  <img width="auto" height="auto" src="https://github.com/pfranciskoe/Expand/blob/master/demo/expd-2.gif?raw=true">
+</p>
+  
+* Students can enroll in courses
+* Students can view the videos in a course
+  
+<p align="center">
+  <img width="auto" height="auto" src="https://github.com/pfranciskoe/Expand/blob/master/demo/expd-3.gif?raw=true">
+</p>
 
+* Instructors can add a lesson and upload videos to their courses.
+  
+<p align="center">
+  <img width="auto" height="auto" src="https://github.com/pfranciskoe/Expand/blob/master/demo/expd-6.gif?raw=true">
+</p>
 
-### Day 1 
-* User Auth Day (front and back end)
-* Backend Course Framework
-Frontend
-    Login/Signup Splash
-    Teacher Home Page / User Home Page
-### Day 2 
-* Finish Up User Auth Day (front and back end)
-Frontend
-    Teacher Home Page(Their Courses) / User Home Page(Their Courses)
-    Course Index Page
-    Course Show Page
-### Day 3
-* Backend AWS Video Hosting
-* Frontend Video interface
-* Backend AWS Video Hosting + Commenting Framework
-* Frontend Video interface + Commenting
-Frontend
-    Course Show Page
-    Video Page
-### Day 4
-* Backend Recieve and Accept timestamps refs
-* Comment interface and User interaction improvements.
-Frontend
-    Video Page + comments
-### Day 5
-* Cleanup and final pushes to deployment app.
-* Css cleanup / js responsive animations.
-Frontend
-    Video Page + comments
-
+### Comments and Responses
+* Users are able to make time stamped comments on videos. Comments from students are displayed as blue circles while comments from instructors are displayed as red circles.
+* Instructors can reply to comments through either a video or text response.
+  
+<p align="center">
+  <img width="auto" height="auto" src="https://github.com/pfranciskoe/Expand/blob/master/demo/expd-5.gif?raw=true">
+</p>
 
 ## Uploading to AWS Cloud Services
 Lesson videos and course thumbnails are saved to AWS through the use of multer middleware to handle file uploading.
@@ -93,9 +71,10 @@ const lessonUpload = multer({
 ```
 
 ## Heatmap to track comments
-When a student submits a comment/question, the timestamped submission is represented in a heatmap below the video.
-    This allows the instructor to identify specific areas of the lesson where students had the most questions. Clicking
-    on a region in the heatmap will take you to the appropriate comments to which instructors can reply by text and/or video.
+When a student submits a comment/question, the submission is represented in a heatmap below the video.
+    Each comment is represented as a circle drawn in a canvas element at their corresponding timestamp in the video. 
+    This allows the instructor to identify specific areas of the lesson where students had the most questions. 
+    Clicking on a region in the heatmap will take you to the appropriate comments to which instructors can reply by text and/or video.
 
 ```
   draw (ctx, comments, vidLength) {
