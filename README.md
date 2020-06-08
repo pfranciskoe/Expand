@@ -1,8 +1,7 @@
 # Expand
-## Background
-A online video learning platform features comment heatmap and video commeting, offering a new level of student and instructor engagement.
+An online video learning platform featuring comment heatmaps and video commenting, offering a new level of student and instructor engagement.
   
-## Tech Overview
+## Technologies
 * MongoDB
 * Mongoose
 * Express.js
