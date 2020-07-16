@@ -1,5 +1,5 @@
-import React from "react";
-import {Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 class CourseShow extends React.Component {
   constructor(props) {
@@ -9,16 +9,16 @@ class CourseShow extends React.Component {
     this.openConfirmation = this.openConfirmation.bind(this);
     this.closeConfirmation = this.closeConfirmation.bind(this);
     this.removeLessonFromCourse = this.removeLessonFromCourse.bind(this);
-    this.state = { 
+    this.state = {
       enrolled: this.checkEnrollment(),
-      chooseToDelete: ""
-     };
+      chooseToDelete: '',
+    };
   }
 
-  componentDidMount(){
-      this.props.getCourse(this.props.match.params.id);
-      this.props.fetchUser(this.props.currentUserId);
-      window.scrollTo(0, 0);
+  componentDidMount() {
+    this.props.getCourse(this.props.match.params.id);
+    this.props.fetchUser(this.props.currentUserId);
+    window.scrollTo(0, 0);
   }
 
   /* handle enrollment - start */
@@ -48,12 +48,12 @@ class CourseShow extends React.Component {
     this.props.updateUser(newUser);
   }
 
-  removeCourseFromStudent(){
+  removeCourseFromStudent() {
     const courses = [];
     this.props.user.courses.forEach((course) => {
-      if (course._id !== this.props.match.params.id){
-        courses.push(course._id)
-      };
+      if (course._id !== this.props.match.params.id) {
+        courses.push(course._id);
+      }
     });
     const newUser = { ...this.props.user };
     newUser.courses = courses;
@@ -88,25 +88,25 @@ class CourseShow extends React.Component {
   /* handle enrollment - end */
 
   /* delete lesson - start */
-  handleDelete(id){
+  handleDelete(id) {
     return (e) => {
       e.preventDefault();
-      this.props.deleteLesson(id)
+      this.props.deleteLesson(id);
       this.removeLessonFromCourse(id);
       this.closeConfirmation(e);
-    }
+    };
   }
 
-  openConfirmation(i){
+  openConfirmation(i) {
     return (e) => {
       e.preventDefault();
-      this.setState({chooseToDelete: `${i}`});
-    }
+      this.setState({ chooseToDelete: `${i}` });
+    };
   }
 
-  closeConfirmation(e){
+  closeConfirmation(e) {
     e.preventDefault();
-    this.setState({chooseToDelete: ""});
+    this.setState({ chooseToDelete: '' });
   }
 
   removeLessonFromCourse(id) {
@@ -114,29 +114,31 @@ class CourseShow extends React.Component {
     const { course, updateCourse } = this.props;
     course.lessons.forEach((lesson) => {
       if (lesson._id !== id) lessons.push(lesson);
-    })
+    });
     const newCourse = { ...course };
     newCourse.lessons = lessons;
     updateCourse(newCourse);
   }
 
-  confirmToDelete(){
-    const {chooseToDelete} = this.state;
-    const {course} = this.props;
-    if (chooseToDelete){
+  confirmToDelete() {
+    const { chooseToDelete } = this.state;
+    const { course } = this.props;
+    if (chooseToDelete) {
       let chosenLesson = course.lessons[chooseToDelete];
       return (
         <div className="modal-back" onClick={this.closeConfirmation}>
-          <div className="modal-interior" onClick={e => e.stopPropagation()}>
+          <div className="modal-interior" onClick={(e) => e.stopPropagation()}>
             <h2>Delete "{chosenLesson.title}"?</h2>
             <p>This change will be permanent!</p>
             <div className="delete-options">
-              <button onClick={this.handleDelete(chosenLesson._id)}>Delete</button>
+              <button onClick={this.handleDelete(chosenLesson._id)}>
+                Delete
+              </button>
               <button onClick={this.closeConfirmation}>Keep</button>
             </div>
           </div>
         </div>
-      )
+      );
     }
   }
 
@@ -161,27 +163,39 @@ class CourseShow extends React.Component {
       <div className="show-box">
         {this.confirmToDelete()}
         <div className="info">
-          <h1 className='course-title'>{this.props.course.title}</h1>
-          <p className='course-author'>{`By ${instructor.firstName} ${instructor.lastName}`}</p>
-          <div className='course-divider-1'></div>
-          <p className='course-description-header'>Course Description:</p>
-          <p className='course-description'>{this.props.course.description}</p>
+          <h1 className="course-title">{this.props.course.title}</h1>
+          <p className="course-author">{`By ${instructor.firstName} ${instructor.lastName}`}</p>
+          <div className="course-divider-1"></div>
+          <p className="course-description-header">Course Description:</p>
+          <p className="course-description">{this.props.course.description}</p>
           {this.props.user.instructor ? null : buttonDiv}
-          <div className='course-divider-2'></div>
+          <div className="course-divider-2"></div>
         </div>
         <div className="course-content">
           <div className="lesson-list">
             <h2>Lessons</h2>
             {this.props.currentUserId === instructor._id ? (
-              <Link to={`/courses/${this.props.course._id}/lessons/new`}>Add a lesson</Link>
+              <Link to={`/courses/${this.props.course._id}/lessons/new`}>
+                Add a lesson
+              </Link>
             ) : null}
             <ol>
               {lessons.map((lesson, i) => (
                 <div key={i} className="lesson-list-item-box">
-                  <Link to={`/lessons/${lesson._id}`}><li className ='lesson-list-item' key={`${i}`}>{lesson.title}</li></Link>
-                  {this.props.currentUserId === instructor._id ?
-                    (<button id="trash-icon" className="trash-icon" onClick={this.openConfirmation(i)}><i className="fas fa-trash-alt"></i></button>)
-                    : null}
+                  <Link to={`/lessons/${lesson._id}`}>
+                    <li className="lesson-list-item" key={`${i}`}>
+                      {lesson.title}
+                    </li>
+                  </Link>
+                  {this.props.currentUserId === instructor._id ? (
+                    <button
+                      id="trash-icon"
+                      className="trash-icon"
+                      onClick={this.openConfirmation(i)}
+                    >
+                      <i className="fas fa-trash-alt"></i>
+                    </button>
+                  ) : null}
                 </div>
               ))}
             </ol>
@@ -191,7 +205,10 @@ class CourseShow extends React.Component {
             <span>
               {students.map((student, i) =>
                 student ? (
-                  <li key={student._id} className='student-name'>{`${student.firstName} ${student.lastName}`}</li>
+                  <li
+                    key={student._id}
+                    className="student-name"
+                  >{`${student.firstName} ${student.lastName}`}</li>
                 ) : null
               )}
             </span>

@@ -1,4 +1,4 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const User = require('../../models/User');
@@ -7,133 +7,147 @@ const keys = require('../../config/keys');
 const passport = require('passport');
 const validateRegisterInput = require('../../validation/register');
 const validateLoginInput = require('../../validation/login');
-const validateUserInput = require('../../validation/user')
+const validateUserInput = require('../../validation/user');
 
-router.get("/test", (req, res) => res.json({ msg: "This is the users route" }));
+router.get('/test', (req, res) => res.json({ msg: 'This is the users route' }));
 
 //REGISTER ROUTE
-router.post("/register", (req, res) => {
-    const { errors, isValid } = validateRegisterInput(req.body);
+router.post('/register', (req, res) => {
+  const { errors, isValid } = validateRegisterInput(req.body);
 
-    if (!isValid) {
-        return res.status(400).json(errors);
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
+
+  User.findOne({ email: req.body.email }).then((user) => {
+    if (user) {
+      errors.email = 'User already exists';
+      return res.status(400).json(errors);
+    } else {
+      const newUser = new User({
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        password: req.body.password,
+        instructor: req.body.instructor,
+        courses: req.body.courses,
+      });
+
+      bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.hash(newUser.password, salt, (err, hash) => {
+          if (err) throw err;
+          newUser.password = hash;
+          newUser
+            .save()
+            .then((user) => {
+              const payload = { id: user.id, email: user.email };
+
+              jwt.sign(
+                payload,
+                keys.secretOrKey,
+                { expiresIn: 3600 },
+                (err, token) => {
+                  res.json({
+                    success: true,
+                    token: 'Bearer ' + token,
+                  });
+                }
+              );
+            })
+            .catch((err) => console.log(err));
+        });
+      });
     }
-
-    User.findOne({ email: req.body.email }).then(user => {
-        if (user) {
-            errors.email = "User already exists";
-            return res.status(400).json(errors);
-        } else {
-            const newUser = new User({
-                firstName: req.body.firstName,
-                lastName: req.body.lastName,
-                email: req.body.email,
-                password: req.body.password,
-                instructor: req.body.instructor,
-                courses: req.body.courses
-            });
-
-            bcrypt.genSalt(10, (err, salt) => {
-                bcrypt.hash(newUser.password, salt, (err, hash) => {
-                    if (err) throw err;
-                    newUser.password = hash;
-                    newUser
-                        .save()
-                        .then(user => {
-                            const payload = { id: user.id, email: user.email };
-
-                            jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 }, (err, token) => {
-                                res.json({
-                                    success: true,
-                                    token: "Bearer " + token
-                                });
-                            });
-                        })
-                        .catch(err => console.log(err));
-                });
-            });
-        }
-    });
+  });
 });
 
-
 //LOGIN ROUTE
-router.post("/login", (req, res) => {
-    const { errors, isValid } = validateLoginInput(req.body);
+router.post('/login', (req, res) => {
+  const { errors, isValid } = validateLoginInput(req.body);
 
-    if (!isValid) {
-        return res.status(400).json(errors);
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
+
+  const email = req.body.email;
+  const password = req.body.password;
+
+  User.findOne({ email }).then((user) => {
+    if (!user) {
+      errors.email = 'This user does not exist';
+      return res.status(400).json(errors);
     }
 
-    const email = req.body.email;
-    const password = req.body.password;
+    bcrypt.compare(password, user.password).then((isMatch) => {
+      if (isMatch) {
+        const payload = { id: user.id, email: user.email };
 
-    User.findOne({ email }).then(user => {
-        if (!user) {
-            errors.email = "This user does not exist";
-            return res.status(400).json(errors);
-        }
-
-        bcrypt.compare(password, user.password).then(isMatch => {
-            if (isMatch) {
-                const payload = { id: user.id, email: user.email };
-
-                jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 }, (err, token) => {
-                    res.json({
-                        success: true,
-                        token: "Bearer " + token
-                    });
-                });
-            } else {
-                errors.password = "Incorrect password";
-                return res.status(400).json(errors);
-            }
-        });
+        jwt.sign(
+          payload,
+          keys.secretOrKey,
+          { expiresIn: 3600 },
+          (err, token) => {
+            res.json({
+              success: true,
+              token: 'Bearer ' + token,
+            });
+          }
+        );
+      } else {
+        errors.password = 'Incorrect password';
+        return res.status(400).json(errors);
+      }
     });
+  });
 });
 
 //CURRENT USER
-router.get('/current', 
-passport.authenticate('jwt', { session: false }), 
-(req, res) => {
-    res.json({
+router.get(
+  '/current',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    res.json(
+      {
         id: req.user.id,
         firstName: req.user.firstName,
         lastName: req.user.lastName,
         email: req.user.email,
         instructor: req.user.instructor,
-        courses: req.user.courses
-    }.populate('courses'));
-})
-
-//show user
-router.get("/:id", (req, res) => {
-    User.findById(req.params.id)
-        .populate('courses').populate('comments').populate('lessons')
-        .then(user => res.json(user))
-        .catch(err => res.status(404).json({ nocoursefound: 'No user found' }));
-})
-
-//update user
-router.patch('/:id',
-    passport.authenticate('jwt', { session: false }),
-    (req, res) => {
-        const { errors, isValid } = validateUserInput(req.body);
-
-        if (!isValid) {
-            return res.status(400).json(errors);
-        }
-
-        User.findOneAndUpdate({ _id: req.params.id }, req.body, 
-            { new: true } )
-            .populate('courses')
-            .populate('comments')
-            .populate('lessons')
-            .exec(function(err, user) {
-                res.json(user);
-        });
-    }
+        courses: req.user.courses,
+      }.populate('courses')
+    );
+  }
 );
 
+//show user
+router.get('/:id', (req, res) => {
+  User.findById(req.params.id)
+    .populate('courses')
+    .populate('comments')
+    .populate('lessons')
+    .then((user) => res.json(user))
+    .catch((err) => res.status(404).json({ nocoursefound: 'No user found' }));
+});
+
+//update user
+router.patch(
+  '/:id',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    const { errors, isValid } = validateUserInput(req.body);
+
+    if (!isValid) {
+      return res.status(400).json(errors);
+    }
+
+    User.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true })
+      .populate('courses')
+      .populate('comments')
+      .populate('lessons')
+      .exec(function (err, user) {
+        res.json(user);
+      });
+  }
+);
 
 module.exports = router;

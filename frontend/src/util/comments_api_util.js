@@ -1,11 +1,11 @@
-import axios from "axios";
+import axios from 'axios';
 
 export const getComment = (id) => {
   return axios.get(`/api/comments/${id}`);
 };
 
 export const createComment = (comment) => {
-  return axios.post("/api/comments", comment);
+  return axios.post('/api/comments', comment);
 };
 
 export const updateComment = (comment) => {

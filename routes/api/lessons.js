@@ -2,16 +2,13 @@ const express = require("express");
 const router = express.Router();
 const passport = require('passport');
 const validateLessonInput = require('../../validation/lesson')
-
 const AWS = require("aws-sdk");
 const AWS_SECRET_ACCESS_KEY = require('../../config/keys').AWS_SECRET_ACCESS_KEY;
 const AWS_ACCESS_KEY_ID = require('../../config/keys').AWS_ACCESS_KEY_ID;
 const AWS_BUCKET_NAME = require('../../config/keys').AWS_BUCKET_NAME;
-
 const multer = require("multer");
 const multerS3 = require('multer-s3');
 const path = require('path');
-
 const Lesson = require('../../models/Lesson');
 
 router.get("/test", (req, res) => res.json({ msg: "This is the lessons route" }));
