@@ -1,7 +1,7 @@
-import axios from "axios";
+import axios from 'axios';
 
 export const getLessons = () => {
-  return axios.get("/api/lessons");
+  return axios.get('/api/lessons');
 };
 
 export const getLesson = (id) => {
@@ -9,7 +9,7 @@ export const getLesson = (id) => {
 };
 
 export const createLesson = (lesson) => {
-  return axios.post("/api/lessons/upload", lesson);
+  return axios.post('/api/lessons/upload', lesson);
 };
 
 export const updateLesson = (lesson) => {

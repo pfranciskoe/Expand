@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 
 export const getResponse = (id) => {
   return axios.get(`/api/responses/${id}`);

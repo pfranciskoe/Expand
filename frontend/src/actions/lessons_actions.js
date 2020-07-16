@@ -1,10 +1,10 @@
-import * as lessonsAPIUtil from "../util/lessons_api_util";
-import {updateCourse} from "../actions/courses_actions";
+import * as lessonsAPIUtil from '../util/lessons_api_util';
+import { updateCourse } from '../actions/courses_actions';
 
-export const RECEIVE_LESSONS = "RECEIVE_LESSONS";
-export const RECEIVE_LESSON = "RECEIVE_LESSON";
-export const REMOVE_LESSON = "REMOVE_LESSON";
-export const RECEIVE_LESSON_ERRORS = "RECEIVE_LESSON_ERRORS";
+export const RECEIVE_LESSONS = 'RECEIVE_LESSONS';
+export const RECEIVE_LESSON = 'RECEIVE_LESSON';
+export const REMOVE_LESSON = 'REMOVE_LESSON';
+export const RECEIVE_LESSON_ERRORS = 'RECEIVE_LESSON_ERRORS';
 
 const receiveLessons = (lessons) => ({
   type: RECEIVE_LESSONS,
@@ -41,7 +41,6 @@ export const getLesson = (lessonId) => (dispatch) =>
   lessonsAPIUtil
     .getLesson(lessonId)
     .then((lesson) => dispatch(receiveLesson(lesson)));
-
 
 export const updateLesson = (lesson) => (dispatch) =>
   lessonsAPIUtil.updateLesson(lesson).then(
