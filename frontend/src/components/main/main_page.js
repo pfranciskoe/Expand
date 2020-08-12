@@ -26,7 +26,7 @@ class MainPage extends React.Component {
 
     const grant = {
       backgroundImage:
-        'url(https://media-exp1.licdn.com/dms/image/C5603AQEFYF32YbNzZA/profile-displayphoto-shrink_400_400/0?e=1596672000&v=beta&t=px5LGzcQQt3277GwgcGmjcMAfWk6i9hk7GKSaqI30qM)',
+        'url(https://expand-dev.s3-us-west-1.amazonaws.com/images/grant-profile.png)',
     };
 
     const zoe = {
