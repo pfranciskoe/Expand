@@ -21,7 +21,7 @@ class MainPage extends React.Component {
 
     const erick = {
       backgroundImage:
-        'url(https://media-exp1.licdn.com/dms/image/C5603AQHTrNE7OvY4Sg/profile-displayphoto-shrink_200_200/0?e=1594857600&v=beta&t=No2QgCPzapfVPeAOlfPTk1onVnRhcpj2ci_JbFV_NXU)',
+        'url(https://expand-dev.s3-us-west-1.amazonaws.com/images/erick_prof_profile.png)',
     };
 
     const grant = {
