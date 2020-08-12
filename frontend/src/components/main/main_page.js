@@ -31,7 +31,7 @@ class MainPage extends React.Component {
 
     const zoe = {
       backgroundImage:
-        'url(https://media-exp1.licdn.com/dms/image/C5603AQG3nJVhyelE8A/profile-displayphoto-shrink_200_200/0?e=1594857600&v=beta&t=laiR9ECKD-Gq2s3xLDTBY62BV_Rvsc7EP8rKBN1vd0k)',
+        'url(https://expand-dev.s3-us-west-1.amazonaws.com/images/zoe-profile.png)',
     };
     return (
       <div className="main-box">
