@@ -98,7 +98,7 @@ When a student submits a comment/question, the submission is represented in a he
   <tr>
     <td align="center">
         <a href="https://github.com/pfranciskoe">
-            <img src="https://media-exp1.licdn.com/dms/image/C5603AQHhbc33qphMEA/profile-displayphoto-shrink_200_200/0?e=1597276800&v=beta&t=b-V-kVFRq0RLaa76-S4k80LM3zLUf9ivYITZuJ-i-d8" width="100px;" alt="Peter Koe" title="Peter Koe"/>
+            <img src="https://expand-dev.s3-us-west-1.amazonaws.com/images/peter-profile.png" width="100px;" alt="Peter Koe" title="Peter Koe"/>
             <br/>
             <sub><b>Peter Koe</b></sub>
         </a>
@@ -106,7 +106,7 @@ When a student submits a comment/question, the submission is represented in a he
     </td>
     <td align="center">
         <a href="https://github.com/Arctive">
-            <img src="https://media-exp1.licdn.com/dms/image/C5603AQHTrNE7OvY4Sg/profile-displayphoto-shrink_200_200/0?e=1594857600&v=beta&t=No2QgCPzapfVPeAOlfPTk1onVnRhcpj2ci_JbFV_NXU" width="100px;" alt="Erick Santos" title="Erick Santos"/>
+            <img src="https://expand-dev.s3-us-west-1.amazonaws.com/images/erick_prof_profile.png" width="100px;" alt="Erick Santos" title="Erick Santos"/>
             <br/>
             <sub><b>Erick Santos</b></sub>
         </a>
@@ -114,7 +114,7 @@ When a student submits a comment/question, the submission is represented in a he
     </td>
     <td align="center">
         <a href="https://github.com/gmkleinman">
-            <img src="https://media-exp1.licdn.com/dms/image/C5603AQEFYF32YbNzZA/profile-displayphoto-shrink_400_400/0?e=1596672000&v=beta&t=px5LGzcQQt3277GwgcGmjcMAfWk6i9hk7GKSaqI30qM" width="100px;" alt="Grant Kleinman" title="Grant Kleinman"/>
+            <img src="https://expand-dev.s3-us-west-1.amazonaws.com/images/grant-profile.png" width="100px;" alt="Grant Kleinman" title="Grant Kleinman"/>
             <br/>
             <sub><b>Grant Kleinman</b></sub>
         </a>
@@ -122,7 +122,7 @@ When a student submits a comment/question, the submission is represented in a he
     </td>
     <td align="center">
         <a href="https://github.com/zixlin7">
-            <img src="https://media-exp1.licdn.com/dms/image/C5603AQG3nJVhyelE8A/profile-displayphoto-shrink_200_200/0?e=1594857600&v=beta&t=laiR9ECKD-Gq2s3xLDTBY62BV_Rvsc7EP8rKBN1vd0k" width="100px;" alt="Zoe Lin" title="Zoe Lin"/>
+            <img src="https://expand-dev.s3-us-west-1.amazonaws.com/images/zoe-profile.png" width="100px;" alt="Zoe Lin" title="Zoe Lin"/>
             <br/>
             <sub><b>Zoe Lin</b></sub>
         </a>
