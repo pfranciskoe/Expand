@@ -2,7 +2,7 @@ import React from 'react';
 import '../../stylesheets/lesson.css';
 import Comment from './comments/comment';
 import CommentHeatmap from './comments/comment_heatmap';
-
+//23
 class LessonShow extends React.Component {
   constructor(props) {
     super(props);
